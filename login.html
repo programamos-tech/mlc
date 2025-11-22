@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Martha Lucía Contreras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --terracota: #EB7B05;
+    --verde-bosque: #355840;
+    --crema: #FFD599;
+    --verde-profundo: #295764;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    color: var(--verde-profundo);
+    background: linear-gradient(135deg, rgba(255,213,153,0.15) 0%, #ffffff 100%);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--verde-bosque);
+}
+
+.login-container {
+    max-width: 450px;
+    width: 100%;
+}
+.login-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.login-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.login-header p {
+    color: var(--verde-profundo);
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+.login-box {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(53, 88, 64, 0.1);
+    border: 1px solid rgba(53, 88, 64, 0.1);
+}
+.login-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--verde-bosque);
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--verde-bosque);
+    font-size: 0.9rem;
+}
+input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(53,88,64,0.2);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.15s;
+    background: white;
+    color: var(--verde-profundo);
+}
+input:focus {
+    outline: none;
+    border-color: var(--verde-bosque);
+}
+.btn {
+    width: 100%;
+    padding: 0.9rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    background: var(--terracota);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(235,123,5,0.25);
+}
+.error-message {
+    background: #fee;
+    border: 1px solid #fcc;
+    color: #c33;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    display: none;
+}
+.error-message.show {
+    display: block;
+}
+.back-link {
+    text-align: center;
+    margin-top: 2rem;
+}
+.back-link a {
+    color: var(--verde-bosque);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+.back-link a:hover {
+    color: var(--terracota);
+}
+
+@media (max-width: 480px) {
+    .login-header h1 {
+        font-size: 2rem;
+    }
+    .login-box {
+        padding: 2rem 1.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Martha Lucía Contreras</h1>
+            <p>Gestión Emocional</p>
+        </div>
+
+        <div class="login-box">
+            <h2>Iniciar Sesión</h2>
+
+            <div id="errorMessage" class="error-message">
+                Credenciales incorrectas. Por favor intenta de nuevo.
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" placeholder="marta@blogs.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
+                </div>
+
+                <button type="submit" class="btn">Ingresar al Panel</button>
+            </form>
+
+            <div class="back-link">
+                <a href="index.html">← Volver a la página principal</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// Verificar si ya está autenticado
+if (sessionStorage.getItem('mlc-auth') === 'true') {
+    window.location.href = 'admin.html';
+}
+
+document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('errorMessage');
+
+    // Credenciales
+    if (email === 'marta@blogs.com' && password === 'admin123') {
+        // Login exitoso
+        sessionStorage.setItem('mlc-auth', 'true');
+        sessionStorage.setItem('mlc-user', email);
+        window.location.href = 'admin.html';
+    } else {
+        // Login fallido
+        errorMessage.classList.add('show');
+        document.getElementById('password').value = '';
+        document.getElementById('password').focus();
+
+        // Ocultar mensaje después de 3 segundos
+        setTimeout(() => {
+            errorMessage.classList.remove('show');
+        }, 3000);
+    }
+});
+    </script>
+</body>
+</html>

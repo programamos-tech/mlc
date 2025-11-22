@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martha Lucía Contreras - Donde la calma se convierte en fuerza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --terracota: #EB7B05;
+    --verde-bosque: #355840;
+    --crema: #FFD599;
+    --verde-profundo: #295764;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    color: var(--verde-profundo);
+    background: #fefefe;
+    -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { 
+    font-family: 'Playfair Display', serif;
+    font-weight: 600; 
+    color: var(--verde-bosque);
+}
+.container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0 2rem; 
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: transparent;
+    padding: 1.2rem 0;
+    z-index: 1000;
+    border-bottom: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeIn 0.8s ease-out;
+}
+nav.scrolled {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 4px 20px rgba(53, 88, 64, 0.08);
+    padding: 0.9rem 0;
+}
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--verde-bosque);
+}
+.logo-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--verde-profundo);
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: -0.2rem;
+}
+nav a {
+    margin-left: 2.5rem;
+    text-decoration: none;
+    color: var(--verde-profundo);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+nav a:hover { color: var(--verde-bosque); }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--verde-bosque);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    padding: 5rem 2rem 2rem;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-menu a {
+    display: block;
+    margin: 0 0 1.5rem 0;
+    padding: 0.8rem 0;
+    color: var(--verde-profundo);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(53, 88, 64, 0.1);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu a:hover {
+    color: var(--terracota);
+    padding-left: 0.5rem;
+}
+
+.mobile-menu .btn {
+    margin-top: 1rem;
+    text-align: center;
+    border-bottom: none;
+}
+
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    text-align: center;
+}
+.btn-primary {
+    background: var(--terracota);
+    color: white;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+    text-align: center;
+}
+.btn-primary:hover {
+    background: #d66d04;
+    box-shadow: none;
+    transform: none;
+}
+/* Override Hotmart styles to maintain button design */
+.btn-primary.hotmart__button-checkout,
+.btn-primary.hotmart-fb {
+    background: var(--terracota) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.8rem !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: all 0.2s !important;
+    box-shadow: none !important;
+    outline: none !important;
+    text-shadow: none !important;
+    text-align: center !important;
+}
+.btn-primary.hotmart__button-checkout:hover,
+.btn-primary.hotmart-fb:hover {
+    background: #d66d04 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+.btn-secondary {
+    background: transparent;
+    color: var(--verde-profundo);
+    border: 2px solid var(--verde-profundo);
+}
+.btn-secondary:hover {
+    background: var(--verde-profundo);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(41,87,100,0.25);
+}
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(255,213,153,0.15) 0%, #ffffff 100%);
+    padding-top: 100px;
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 6rem;
+    align-items: center;
+}
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.15;
+    font-weight: 900;
+}
+.hero .highlight { 
+    color: var(--terracota);
+}
+.hero p {
+    font-size: 1.1rem;
+    color: var(--verde-profundo);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+}
+.ebook-preview {
+    background: var(--crema);
+    padding: 2.5rem;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid rgba(53,88,64,0.1);
+}
+.hero-image {
+    height: 420px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(53,88,64,0.2);
+}
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.ebook-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.ebook-preview h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--verde-bosque);
+}
+.ebook-preview p {
+    color: var(--verde-profundo);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Sections */
+section {
+    padding: 7rem 0;
+}
+.section-title {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+.section-title h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+.section-title p {
+    color: var(--verde-profundo);
+    font-size: 1.05rem;
+}
+
+/* About */
+.about-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 5rem;
+    align-items: center;
+}
+.about-image {
+    height: 480px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(53,88,64,0.15);
+}
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.about-content p {
+    color: var(--verde-profundo);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+.quote {
+    background: var(--crema);
+    padding: 1.8rem 2rem;
+    border-radius: 12px;
+    border-left: 3px solid var(--terracota);
+    margin-top: 2.5rem;
+}
+.quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--verde-bosque);
+    margin: 0;
+    font-style: italic;
+}
+
+/* Blog */
+.blog-section {
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255,213,153,0.1) 100%);
+}
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+.blog-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(53,88,64,0.1);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(53,88,64,0.12);
+    border-color: var(--verde-bosque);
+}
+.blog-image {
+    background: var(--crema);
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.blog-card:hover .blog-image img {
+    transform: scale(1.05);
+}
+.blog-content {
+    padding: 1.8rem;
+}
+.blog-category {
+    color: var(--terracota);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+.blog-card h3 {
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: var(--verde-bosque);
+}
+.blog-card p {
+    color: var(--verde-profundo);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+.blog-meta {
+    font-size: 0.85rem;
+    color: var(--verde-profundo);
+    opacity: 0.7;
+}
+
+/* Instagram */
+.instagram-section {
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255,213,153,0.1) 100%);
+}
+.instagram-carousel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.instagram-reel {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(53,88,64,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    border: 1px solid rgba(53, 88, 64, 0.08);
+}
+.instagram-reel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(53,88,64,0.12);
+}
+.instagram-reel blockquote {
+    margin: 0 !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+.instagram-reel iframe {
+    border: none;
+    width: 100%;
+}
+.instagram-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+.instagram-cta p {
+    color: var(--verde-profundo);
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+}
+.instagram-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    color: var(--verde-bosque);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(53, 88, 64, 0.1);
+    border: 2px solid rgba(53, 88, 64, 0.1);
+}
+.instagram-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(53, 88, 64, 0.15);
+    border-color: var(--verde-bosque);
+}
+.instagram-icon {
+    width: 22px;
+    height: 22px;
+    fill: var(--verde-bosque);
+}
+
+@media (max-width: 968px) {
+    .instagram-carousel {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* eBook Sale */
+.ebook-section {
+    background: linear-gradient(135deg, var(--verde-bosque), var(--verde-profundo));
+    color: white;
+}
+.ebook-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem;
+    align-items: center;
+}
+.ebook-info h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: white;
+}
+.ebook-info > p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+}
+.price-box {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.price {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+}
+.price-label {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+}
+.guarantee {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    margin-top: 1rem;
+}
+
+/* Testimonials */
+.testimonial {
+    background: white;
+    padding: 1.8rem;
+    border-radius: 12px;
+    margin-bottom: 1.2rem;
+}
+.testimonial .stars {
+    color: var(--terracota);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    display: flex;
+    gap: 0.2rem;
+}
+.star {
+    width: 18px;
+    height: 18px;
+    fill: var(--terracota);
+}
+.testimonial p {
+    font-family: 'Playfair Display', serif;
+    color: var(--verde-bosque);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+.testimonial .author {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: var(--verde-profundo);
+    font-size: 0.9rem;
+    font-style: normal;
+}
+
+/* Footer */
+footer {
+    background: var(--crema);
+    color: var(--verde-bosque);
+    padding: 4rem 0 2rem;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+}
+.footer-brand h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: var(--verde-bosque);
+}
+.footer-brand p {
+    color: var(--verde-profundo);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+.footer-brand .tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--verde-bosque);
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+}
+.footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    color: var(--verde-bosque);
+    font-weight: 600;
+}
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+.footer-links a {
+    color: var(--verde-profundo);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.footer-links a:hover {
+    color: var(--terracota);
+    transform: translateX(3px);
+}
+.footer-contact p {
+    color: var(--verde-profundo);
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.social-link {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--verde-bosque);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(53, 88, 64, 0.1);
+}
+.social-link:hover {
+    background: var(--verde-bosque);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(53, 88, 64, 0.2);
+}
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(53, 88, 64, 0.15);
+    font-size: 0.9rem;
+    color: var(--verde-profundo);
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 2.5rem 0 1.5rem;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-bottom: 1.5rem;
+    }
+    .footer-brand {
+        text-align: center;
+    }
+    .footer-brand p {
+        display: none;
+    }
+    .footer-brand .tagline {
+        margin-bottom: 1.2rem;
+        font-size: 0.95rem;
+    }
+    .footer-social {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    .footer-section:nth-child(2) {
+        display: none;
+    }
+    .footer-contact {
+        display: none;
+    }
+    .copyright {
+        padding-top: 1.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Newsletter */
+.newsletter-section {
+    background: linear-gradient(135deg, rgba(255,213,153,0.15) 0%, #ffffff 100%);
+    padding: 5rem 0;
+}
+.newsletter-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+.newsletter-content h2 {
+    color: var(--verde-bosque);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.newsletter-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    color: var(--verde-profundo);
+    opacity: 0.9;
+    line-height: 1.6;
+}
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.newsletter-form input {
+    padding: 1.1rem 1.3rem;
+    border: 2px solid rgba(53, 88, 64, 0.2);
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    background: white;
+    color: var(--verde-profundo);
+    transition: all 0.3s ease;
+}
+.newsletter-form input::placeholder {
+    color: rgba(41, 87, 100, 0.5);
+}
+.newsletter-form input:focus {
+    outline: none;
+    border-color: var(--verde-bosque);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(53, 88, 64, 0.1);
+    transform: translateY(-1px);
+}
+.newsletter-form button {
+    padding: 1.1rem 2rem;
+    background: var(--terracota);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+.newsletter-form button:hover {
+    background: #d66d04;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(235, 123, 5, 0.4);
+}
+.newsletter-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+.newsletter-benefit {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--verde-profundo);
+}
+.newsletter-benefit svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--verde-bosque);
+}
+
+@media (max-width: 768px) {
+    .newsletter-content h2 {
+        font-size: 2rem;
+    }
+    .newsletter-content p {
+        font-size: 1rem;
+    }
+    .newsletter-benefits {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+/* Alert Modal */
+.alert-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.2s ease;
+}
+.alert-modal.active {
+    display: flex;
+}
+.alert-box {
+    background: white;
+    border-radius: 16px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+    overflow: hidden;
+}
+.alert-icon {
+    padding: 2rem 2rem 1rem;
+    text-align: center;
+}
+.alert-icon svg {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+}
+.alert-body {
+    padding: 0 2rem 2rem;
+    text-align: center;
+}
+.alert-body h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--verde-bosque);
+}
+.alert-body p {
+    color: var(--verde-profundo);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.alert-actions {
+    padding: 0 2rem 2rem;
+}
+.alert-actions button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--terracota);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+.alert-actions button:hover {
+    background: #d66d04;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(235, 123, 5, 0.4);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+.modal.active {
+    display: flex;
+}
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+.modal-header {
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid rgba(53, 88, 64, 0.1);
+}
+.modal-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.modal-header p {
+    color: var(--verde-profundo);
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+.modal-body {
+    padding: 2rem 2.5rem;
+}
+.modal-body .btn {
+    width: 100%;
+    padding: 1.1rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--verde-profundo);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+.modal-close:hover {
+    opacity: 1;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+    color: var(--verde-bosque);
+    font-size: 0.95rem;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid rgba(53,88,64,0.2);
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: var(--verde-profundo);
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--verde-bosque);
+    box-shadow: 0 0 0 3px rgba(53, 88, 64, 0.1);
+    transform: translateY(-1px);
+}
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.file-upload {
+    border: 3px dashed rgba(53, 88, 64, 0.3);
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: rgba(255, 213, 153, 0.05);
+}
+.file-upload:hover {
+    border-color: var(--verde-bosque);
+    background: rgba(255, 213, 153, 0.15);
+    transform: translateY(-2px);
+}
+.file-upload input {
+    display: none;
+}
+.file-upload-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.file-upload p {
+    color: var(--verde-profundo);
+    font-size: 1rem;
+    margin: 0;
+}
+.bank-info {
+    background: var(--crema);
+    padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    border: 2px solid rgba(53, 88, 64, 0.1);
+}
+.bank-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(53, 88, 64, 0.15);
+}
+.bank-info-row:last-child {
+    border-bottom: none;
+    padding-top: 1.5rem;
+}
+.bank-info-label {
+    font-weight: 600;
+    color: var(--verde-bosque);
+    font-size: 0.95rem;
+}
+.bank-info-value {
+    color: var(--verde-profundo);
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.success-icon {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.success-icon svg {
+    width: 80px;
+    height: 80px;
+    fill: none;
+    stroke: #22c55e;
+    stroke-width: 2;
+    animation: checkmark 0.5s ease-in-out;
+}
+@keyframes checkmark {
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1) rotate(-45deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+.text-center {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        max-height: 95vh;
+    }
+    .modal-body {
+        padding: 1.5rem 1.5rem;
+    }
+    .modal-header {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+    .form-row-2 {
+        grid-template-columns: 1fr;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.9rem 1rem;
+        font-size: 0.95rem;
+    }
+    .file-upload {
+        padding: 2rem 1.5rem;
+    }
+    .bank-info {
+        padding: 1.5rem;
+    }
+    .bank-info-value {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+.scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+/* Staggered animation delays */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+
+/* Scroll reveal elements */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Smooth transitions for all elements */
+* {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Remove transitions for specific elements that shouldn't have them */
+nav, nav *, .hero *, input, textarea, select, button {
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    /* Navigation */
+    nav {
+        padding: 0.8rem 0;
+    }
+    nav.scrolled {
+        padding: 0.6rem 0;
+    }
+    nav .container {
+        flex-direction: row;
+        gap: 0;
+    }
+    .nav-links {
+        display: none;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    .mobile-menu {
+        display: block;
+    }
+    .menu-overlay {
+        display: block;
+    }
+    .logo {
+        font-size: 1.1rem;
+    }
+    .logo-subtitle {
+        font-size: 0.65rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 4rem;
+    }
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .hero-image {
+        height: 350px;
+        order: -1;
+    }
+
+    /* Sections */
+    section {
+        padding: 4rem 0;
+    }
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    .section-title p {
+        font-size: 0.95rem;
+    }
+    .section-title {
+        margin-bottom: 3rem;
+    }
+
+    /* About */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .about-image {
+        height: 350px;
+    }
+    .about-content p {
+        font-size: 1rem;
+    }
+
+    /* Blog */
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* eBook Section */
+    .ebook-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .ebook-info h2 {
+        font-size: 2rem;
+    }
+    .ebook-info > p {
+        font-size: 1rem;
+    }
+    .price-box {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+    .price {
+        font-size: 2.5rem;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .section-title h2 {
+        font-size: 1.75rem;
+    }
+    .ebook-info h2 {
+        font-size: 1.75rem;
+    }
+    nav a {
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
+    }
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div>
+                <div class="logo">Martha Lucía Contreras</div>
+                <div class="logo-subtitle">Gestión Emocional</div>
+            </div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#quien-soy">Quién Soy</a>
+                <a href="#blog">Blog</a>
+                <a href="#ebook" class="btn btn-primary">Obtener eBook</a>
+                <a href="login.html" style="opacity: 0.5;">Admin</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="menu-overlay"></div>
+    <div class="mobile-menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#quien-soy">Quién Soy</a>
+        <a href="#blog">Blog</a>
+        <a href="#ebook" class="btn btn-primary">Obtener eBook</a>
+        <a href="login.html" style="opacity: 0.5;">Admin</a>
+    </div>
+
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <h1 class="fade-in-up delay-1">Donde la calma <span class="highlight">se convierte</span> en fuerza</h1>
+                    <p class="fade-in-up delay-2">Transforma tus emociones en tu mayor herramienta de bienestar. Descubre cómo la neurociencia y la inteligencia emocional pueden llevarte a una vida más equilibrada y plena.</p>
+                    <div class="hero-buttons fade-in-up delay-3">
+                        <a onclick="return false;" href="https://pay.hotmart.com/L99668935S?checkoutMode=2" class="btn btn-primary hotmart-fb hotmart__button-checkout">Obtener eBook - $9.99</a>
+                        <a href="#newsletter" class="btn btn-secondary">Próximos Cursos</a>
+                    </div>
+                </div>
+                <div class="hero-image scale-in delay-2 float-animation">
+                    <img src="martha2.jpg" alt="Martha Lucía Contreras - Especialista en neurociencia e inteligencia emocional">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quien-soy">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="martha.jpg" alt="Martha Lucía Contreras">
+                </div>
+                <div class="about-content reveal">
+                    <h2>Sobre mí</h2>
+                    <p>Soy Martha Lucía Contreras, especialista en neurociencia aplicada e inteligencia emocional. Mi misión es ayudar a mujeres profesionales a encontrar el equilibrio entre sus metas y su bienestar emocional.</p>
+                    <p>A través de herramientas científicamente respaldadas como los ejercicios bilaterales, te acompaño en un viaje hacia el autoconocimiento, la calma y la productividad consciente.</p>
+                    <div class="quote">
+                        <p>"Tu transformación comienza con tu forma de manejar tus emociones"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Blog & Recursos</h2>
+                <p>Herramientas, reflexiones y conocimientos para tu bienestar emocional</p>
+            </div>
+            <div class="blog-grid reveal" id="blogGrid"></div>
+        </div>
+    </section>
+
+    <section class="instagram-section">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Contenido que Transforma</h2>
+                <p>Descubre herramientas prácticas para tu bienestar emocional en mis reels</p>
+            </div>
+            <div class="instagram-carousel reveal">
+                <div class="instagram-reel">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DGJJrqER1D8/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DGJJrqER1D8/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicación en Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DGJJrqER1D8/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Una publicación compartida por Psicóloga | Martha Lucia Contreras (@marthaluciacontrerasc)</a></p></div></blockquote>
+                </div>
+                <div class="instagram-reel">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DF6Q7y7R7pF/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DF6Q7y7R7pF/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicación en Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DF6Q7y7R7pF/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Una publicación compartida por Psicóloga | Martha Lucia Contreras (@marthaluciacontrerasc)</a></p></div></blockquote>
+                </div>
+                <div class="instagram-reel">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DF1SEfVNTj5/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DF1SEfVNTj5/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicación en Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DF1SEfVNTj5/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Una publicación compartida por Psicóloga | Martha Lucia Contreras (@marthaluciacontrerasc)</a></p></div></blockquote>
+                </div>
+            </div>
+            <div class="instagram-cta reveal">
+                <p>Sigue mi contenido diario y únete a una comunidad de miles que transforman su bienestar emocional</p>
+                <a href="https://www.instagram.com/marthaluciacontrerasc/" target="_blank" class="instagram-badge">
+                    <svg class="instagram-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    Sígueme @marthaluciacontrerasc
+                </a>
+            </div>
+        </div>
+    </section>
+    <script async src="//www.instagram.com/embed.js"></script>
+
+    <section id="ebook" class="ebook-section">
+        <div class="container">
+            <div class="ebook-grid">
+                <div class="ebook-info reveal">
+                    <h2>Transforma tu bienestar emocional</h2>
+                    <p>Descubre la herramienta práctica que te hará sentir emocionalmente más sana, enfocada y reconectada con tu bienestar en cualquier momento y lugar.</p>
+                    <div class="price-box">
+                        <div>
+                            <div class="price">$9.99</div>
+                            <div class="price-label">Precio de lanzamiento</div>
+                        </div>
+                        <a onclick="return false;" href="https://pay.hotmart.com/L99668935S?checkoutMode=2" class="btn btn-primary hotmart-fb hotmart__button-checkout">Comprar Ahora</a>
+                    </div>
+                    <div class="guarantee">✓ Garantía de 7 días • Devolución sin preguntas</div>
+                </div>
+                <div class="reveal">
+                    <div class="testimonial">
+                        <div class="stars">
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p>"Es la primera vez que los uso. Presento problemas de memoria y estrés. Realicé varios ejercicios y me siento relajada."</p>
+                        <div class="author">— Carmen, 65 años</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p>"Logré que mi hijo se concentrara mejor en tareas escolares."</p>
+                        <div class="author">— Mamá de Tomás, 7 años</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p>"Los uso antes de empezar mi jornada y noto más claridad y menos ansiedad."</p>
+                        <div class="author">— Clara, emprendedora</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content reveal">
+                <h2>Transforma tu vida, un correo a la vez</h2>
+                <p>Únete a nuestra comunidad y recibe herramientas prácticas, ejercicios de bienestar emocional y contenido exclusivo directamente en tu bandeja de entrada.</p>
+
+                <form id="newsletterForm" class="newsletter-form">
+                    <input type="text" id="nombreNewsletter" placeholder="Tu nombre" required>
+                    <input type="email" id="emailNewsletter" placeholder="Tu correo electrónico" required>
+                    <button type="submit">Suscribirme al Newsletter</button>
+                </form>
+
+                <div class="newsletter-benefits">
+                    <div class="newsletter-benefit">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        <span>Contenido exclusivo semanal</span>
+                    </div>
+                    <div class="newsletter-benefit">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        <span>Ejercicios prácticos de bienestar</span>
+                    </div>
+                    <div class="newsletter-benefit">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        <span>Tips de neurociencia aplicada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Martha Lucía Contreras</h3>
+                    <p class="tagline">Donde la calma se convierte en fuerza</p>
+                    <p>Especialista en neurociencia aplicada e inteligencia emocional. Te acompaño en tu camino hacia el equilibrio emocional y el bienestar integral.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/marthaluciacontrerasc/" target="_blank" class="social-link" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <div class="footer-links">
+                        <a href="#inicio">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                            Inicio
+                        </a>
+                        <a href="#quien-soy">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            Quién Soy
+                        </a>
+                        <a href="#blog">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                            Blog
+                        </a>
+                        <a href="#ebook">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                            eBook
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section footer-contact">
+                    <h4>Contacto</h4>
+                    <p>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10h5v-2h-5c-4.34 0-8-3.66-8-8s3.66-8 8-8 8 3.66 8 8v1.43c0 .79-.71 1.57-1.5 1.57s-1.5-.78-1.5-1.57V12c0-2.76-2.24-5-5-5s-5 2.24-5 5 2.24 5 5 5c1.38 0 2.64-.56 3.54-1.47.65.89 1.77 1.47 2.96 1.47 1.97 0 3.5-1.6 3.5-3.57V12c0-5.52-4.48-10-10-10zm0 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+                        Sígueme en Instagram
+                    </p>
+                    <p>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        Colombia
+                    </p>
+                    <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
+                        Transformando vidas a través de la neurociencia y el bienestar emocional.
+                    </p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                © 2025 Martha Lucía Contreras • Todos los derechos reservados
+                <br>
+                <span style="font-size: 0.75rem; opacity: 0.6; margin-top: 0.5rem; display: inline-block;">
+                    Designed & Developed by <a href="https://programamos.st" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(53, 88, 64, 0.2);">programamos.st</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal 1: Datos Personales -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('checkoutModal')">✕</button>
+            <div class="modal-header">
+                <h3>Datos para Facturación</h3>
+                <p>Completa tus datos para generar la factura electrónica</p>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm">
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo *</label>
+                            <input type="text" id="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cedula">Cédula *</label>
+                            <input type="text" id="cedula" required>
+                        </div>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="emailCheckout">Correo electrónico *</label>
+                            <input type="email" id="emailCheckout" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="tel" id="telefono" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección completa *</label>
+                        <input type="text" id="direccion" required>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad *</label>
+                            <input type="text" id="ciudad" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="departamento">Departamento *</label>
+                            <input type="text" id="departamento" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer; margin-top: 1rem;">Continuar al Pago</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Información de Pago -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('paymentModal')">✕</button>
+            <div class="modal-header">
+                <h3>Información para Transferencia</h3>
+                <p>Realiza tu pago y adjunta el comprobante</p>
+            </div>
+            <div class="modal-body">
+                <div class="bank-info">
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Banco:</span>
+                        <span class="bank-info-value">Bancolombia</span>
+                    </div>
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Tipo de cuenta:</span>
+                        <span class="bank-info-value">Ahorros</span>
+                    </div>
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Número de cuenta:</span>
+                        <span class="bank-info-value">123-456-78901</span>
+                    </div>
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Titular:</span>
+                        <span class="bank-info-value">Martha Lucía Contreras</span>
+                    </div>
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Valor a pagar:</span>
+                        <span class="bank-info-value" style="font-size: 1.3rem; font-weight: 700; color: var(--terracota);">$9.99 USD</span>
+                    </div>
+                </div>
+
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label>Comprobante de pago *</label>
+                        <div class="file-upload" onclick="document.getElementById('comprobante').click()">
+                            <div class="file-upload-icon">📄</div>
+                            <p id="fileName">Haz click para seleccionar el archivo</p>
+                            <input type="file" id="comprobante" accept="image/*,.pdf" onchange="updateFileName(this)" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer; margin-top: 1rem;">Enviar Comprobante</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Confirmación -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('confirmationModal')">✕</button>
+            <div class="modal-body" style="padding: 3rem 2rem;">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="11" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+                        <path d="M7 13l3 3 7-7" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="text-center">
+                    <h3 style="margin-bottom: 1rem;">¡Solicitud Recibida!</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--verde-profundo);">
+                        Hemos recibido tu comprobante de pago. Verificaremos la información y te enviaremos el eBook a tu correo electrónico en las próximas <strong>24 horas</strong>.
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--verde-profundo); opacity: 0.8;">
+                        Revisa tu bandeja de entrada y spam. Si tienes dudas, contáctanos en Instagram.
+                    </p>
+                    <button onclick="closeModal('confirmationModal')" class="btn btn-primary" style="margin-top: 2rem; border: none; cursor: pointer;">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div id="alertModal" class="alert-modal">
+        <div class="alert-box">
+            <div class="alert-icon" id="alertIcon">
+                <!-- Icon will be inserted here -->
+            </div>
+            <div class="alert-body">
+                <h3 id="alertTitle"></h3>
+                <p id="alertMessage"></p>
+            </div>
+            <div class="alert-actions">
+                <button onclick="closeAlert()">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script>
+// Alert Modal Functions
+function showAlert(title, message, type = 'success') {
+    const modal = document.getElementById('alertModal');
+    const iconContainer = document.getElementById('alertIcon');
+    const titleElement = document.getElementById('alertTitle');
+    const messageElement = document.getElementById('alertMessage');
+
+    titleElement.textContent = title;
+    messageElement.textContent = message;
+
+    // Icons based on type
+    const icons = {
+        success: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/><path d="M7 13l3 3 7-7" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        error: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/></svg>',
+        info: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/><path d="M12 16v-4M12 8h.01" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/></svg>',
+        warning: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/></svg>'
+    };
+
+    iconContainer.innerHTML = icons[type] || icons.success;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeAlert() {
+    const modal = document.getElementById('alertModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Close alert on click outside
+document.getElementById('alertModal').addEventListener('click', (e) => {
+    if (e.target.id === 'alertModal') {
+        closeAlert();
+    }
+});
+
+let posts = JSON.parse(localStorage.getItem('mlc-posts')) || [
+    {id: '1', title: 'Cómo la respiración consciente transforma tus emociones', excerpt: 'Descubre el poder de tu respiración para regular el estrés y la ansiedad de forma inmediata.', category: 'Mindfulness', emoji: '🧘‍♀️', image: 'https://images.pexels.com/photos/774866/pexels-photo-774866.jpeg?auto=compress&cs=tinysrgb&w=600', date: '15 Nov 2025', readTime: 5},
+    {id: '2', title: 'Ejercicios bilaterales: ciencia aplicada al bienestar', excerpt: 'Conoce cómo estos ejercicios activan ambos hemisferios cerebrales para mejorar tu enfoque.', category: 'Neurociencia', emoji: '🧠', image: 'https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=600', date: '10 Nov 2025', readTime: 7},
+    {id: '3', title: '5 señales de que necesitas pausar y reconectar', excerpt: 'Aprende a identificar cuándo tu cuerpo y mente te están pidiendo un descanso verdadero.', category: 'Bienestar', emoji: '💆‍♀️', image: 'https://images.pexels.com/photos/792777/pexels-photo-792777.jpeg?auto=compress&cs=tinysrgb&w=600', date: '5 Nov 2025', readTime: 4}
+];
+
+function renderBlog() {
+    document.getElementById('blogGrid').innerHTML = posts.map(p => `
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="${p.image || 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&h=400&fit=crop'}" alt="${p.title}" loading="lazy">
+            </div>
+            <div class="blog-content">
+                <div class="blog-category">${p.category}</div>
+                <h3>${p.title}</h3>
+                <p>${p.excerpt}</p>
+                <div class="blog-meta">${p.date} • ${p.readTime} min lectura</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+renderBlog();
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
+
+// Scroll reveal animation
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealOnScroll = () => {
+    const windowHeight = window.innerHeight;
+
+    revealElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if (elementTop < windowHeight - revealPoint) {
+            element.classList.add('active');
+        }
+    });
+};
+
+// Check on scroll
+window.addEventListener('scroll', revealOnScroll);
+
+// Check on load
+document.addEventListener('DOMContentLoaded', revealOnScroll);
+
+// Mobile menu toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+const menuOverlay = document.querySelector('.menu-overlay');
+const mobileLinks = document.querySelectorAll('.mobile-menu a');
+
+function toggleMenu() {
+    menuToggle.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+}
+
+menuToggle.addEventListener('click', toggleMenu);
+menuOverlay.addEventListener('click', toggleMenu);
+
+// Close menu when clicking a link
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+});
+revealOnScroll();
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href !== '#admin') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                const offsetTop = target.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// Checkout Flow
+let checkoutData = {};
+
+function openCheckout() {
+    document.getElementById('checkoutModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Handle checkout form
+document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Guardar datos del cliente
+    checkoutData = {
+        nombre: document.getElementById('nombre').value,
+        cedula: document.getElementById('cedula').value,
+        email: document.getElementById('emailCheckout').value,
+        telefono: document.getElementById('telefono').value,
+        direccion: document.getElementById('direccion').value,
+        ciudad: document.getElementById('ciudad').value,
+        departamento: document.getElementById('departamento').value,
+        fecha: new Date().toLocaleString('es-CO'),
+        producto: 'eBook - Ejercicios Bilaterales',
+        precio: '$9.99 USD'
+    };
+
+    // Cerrar modal de datos y abrir modal de pago
+    closeModal('checkoutModal');
+    document.getElementById('paymentModal').classList.add('active');
+});
+
+// Update file name
+function updateFileName(input) {
+    const fileName = input.files[0]?.name || 'Haz click para seleccionar el archivo';
+    document.getElementById('fileName').textContent = fileName;
+}
+
+// Handle payment form
+document.getElementById('paymentForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const comprobanteFile = document.getElementById('comprobante').files[0];
+
+    if (!comprobanteFile) {
+        showAlert('Falta el comprobante', 'Por favor selecciona un comprobante de pago para continuar.', 'warning');
+        return;
+    }
+
+    // Guardar orden completa
+    const orden = {
+        id: 'ORD-' + Date.now(),
+        ...checkoutData,
+        comprobante: comprobanteFile.name,
+        estado: 'Pendiente',
+        fechaSolicitud: new Date().toLocaleString('es-CO')
+    };
+
+    // Guardar en localStorage
+    let ordenes = JSON.parse(localStorage.getItem('mlc-ordenes')) || [];
+    ordenes.unshift(orden);
+    localStorage.setItem('mlc-ordenes', JSON.stringify(ordenes));
+
+    // Cerrar modal de pago y mostrar confirmación
+    closeModal('paymentModal');
+    document.getElementById('confirmationModal').classList.add('active');
+
+    // Limpiar formularios
+    document.getElementById('checkoutForm').reset();
+    document.getElementById('paymentForm').reset();
+    document.getElementById('fileName').textContent = 'Haz click para seleccionar el archivo';
+    checkoutData = {};
+});
+
+// Cerrar modal al hacer click fuera
+document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+
+// Newsletter
+document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombreNewsletter').value.trim();
+    const email = document.getElementById('emailNewsletter').value.trim();
+
+    // Guardar suscriptor
+    let suscriptores = JSON.parse(localStorage.getItem('mlc-suscriptores')) || [];
+
+    // Verificar si ya existe el email
+    const yaExiste = suscriptores.some(s => s.email === email);
+
+    if (yaExiste) {
+        showAlert('Ya estás suscrito', '¡Ya estás suscrito a nuestro newsletter! Revisa tu correo para no perderte ninguna actualización.', 'info');
+        return;
+    }
+
+    const suscriptor = {
+        id: 'SUB-' + Date.now(),
+        nombre: nombre,
+        email: email,
+        fecha: new Date().toLocaleString('es-CO')
+    };
+
+    suscriptores.unshift(suscriptor);
+    localStorage.setItem('mlc-suscriptores', JSON.stringify(suscriptores));
+
+    // Limpiar formulario
+    document.getElementById('nombreNewsletter').value = '';
+    document.getElementById('emailNewsletter').value = '';
+
+    // Mensaje de confirmación
+    showAlert('¡Bienvenido a nuestra comunidad!', 'Gracias por suscribirte, ' + nombre + '. Pronto recibirás contenido exclusivo para transformar tu bienestar emocional.', 'success');
+});
+
+// Hotmart Widget
+function importHotmart(){
+    var imported = document.createElement('script');
+    imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
+    document.head.appendChild(imported);
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
+    document.head.appendChild(link);
+}
+
+// Initialize Hotmart after DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', importHotmart);
+} else {
+    importHotmart();
+}
+    </script>
+</body>
+</html>

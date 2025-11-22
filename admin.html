@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Martha Lucía Contreras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --terracota: #EB7B05;
+    --verde-bosque: #355840;
+    --crema: #FFD599;
+    --verde-profundo: #295764;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    color: var(--verde-profundo);
+    background: #fefefe;
+    -webkit-font-smoothing: antialiased;
+    padding-top: 80px;
+}
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--verde-bosque);
+}
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 4px 20px rgba(53, 88, 64, 0.08);
+    padding: 0.9rem 0;
+    z-index: 1000;
+}
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--verde-bosque);
+    text-decoration: none;
+}
+.logo-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--verde-profundo);
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: -0.2rem;
+}
+nav a {
+    margin-left: 2.5rem;
+    text-decoration: none;
+    color: var(--verde-profundo);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+nav a:hover { color: var(--verde-bosque); }
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+.btn-primary {
+    background: var(--terracota);
+    color: white;
+    border: none;
+}
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(235,123,5,0.25);
+}
+.btn-secondary {
+    background: var(--verde-bosque);
+    color: white;
+    border: none;
+}
+.btn-secondary:hover {
+    background: var(--verde-profundo);
+}
+
+/* Admin Section */
+.admin-section {
+    background: #ffffff;
+    min-height: 100vh;
+    padding: 3rem 0;
+}
+.page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.page-header p {
+    color: var(--verde-profundo);
+    opacity: 0.8;
+}
+.admin-form {
+    background: var(--crema);
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(53,88,64,0.1);
+}
+.admin-form h3 {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: var(--verde-bosque);
+}
+input, textarea, select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(53,88,64,0.2);
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.15s;
+    background: white;
+    color: var(--verde-profundo);
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--verde-bosque);
+}
+textarea { resize: vertical; }
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Posts List */
+.posts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.posts-header h3 {
+    font-size: 1.8rem;
+    color: var(--verde-bosque);
+}
+.post-count {
+    background: var(--terracota);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.post-item {
+    background: white;
+    padding: 1.8rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(53,88,64,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.post-info {
+    flex: 1;
+}
+.post-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+.post-emoji {
+    font-size: 2rem;
+}
+.post-item h4 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--verde-bosque);
+}
+.post-item p {
+    color: var(--verde-profundo);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+.post-meta {
+    font-size: 0.85rem;
+    color: var(--verde-profundo);
+    opacity: 0.7;
+}
+.post-actions button {
+    margin-left: 0.8rem;
+    padding: 0.7rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.15s;
+}
+.btn-edit {
+    background: var(--verde-bosque);
+    color: white;
+}
+.btn-edit:hover {
+    background: var(--verde-profundo);
+}
+.btn-delete {
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+.btn-delete:hover {
+    background: #ef4444;
+    color: white;
+}
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--verde-profundo);
+}
+.empty-state .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    .post-item {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+    .post-actions {
+        width: 100%;
+    }
+    .post-actions button {
+        margin-left: 0;
+        margin-right: 0.8rem;
+        width: auto;
+    }
+    .posts-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+}
+
+/* Alert Modal */
+.alert-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.2s ease;
+}
+.alert-modal.active {
+    display: flex;
+}
+.alert-box {
+    background: white;
+    border-radius: 16px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+    overflow: hidden;
+}
+.alert-icon {
+    padding: 2rem 2rem 1rem;
+    text-align: center;
+}
+.alert-icon svg {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+}
+.alert-body {
+    padding: 0 2rem 2rem;
+    text-align: center;
+}
+.alert-body h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--verde-bosque);
+}
+.alert-body p {
+    color: var(--verde-profundo);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.alert-actions {
+    padding: 0 2rem 2rem;
+}
+.alert-actions button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--terracota);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+.alert-actions button:hover {
+    background: #d66d04;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(235, 123, 5, 0.4);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" style="text-decoration: none;">
+                <div class="logo">Martha Lucía Contreras</div>
+                <div class="logo-subtitle">Gestión Emocional</div>
+            </a>
+            <div>
+                <a href="index.html">← Volver a la Landing</a>
+                <button onclick="logout()" class="btn btn-secondary" style="margin-left: 1rem; cursor: pointer;">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="admin-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>Panel de Administración</h1>
+                <p>Gestiona tus posts del blog desde aquí</p>
+            </div>
+
+            <div class="admin-form">
+                <h3>Crear Nuevo Post</h3>
+                <form id="postForm">
+                    <input type="text" id="title" placeholder="Título del post" required>
+                    <textarea id="excerpt" rows="3" placeholder="Extracto breve (máx 150 caracteres)" required></textarea>
+                    <textarea id="content" rows="10" placeholder="Contenido completo del artículo" required></textarea>
+                    <input type="url" id="image" placeholder="URL de imagen (ej: https://images.pexels.com/...)">
+                    <div class="form-row">
+                        <select id="category">
+                            <option>Bienestar</option>
+                            <option>Neurociencia</option>
+                            <option>Emociones</option>
+                            <option>Mindfulness</option>
+                            <option>Productividad</option>
+                        </select>
+                        <input type="text" id="emoji" value="📝" maxlength="2" placeholder="Emoji">
+                        <input type="number" id="readTime" value="5" min="1" placeholder="Minutos de lectura">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer; margin-top: 0.5rem;">Publicar Post</button>
+                </form>
+            </div>
+
+            <div style="margin-bottom: 4rem;">
+                <div class="posts-header">
+                    <h3>Órdenes de eBook</h3>
+                    <span class="post-count" style="background: var(--terracota);"><span id="ordenesCount">0</span> pendientes</span>
+                </div>
+                <div id="ordenesList"></div>
+            </div>
+
+            <div style="margin-bottom: 4rem;">
+                <div class="posts-header">
+                    <h3>Suscriptores del Newsletter</h3>
+                    <span class="post-count" style="background: var(--verde-bosque);"><span id="suscriptoresCount">0</span> suscriptores</span>
+                </div>
+                <div id="suscriptoresList"></div>
+            </div>
+
+            <div>
+                <div class="posts-header">
+                    <h3>Posts Publicados</h3>
+                    <span class="post-count"><span id="postCount">0</span> posts</span>
+                </div>
+                <div id="postsList"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alert Modal -->
+    <div id="alertModal" class="alert-modal">
+        <div class="alert-box">
+            <div class="alert-icon" id="alertIcon">
+                <!-- Icon will be inserted here -->
+            </div>
+            <div class="alert-body">
+                <h3 id="alertTitle"></h3>
+                <p id="alertMessage"></p>
+            </div>
+            <div class="alert-actions">
+                <button onclick="closeAlert()">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// Alert Modal Functions
+function showAlert(title, message, type = 'success') {
+    const modal = document.getElementById('alertModal');
+    const iconContainer = document.getElementById('alertIcon');
+    const titleElement = document.getElementById('alertTitle');
+    const messageElement = document.getElementById('alertMessage');
+
+    titleElement.textContent = title;
+    messageElement.textContent = message;
+
+    // Icons based on type
+    const icons = {
+        success: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/><path d="M7 13l3 3 7-7" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        error: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/></svg>',
+        info: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/><path d="M12 16v-4M12 8h.01" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/></svg>',
+        warning: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/></svg>'
+    };
+
+    iconContainer.innerHTML = icons[type] || icons.success;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeAlert() {
+    const modal = document.getElementById('alertModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Close alert on click outside
+document.getElementById('alertModal').addEventListener('click', (e) => {
+    if (e.target.id === 'alertModal') {
+        closeAlert();
+    }
+});
+
+// Verificar autenticación
+if (sessionStorage.getItem('mlc-auth') !== 'true') {
+    window.location.href = 'login.html';
+}
+
+// Función para cerrar sesión
+function logout() {
+    if (confirm('¿Estás segura que deseas cerrar sesión?')) {
+        sessionStorage.removeItem('mlc-auth');
+        sessionStorage.removeItem('mlc-user');
+        window.location.href = 'login.html';
+    }
+}
+
+let posts = JSON.parse(localStorage.getItem('mlc-posts')) || [
+    {id: '1', title: 'Cómo la respiración consciente transforma tus emociones', excerpt: 'Descubre el poder de tu respiración para regular el estrés y la ansiedad de forma inmediata.', category: 'Mindfulness', emoji: '🧘‍♀️', image: 'https://images.pexels.com/photos/774866/pexels-photo-774866.jpeg?auto=compress&cs=tinysrgb&w=600', date: '15 Nov 2025', readTime: 5},
+    {id: '2', title: 'Ejercicios bilaterales: ciencia aplicada al bienestar', excerpt: 'Conoce cómo estos ejercicios activan ambos hemisferios cerebrales para mejorar tu enfoque.', category: 'Neurociencia', emoji: '🧠', image: 'https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=600', date: '10 Nov 2025', readTime: 7},
+    {id: '3', title: '5 señales de que necesitas pausar y reconectar', excerpt: 'Aprende a identificar cuándo tu cuerpo y mente te están pidiendo un descanso verdadero.', category: 'Bienestar', emoji: '💆‍♀️', image: 'https://images.pexels.com/photos/792777/pexels-photo-792777.jpeg?auto=compress&cs=tinysrgb&w=600', date: '5 Nov 2025', readTime: 4}
+];
+
+let ordenes = JSON.parse(localStorage.getItem('mlc-ordenes')) || [];
+
+function renderOrdenes() {
+    const ordenesPendientes = ordenes.filter(o => o.estado === 'Pendiente');
+
+    document.getElementById('ordenesList').innerHTML = ordenesPendientes.length === 0 ?
+    `<div class="empty-state">
+        <div class="icon">📦</div>
+        <p>No hay órdenes pendientes.</p>
+    </div>` :
+    ordenesPendientes.map(o => `
+        <div class="post-item" style="border-left: 4px solid var(--terracota);">
+            <div class="post-info">
+                <div class="post-header">
+                    <span class="post-emoji">💳</span>
+                    <h4>${o.id}</h4>
+                </div>
+                <p><strong>${o.nombre}</strong> - ${o.email}</p>
+                <p>📱 ${o.telefono} | 🆔 ${o.cedula}</p>
+                <p>📍 ${o.direccion}, ${o.ciudad}, ${o.departamento}</p>
+                <p>📄 Comprobante: <strong>${o.comprobante}</strong></p>
+                <div class="post-meta">${o.fechaSolicitud} • ${o.precio}</div>
+            </div>
+            <div class="post-actions">
+                <button class="btn-edit" onclick="marcarEnviado('${o.id}')">Marcar como Enviado</button>
+                <button class="btn-delete" onclick="eliminarOrden('${o.id}')">Eliminar</button>
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('ordenesCount').textContent = ordenesPendientes.length;
+}
+
+function marcarEnviado(id) {
+    if (confirm('¿Ya enviaste el eBook a este cliente?')) {
+        const orden = ordenes.find(o => o.id === id);
+        if (orden) {
+            orden.estado = 'Enviado';
+            orden.fechaEnvio = new Date().toLocaleString('es-CO');
+            localStorage.setItem('mlc-ordenes', JSON.stringify(ordenes));
+            renderOrdenes();
+            showAlert('Orden enviada', 'La orden ha sido marcada como enviada exitosamente.', 'success');
+        }
+    }
+}
+
+function eliminarOrden(id) {
+    if (confirm('¿Eliminar esta orden?')) {
+        ordenes = ordenes.filter(o => o.id !== id);
+        localStorage.setItem('mlc-ordenes', JSON.stringify(ordenes));
+        renderOrdenes();
+        showAlert('Orden eliminada', 'La orden ha sido eliminada correctamente.', 'success');
+    }
+}
+
+function render() {
+    document.getElementById('postsList').innerHTML = posts.length === 0 ?
+    `<div class="empty-state">
+        <div class="icon">📝</div>
+        <p>No hay posts publicados aún. ¡Crea tu primer post arriba!</p>
+    </div>` :
+    posts.map(p => `
+        <div class="post-item">
+            <div class="post-info">
+                <div class="post-header">
+                    <span class="post-emoji">${p.emoji}</span>
+                    <h4>${p.title}</h4>
+                </div>
+                <p>${p.excerpt}</p>
+                <div class="post-meta">${p.category} • ${p.date} • ${p.readTime} min</div>
+            </div>
+            <div class="post-actions">
+                <button class="btn-delete" onclick="deletePost('${p.id}')">Eliminar</button>
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('postCount').textContent = posts.length;
+    localStorage.setItem('mlc-posts', JSON.stringify(posts));
+}
+
+document.getElementById('postForm').onsubmit = (e) => {
+    e.preventDefault();
+    posts.unshift({
+        id: Date.now().toString(),
+        title: document.getElementById('title').value,
+        excerpt: document.getElementById('excerpt').value,
+        content: document.getElementById('content').value,
+        category: document.getElementById('category').value,
+        emoji: document.getElementById('emoji').value,
+        image: document.getElementById('image').value || 'https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=600',
+        date: new Date().toLocaleDateString('es-ES', {day: 'numeric', month: 'short', year: 'numeric'}),
+        readTime: document.getElementById('readTime').value
+    });
+    e.target.reset();
+    document.getElementById('emoji').value = '📝';
+    document.getElementById('readTime').value = 5;
+    render();
+    showAlert('Post publicado', 'El post ha sido publicado correctamente en el blog.', 'success');
+};
+
+function deletePost(id) {
+    if (confirm('¿Eliminar este post?')) {
+        posts = posts.filter(p => p.id !== id);
+        render();
+        showAlert('Post eliminado', 'El post ha sido eliminado correctamente.', 'success');
+    }
+}
+
+// Gestión de Suscriptores
+let suscriptores = JSON.parse(localStorage.getItem('mlc-suscriptores')) || [];
+
+function renderSuscriptores() {
+    const suscriptoresList = document.getElementById('suscriptoresList');
+    document.getElementById('suscriptoresCount').textContent = suscriptores.length;
+
+    if (suscriptores.length === 0) {
+        suscriptoresList.innerHTML = '<div class="empty-state">No hay suscriptores todavía</div>';
+        return;
+    }
+
+    suscriptoresList.innerHTML = suscriptores.map(sub => `
+        <div class="post-item">
+            <div>
+                <h4 style="color: var(--verde-bosque); margin-bottom: 0.5rem;">${sub.nombre}</h4>
+                <p style="color: var(--verde-profundo); margin-bottom: 0.3rem;"><strong>Email:</strong> ${sub.email}</p>
+                <p style="color: var(--verde-profundo); font-size: 0.9rem;"><strong>Suscrito:</strong> ${sub.fecha}</p>
+            </div>
+            <div>
+                <button onclick="deleteSuscriptor('${sub.id}')" class="btn btn-secondary" style="border: none; cursor: pointer; background: #dc3545;">Eliminar</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function deleteSuscriptor(id) {
+    if (confirm('¿Eliminar este suscriptor del newsletter?')) {
+        suscriptores = suscriptores.filter(s => s.id !== id);
+        localStorage.setItem('mlc-suscriptores', JSON.stringify(suscriptores));
+        renderSuscriptores();
+        showAlert('Suscriptor eliminado', 'El suscriptor ha sido eliminado de la lista.', 'success');
+    }
+}
+
+render();
+renderOrdenes();
+renderSuscriptores();
+    </script>
+</body>
+</html>
