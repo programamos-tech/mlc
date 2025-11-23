@@ -168,10 +168,12 @@ nav a:hover { color: var(--verde-bosque); }
     z-index: 999;
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .menu-overlay.active {
     opacity: 1;
+    pointer-events: auto;
 }
 
 /* Buttons */
@@ -444,6 +446,8 @@ section {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
+    overflow: visible;
 }
 .instagram-reel {
     border-radius: 16px;
@@ -505,6 +509,688 @@ section {
     .instagram-carousel {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        display: grid;
+        width: 100%;
+        overflow: visible;
+    }
+    .instagram-reel {
+        width: 100%;
+        max-width: 100%;
+        display: block;
+    }
+    .instagram-reel blockquote {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+    }
+}
+
+/* eBooks Shop Section */
+.ebooks-shop-section {
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255,213,153,0.08) 100%);
+    padding: 6rem 0;
+    position: relative;
+}
+.ebooks-shop-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(53,88,64,0.2), transparent);
+}
+.ebooks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+    align-items: stretch;
+}
+.ebook-card {
+    cursor: pointer;
+}
+.ebook-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(53, 88, 64, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(53, 88, 64, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+}
+.ebook-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(53, 88, 64, 0.15);
+    border-color: var(--terracota);
+}
+.ebook-card-image {
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(135deg, var(--crema), rgba(255,213,153,0.6));
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ebook-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ebook-card-image::after {
+    content: '📚';
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.3;
+    z-index: 0;
+}
+.ebook-card-image img {
+    position: relative;
+    z-index: 1;
+}
+.ebook-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: var(--terracota);
+    color: white;
+    padding: 0.35rem 0.7rem;
+    border-radius: 16px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.ebook-card-content {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    justify-content: space-between;
+}
+.ebook-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--verde-bosque);
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+    min-height: auto;
+}
+.ebook-card-description {
+    color: var(--verde-profundo);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    flex: 0 1 auto;
+    opacity: 0.9;
+}
+.ebook-card-features {
+    margin-bottom: 0.9rem;
+    flex-shrink: 0;
+}
+.ebook-card-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.ebook-card-features li {
+    padding: 0.2rem 0;
+    color: var(--verde-profundo);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    line-height: 1.4;
+}
+.ebook-card-features li::before {
+    content: '✓';
+    color: var(--terracota);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+.ebook-card-price {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+}
+.ebook-card-price-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--verde-bosque);
+    font-family: 'Poppins', sans-serif;
+}
+.ebook-card-price-currency {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--verde-profundo);
+    opacity: 0.8;
+}
+.ebook-card-button {
+    margin-top: auto;
+    width: 100%;
+    padding: 0.7rem 1.25rem;
+    background: var(--terracota);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+}
+.ebook-card-button:hover {
+    background: #d66d04;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(235, 123, 5, 0.4);
+}
+.ebook-card-button:active {
+    transform: translateY(0);
+}
+.ebook-card:hover .ebook-card-button {
+    background: #d66d04;
+}
+
+/* eBook Modal */
+.ebook-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 213, 153, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.2s ease;
+}
+.ebook-modal.active {
+    display: flex;
+}
+.ebook-modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 1100px;
+    width: 100%;
+    height: 90vh;
+    max-height: 90vh;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.ebook-modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(53, 88, 64, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--verde-profundo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+.ebook-modal-close:hover {
+    background: var(--terracota);
+    color: white;
+    transform: rotate(90deg);
+}
+.ebook-modal-body {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
+    padding: 1.5rem;
+    overflow: hidden;
+    flex: 1;
+    min-height: 0;
+    align-items: start;
+}
+.ebook-modal-image {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(53, 88, 64, 0.15);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--crema), rgba(255,213,153,0.3));
+}
+.ebook-modal-image img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+    display: block;
+}
+.ebook-modal-info {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    min-height: 0;
+    height: 100%;
+    padding-right: 0.5rem;
+}
+.ebook-modal-info > div:first-child {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+}
+.ebook-modal-info > div:last-child {
+    flex-shrink: 0;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(53, 88, 64, 0.1);
+    background: white;
+}
+.ebook-modal-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--verde-bosque);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+}
+.ebook-modal-price {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+.ebook-modal-price-amount {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--terracota);
+    font-family: 'Poppins', sans-serif;
+}
+.ebook-modal-price-currency {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--verde-profundo);
+    opacity: 0.8;
+}
+.ebook-modal-info .ebook-description {
+    color: var(--verde-profundo);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.ebook-modal-info .ebook-benefits {
+    margin-bottom: 2rem;
+}
+.ebook-modal-info .ebook-benefits h3 {
+    font-size: 1.2rem;
+    color: var(--verde-bosque);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+.ebook-modal-info .ebook-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.ebook-modal-info .ebook-benefits li {
+    padding: 0.6rem 0;
+    color: var(--verde-profundo);
+    font-size: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+}
+.ebook-modal-info .ebook-benefits li::before {
+    content: '✓';
+    color: var(--terracota);
+    font-weight: 600;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+.ebook-modal-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--terracota);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    flex-shrink: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: 0 4px 15px rgba(235, 123, 5, 0.4);
+    z-index: 10;
+}
+/* Asegurar que los botones de Hotmart mantengan el estilo de Martha */
+.ebook-modal-button.hotmart-fb,
+.ebook-modal-button.hotmart__button-checkout {
+    background: var(--terracota) !important;
+    color: white !important;
+    border: none !important;
+    padding: 1rem 2rem !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(235, 123, 5, 0.4) !important;
+}
+.ebook-modal-button.hotmart-fb:hover,
+.ebook-modal-button.hotmart__button-checkout:hover {
+    background: #d66d04 !important;
+    box-shadow: 0 6px 20px rgba(235, 123, 5, 0.4) !important;
+}
+.ebook-modal-button.hotmart-fb img,
+.ebook-modal-button.hotmart__button-checkout img {
+    display: none !important;
+}
+.ebook-modal-button:hover {
+    background: #d66d04;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(235, 123, 5, 0.4);
+}
+.ebook-upsell-section {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(53, 88, 64, 0.1);
+}
+.ebook-upsell-section h3 {
+    font-size: 0.85rem;
+    color: var(--verde-bosque);
+    margin-bottom: 0.6rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+.ebook-upsell-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
+    background: rgba(53, 88, 64, 0.03);
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.ebook-upsell-item:hover {
+    background: rgba(53, 88, 64, 0.06);
+    border-color: rgba(53, 88, 64, 0.2);
+}
+.ebook-upsell-item input[type="checkbox"] {
+    margin-top: 0.2rem;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--terracota);
+    flex-shrink: 0;
+}
+.ebook-upsell-item-content {
+    flex: 1;
+}
+.ebook-upsell-item-title {
+    font-weight: 600;
+    color: var(--verde-bosque);
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+}
+.ebook-upsell-item-price {
+    font-size: 0.9rem;
+    color: var(--terracota);
+    font-weight: 600;
+}
+.ebook-total-price {
+    margin-top: 0;
+    padding-top: 0.8rem;
+    border-top: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    margin-bottom: 0.5rem;
+}
+.ebook-total-price-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--verde-profundo);
+}
+.ebook-total-price-amount {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--terracota);
+    font-family: 'Poppins', sans-serif;
+}
+
+@media (max-width: 1024px) {
+    .ebooks-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    .ebook-modal {
+        padding: 1rem;
+    }
+    .ebook-modal-content {
+        height: 95vh;
+        max-height: 95vh;
+        border-radius: 16px;
+    }
+    .ebook-modal-body {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    .ebook-modal-image {
+        max-width: 100%;
+        margin: 0 auto;
+        height: auto;
+        max-height: 300px;
+    }
+    .ebook-modal-image img {
+        max-height: 300px;
+    }
+    .ebook-modal-info {
+        height: auto;
+        padding-right: 0;
+    }
+    .ebook-modal-info > div:first-child {
+        overflow-y: visible;
+        max-height: none;
+    }
+    .ebook-modal-info h2 {
+        font-size: 1.4rem;
+    }
+    .ebook-modal-price-amount {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .ebooks-shop-section {
+        padding: 4rem 0;
+    }
+    .ebooks-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    .ebook-card-image {
+        height: 140px;
+    }
+    .ebook-card-content {
+        padding: 1.25rem;
+    }
+    .ebook-card-title {
+        font-size: 1.1rem;
+        min-height: auto;
+    }
+    .ebook-card-description {
+        font-size: 0.85rem;
+    }
+    .ebook-modal {
+        padding: 0.5rem;
+        align-items: flex-start;
+        padding-top: 1rem;
+    }
+    .ebook-modal-content {
+        height: calc(100vh - 2rem);
+        max-height: calc(100vh - 2rem);
+        border-radius: 16px;
+        width: 100%;
+        max-width: 100%;
+    }
+    .ebook-modal-close {
+        top: 1rem;
+        right: 1rem;
+        width: 36px;
+        height: 36px;
+        font-size: 1.3rem;
+    }
+    .ebook-modal-body {
+        grid-template-columns: 1fr;
+        padding: 1rem !important;
+        gap: 1.5rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex: 1;
+        min-height: 0;
+    }
+    .ebook-modal-image {
+        max-width: 100%;
+        margin: 0 auto;
+        height: auto;
+        max-height: 250px;
+        order: -1;
+    }
+    .ebook-modal-image img {
+        max-height: 250px;
+    }
+    .ebook-modal-info {
+        height: auto;
+        padding-right: 0;
+        overflow: visible;
+    }
+    .ebook-modal-info > div:first-child {
+        overflow-y: visible;
+        max-height: none;
+        flex: 0 1 auto;
+    }
+    .ebook-modal-info > div:last-child {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-top: 2px solid rgba(53, 88, 64, 0.1);
+        z-index: 10;
+    }
+    .ebook-modal-info h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.3;
+    }
+    .ebook-modal-price {
+        margin-bottom: 0.8rem;
+    }
+    .ebook-modal-price-amount {
+        font-size: 1.8rem;
+    }
+    .ebook-modal-price-currency {
+        font-size: 0.95rem;
+    }
+    .ebook-modal-info .ebook-description {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 0.9rem;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+    }
+    .ebook-modal-info .ebook-benefits {
+        margin-bottom: 0.8rem;
+    }
+    .ebook-modal-info .ebook-benefits h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    .ebook-modal-info .ebook-benefits li {
+        padding: 0.25rem 0;
+        font-size: 0.8rem;
+    }
+    .ebook-upsell-section {
+        margin-top: 0.8rem;
+        padding-top: 0.8rem;
+    }
+    .ebook-upsell-section h3 {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    .ebook-upsell-item {
+        padding: 0.5rem;
+        margin-bottom: 0.4rem;
+    }
+    .ebook-upsell-item-title {
+        font-size: 0.85rem;
+    }
+    .ebook-upsell-item-price {
+        font-size: 0.8rem;
+    }
+    .ebook-total-price {
+        margin-top: 0.6rem;
+        padding-top: 0.8rem;
+        flex-wrap: wrap;
+    }
+    .ebook-total-price-label {
+        font-size: 0.9rem;
+    }
+    .ebook-total-price-amount {
+        font-size: 1.5rem;
+    }
+    .ebook-modal-button {
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
+        margin-top: 0.8rem;
+    }
+    .ebook-modal-close {
+        top: 1rem;
+        right: 1rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    .ebook-modal-content {
+        max-height: 95vh;
+        margin: 1rem;
     }
 }
 
@@ -770,6 +1456,37 @@ footer {
     background: white;
     box-shadow: 0 0 0 3px rgba(53, 88, 64, 0.1);
     transform: translateY(-1px);
+}
+.newsletter-form input[type="checkbox"] {
+    width: auto;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--verde-bosque);
+    flex-shrink: 0;
+}
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin: 0.5rem 0;
+}
+.checkbox-container label {
+    font-size: 0.9rem;
+    color: var(--verde-profundo);
+    line-height: 1.5;
+    cursor: pointer;
+    flex: 1;
+}
+.checkbox-container label a {
+    color: var(--terracota);
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.checkbox-container label a:hover {
+    color: var(--verde-bosque);
 }
 .newsletter-form button {
     padding: 1.1rem 2rem;
@@ -1353,6 +2070,270 @@ nav, nav *, .hero *, input, textarea, select, button {
         font-size: 0.85rem;
     }
 }
+
+/* Cookie Banner */
+.cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 2rem;
+    z-index: 10000;
+    border-top: 3px solid var(--terracota);
+    animation: slideUp 0.4s ease-out;
+}
+.cookie-banner.active {
+    display: block;
+}
+.cookie-banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.cookie-banner-text {
+    flex: 1;
+    min-width: 300px;
+}
+.cookie-banner-text h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--verde-bosque);
+    font-family: 'Playfair Display', serif;
+}
+.cookie-banner-text p {
+    font-size: 0.95rem;
+    color: var(--verde-profundo);
+    line-height: 1.6;
+    margin: 0;
+}
+.cookie-banner-text a {
+    color: var(--terracota);
+    text-decoration: underline;
+}
+.cookie-banner-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.cookie-btn {
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+.cookie-btn-accept {
+    background: var(--terracota);
+    color: white;
+}
+.cookie-btn-accept:hover {
+    background: #d66d04;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(235, 123, 5, 0.3);
+}
+.cookie-btn-reject {
+    background: transparent;
+    color: var(--verde-profundo);
+    border: 2px solid var(--verde-profundo);
+}
+.cookie-btn-reject:hover {
+    background: var(--verde-profundo);
+    color: white;
+}
+.cookie-btn-settings {
+    background: transparent;
+    color: var(--verde-profundo);
+    text-decoration: underline;
+    padding: 0.7rem 1rem;
+}
+.cookie-btn-settings:hover {
+    color: var(--terracota);
+}
+
+/* Cookie Settings Modal */
+.cookie-settings-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.2s ease;
+}
+.cookie-settings-modal.active {
+    display: flex;
+}
+.cookie-settings-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+.cookie-settings-header {
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid rgba(53, 88, 64, 0.1);
+}
+.cookie-settings-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.cookie-settings-header p {
+    color: var(--verde-profundo);
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+.cookie-settings-body {
+    padding: 2rem;
+}
+.cookie-setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(53, 88, 64, 0.1);
+}
+.cookie-setting-item:last-child {
+    border-bottom: none;
+}
+.cookie-setting-info {
+    flex: 1;
+    margin-right: 1.5rem;
+}
+.cookie-setting-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--verde-bosque);
+}
+.cookie-setting-info p {
+    font-size: 0.9rem;
+    color: var(--verde-profundo);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+.cookie-toggle {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    flex-shrink: 0;
+}
+.cookie-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.cookie-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 26px;
+}
+.cookie-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+.cookie-toggle input:checked + .cookie-slider {
+    background-color: var(--verde-bosque);
+}
+.cookie-toggle input:checked + .cookie-slider:before {
+    transform: translateX(24px);
+}
+.cookie-toggle input:disabled + .cookie-slider {
+    background-color: var(--terracota);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.cookie-settings-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid rgba(53, 88, 64, 0.1);
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+.cookie-settings-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--verde-profundo);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+.cookie-settings-close:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .cookie-banner {
+        padding: 1.2rem 1.5rem;
+    }
+    .cookie-banner-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    .cookie-banner-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+    .cookie-btn {
+        width: 100%;
+        text-align: center;
+    }
+    .cookie-setting-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .cookie-setting-info {
+        margin-right: 0;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
     </style>
 </head>
 <body>
@@ -1360,13 +2341,14 @@ nav, nav *, .hero *, input, textarea, select, button {
         <div class="container">
             <div>
                 <div class="logo">Martha Lucía Contreras</div>
-                <div class="logo-subtitle">Gestión Emocional</div>
+                <div class="logo-subtitle">Psicóloga – Estratega en Gestión Emocional</div>
             </div>
             <div class="nav-links">
                 <a href="#inicio">Inicio</a>
                 <a href="#quien-soy">Quién Soy</a>
+                <a href="#ebooks-shop">eBooks</a>
                 <a href="#blog">Blog</a>
-                <a href="#ebook" class="btn btn-primary">Obtener eBook</a>
+                <a href="#ebooks-shop" class="btn btn-primary">Comprar eBook</a>
                 <a href="login.html" style="opacity: 0.5;">Admin</a>
             </div>
             <button class="menu-toggle" aria-label="Toggle menu">
@@ -1381,8 +2363,9 @@ nav, nav *, .hero *, input, textarea, select, button {
     <div class="mobile-menu">
         <a href="#inicio">Inicio</a>
         <a href="#quien-soy">Quién Soy</a>
+        <a href="#ebooks-shop">eBooks</a>
         <a href="#blog">Blog</a>
-        <a href="#ebook" class="btn btn-primary">Obtener eBook</a>
+        <a href="#ebooks-shop" class="btn btn-primary">Comprar eBook</a>
         <a href="login.html" style="opacity: 0.5;">Admin</a>
     </div>
 
@@ -1393,12 +2376,12 @@ nav, nav *, .hero *, input, textarea, select, button {
                     <h1 class="fade-in-up delay-1">Donde la calma <span class="highlight">se convierte</span> en fuerza</h1>
                     <p class="fade-in-up delay-2">Transforma tus emociones en tu mayor herramienta de bienestar. Descubre cómo la neurociencia y la inteligencia emocional pueden llevarte a una vida más equilibrada y plena.</p>
                     <div class="hero-buttons fade-in-up delay-3">
-                        <a onclick="return false;" href="https://pay.hotmart.com/L99668935S?checkoutMode=2" class="btn btn-primary hotmart-fb hotmart__button-checkout">Obtener eBook - $9.99</a>
+                        <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary hotmart-fb hotmart__button-checkout" id="heroEbookButton">Obtener eBook - $9.99</a>
                         <a href="#newsletter" class="btn btn-secondary">Próximos Cursos</a>
                     </div>
                 </div>
                 <div class="hero-image scale-in delay-2 float-animation">
-                    <img src="martha2.jpg" alt="Martha Lucía Contreras - Especialista en neurociencia e inteligencia emocional">
+                    <img src="martha2.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional y Bienestar Integral">
                 </div>
             </div>
         </div>
@@ -1408,12 +2391,12 @@ nav, nav *, .hero *, input, textarea, select, button {
         <div class="container">
             <div class="about-grid">
                 <div class="about-image reveal">
-                    <img src="martha.jpg" alt="Martha Lucía Contreras">
+                    <img src="martha.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional">
                 </div>
                 <div class="about-content reveal">
-                    <h2>Sobre mí</h2>
-                    <p>Soy Martha Lucía Contreras, especialista en neurociencia aplicada e inteligencia emocional. Mi misión es ayudar a mujeres profesionales a encontrar el equilibrio entre sus metas y su bienestar emocional.</p>
-                    <p>A través de herramientas científicamente respaldadas como los ejercicios bilaterales, te acompaño en un viaje hacia el autoconocimiento, la calma y la productividad consciente.</p>
+                    <h2>Martha Lucía Contreras Contreras</h2>
+                    <p style="font-weight: 600; color: var(--verde-bosque); margin-bottom: 1rem;">Psicóloga – Estratega en Gestión Emocional y Bienestar Integral</p>
+                    <p>Martha Lucía es una mujer visionaria, psicóloga y creadora de proyectos con impacto social, que ha hecho de la gestión emocional y la salud mental su propósito de vida. Con más de 15 años de experiencia en entornos organizacionales y de desarrollo humano, ha transitado un camino: desde el mundo corporativo y educativo hasta convertirse en mentora y líder de su propia marca, inspirando a miles de mujeres a transformar sus emociones en herramientas de poder y construir una vida plena.</p>
                     <div class="quote">
                         <p>"Tu transformación comienza con tu forma de manejar tus emociones"</p>
                     </div>
@@ -1421,6 +2404,101 @@ nav, nav *, .hero *, input, textarea, select, button {
             </div>
         </div>
     </section>
+
+    <section id="ebooks-shop" class="ebooks-shop-section">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Transforma tu Bienestar con Nuestros eBooks</h2>
+                <p>Herramientas prácticas y científicamente respaldadas para tu crecimiento emocional y mental</p>
+            </div>
+            <div class="ebooks-grid reveal">
+                <!-- eBook 1: Gestión Emocional -->
+                <!-- NOTA: Actualizar la URL de Hotmart con el ID correcto del producto -->
+                <div class="ebook-card" data-ebook-index="0">
+                    <div class="ebook-card-image">
+                        <img src="ebook1.png" alt="Cómo lograr una gestión emocional sana con ejercicios bilaterales">
+                    </div>
+                    <div class="ebook-card-content">
+                        <h3 class="ebook-card-title">Cómo lograr una gestión emocional sana con ejercicios bilaterales</h3>
+                        <div class="ebook-card-price">
+                            <span class="ebook-card-price-amount">$9.99</span>
+                            <span class="ebook-card-price-currency">USD</span>
+                        </div>
+                        <p class="ebook-card-description">Gestiona mejor tus emociones, reduce el estrés y mejora tu bienestar con ejercicios bilaterales prácticos.</p>
+                        <div class="ebook-card-features">
+                            <ul>
+                                <li>Gestionar emociones intensas</li>
+                                <li>Mejorar la concentración y el enfoque mental</li>
+                                <li>Disminuir la ansiedad y el estrés</li>
+                                <li>Incrementar tu resiliencia emocional</li>
+                            </ul>
+                        </div>
+                        <button class="ebook-card-button">Ver más información</button>
+                    </div>
+                </div>
+
+                <!-- eBook 2: 30 Tableros -->
+                <!-- NOTA: Actualizar la URL de Hotmart con el ID correcto del producto -->
+                <div class="ebook-card" data-ebook-index="1">
+                    <div class="ebook-card-image">
+                        <img src="ebook2.png" alt="30 Tableros de Ejercicios Bilaterales">
+                    </div>
+                    <div class="ebook-card-content">
+                        <h3 class="ebook-card-title">30 Tableros de Ejercicios Bilaterales</h3>
+                        <div class="ebook-card-price">
+                            <span class="ebook-card-price-amount">$9.97</span>
+                            <span class="ebook-card-price-currency">USD</span>
+                        </div>
+                        <p class="ebook-card-description">Activa tu mente, memoria y enfoque. Ejercicios prácticos diseñados para mujeres que buscan claridad mental en minutos.</p>
+                        <div class="ebook-card-features">
+                            <ul>
+                                <li>Ejercicios prácticos de 5 a 10 minutos</li>
+                                <li>Diseñado específicamente para mujeres</li>
+                                <li>Claridad mental y bienestar rápido</li>
+                                <li>Fácil integración en tu rutina diaria</li>
+                            </ul>
+                        </div>
+                        <button class="ebook-card-button">Ver más información</button>
+                    </div>
+                </div>
+
+                <!-- eBook 3: 100 Plantillas -->
+                <!-- NOTA: Actualizar la URL de Hotmart con el ID correcto del producto -->
+                <div class="ebook-card" data-ebook-index="2">
+                    <div class="ebook-card-image">
+                        <img src="ebook3.png" alt="100 Plantillas de Ejercicios Bilaterales para el bienestar">
+                    </div>
+                    <div class="ebook-card-content">
+                        <h3 class="ebook-card-title">100 Plantillas de Ejercicios Bilaterales</h3>
+                        <div class="ebook-card-price">
+                            <span class="ebook-card-price-amount">$9.99</span>
+                            <span class="ebook-card-price-currency">USD</span>
+                        </div>
+                        <p class="ebook-card-description">Kit completo con 100 plantillas listas para usar. Reduce ansiedad, mejora concentración y equilibra emociones.</p>
+                        <div class="ebook-card-features">
+                            <ul>
+                                <li>100 plantillas listas para usar</li>
+                                <li>Funciona para todas las personas</li>
+                                <li>Diseño atractivo y sencillo</li>
+                                <li>Integración sin esfuerzo en tu rutina</li>
+                            </ul>
+                        </div>
+                        <button class="ebook-card-button">Ver más información</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- eBook Modal -->
+    <div id="ebookModal" class="ebook-modal">
+        <div class="ebook-modal-content">
+            <button class="ebook-modal-close" onclick="closeEbookModal()">✕</button>
+            <div class="ebook-modal-body" id="ebookModalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
 
     <section id="blog" class="blog-section">
         <div class="container">
@@ -1523,6 +2601,12 @@ nav, nav *, .hero *, input, textarea, select, button {
                 <form id="newsletterForm" class="newsletter-form">
                     <input type="text" id="nombreNewsletter" placeholder="Tu nombre" required>
                     <input type="email" id="emailNewsletter" placeholder="Tu correo electrónico" required>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="autorizacionDatos" required>
+                        <label for="autorizacionDatos">
+                            Acepto la <a href="privacidad.html" target="_blank">Política de Privacidad y Protección de Datos</a> y autorizo el tratamiento de mis datos personales.
+                        </label>
+                    </div>
                     <button type="submit">Suscribirme al Newsletter</button>
                 </form>
 
@@ -1548,9 +2632,9 @@ nav, nav *, .hero *, input, textarea, select, button {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3>Martha Lucía Contreras</h3>
+                    <h3>Martha Lucía Contreras Contreras</h3>
                     <p class="tagline">Donde la calma se convierte en fuerza</p>
-                    <p>Especialista en neurociencia aplicada e inteligencia emocional. Te acompaño en tu camino hacia el equilibrio emocional y el bienestar integral.</p>
+                    <p>Psicóloga – Estratega en Gestión Emocional y Bienestar Integral. Con más de 15 años de experiencia, te acompaño en tu camino hacia el equilibrio emocional y el bienestar integral.</p>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/marthaluciacontrerasc/" target="_blank" class="social-link" aria-label="Instagram">
                             <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1573,9 +2657,9 @@ nav, nav *, .hero *, input, textarea, select, button {
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
                             Blog
                         </a>
-                        <a href="#ebook">
+                        <a href="#ebooks-shop">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
-                            eBook
+                            eBooks
                         </a>
                     </div>
                 </div>
@@ -1600,6 +2684,9 @@ nav, nav *, .hero *, input, textarea, select, button {
                 © 2025 Martha Lucía Contreras • Todos los derechos reservados
                 <br>
                 <span style="font-size: 0.75rem; opacity: 0.6; margin-top: 0.5rem; display: inline-block;">
+                    <a href="privacidad.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(53, 88, 64, 0.2); margin-right: 1rem;">Política de Privacidad</a>
+                    <a href="cookies.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(53, 88, 64, 0.2); margin-right: 1rem;">Política de Cookies</a>
+                    <a href="javascript:void(0)" onclick="manageCookies()" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(53, 88, 64, 0.2); margin-right: 1rem; cursor: pointer;">Gestionar Cookies</a>
                     Designed & Developed by <a href="https://programamos.st" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(53, 88, 64, 0.2);">programamos.st</a>
                 </span>
             </div>
@@ -1844,15 +2931,37 @@ const mobileMenu = document.querySelector('.mobile-menu');
 const menuOverlay = document.querySelector('.menu-overlay');
 const mobileLinks = document.querySelectorAll('.mobile-menu a');
 
-function toggleMenu() {
+function toggleMenu(e) {
+    if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+    }
+    const isActive = mobileMenu.classList.contains('active');
     menuToggle.classList.toggle('active');
     mobileMenu.classList.toggle('active');
+    if (menuOverlay) {
     menuOverlay.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+    }
+    document.body.style.overflow = !isActive ? 'hidden' : 'auto';
 }
 
-menuToggle.addEventListener('click', toggleMenu);
-menuOverlay.addEventListener('click', toggleMenu);
+if (menuToggle) {
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        toggleMenu(e);
+    });
+}
+
+if (menuOverlay) {
+    menuOverlay.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+            toggleMenu(e);
+        }
+    });
+}
 
 // Close menu when clicking a link
 mobileLinks.forEach(link => {
@@ -1976,6 +3085,25 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
 
     const nombre = document.getElementById('nombreNewsletter').value.trim();
     const email = document.getElementById('emailNewsletter').value.trim();
+    const autorizacion = document.getElementById('autorizacionDatos').checked;
+
+    // Validar autorización
+    if (!autorizacion) {
+        showAlert('Autorización requerida', 'Por favor acepta la Política de Privacidad y Protección de Datos para continuar.', 'warning');
+        return;
+    }
+
+    // Validar nombre
+    if (!nombre || nombre.length < 2) {
+        showAlert('Nombre requerido', 'Por favor ingresa tu nombre completo.', 'warning');
+        return;
+    }
+
+    // Validar email
+    if (!email || !email.includes('@')) {
+        showAlert('Email inválido', 'Por favor ingresa un correo electrónico válido.', 'error');
+        return;
+    }
 
     // Guardar suscriptor
     let suscriptores = JSON.parse(localStorage.getItem('mlc-suscriptores')) || [];
@@ -1992,6 +3120,8 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
         id: 'SUB-' + Date.now(),
         nombre: nombre,
         email: email,
+        autorizacionDatos: true,
+        fechaAutorizacion: new Date().toLocaleString('es-CO'),
         fecha: new Date().toLocaleString('es-CO')
     };
 
@@ -2001,10 +3131,269 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
     // Limpiar formulario
     document.getElementById('nombreNewsletter').value = '';
     document.getElementById('emailNewsletter').value = '';
+    document.getElementById('autorizacionDatos').checked = false;
 
-    // Mensaje de confirmación
-    showAlert('¡Bienvenido a nuestra comunidad!', 'Gracias por suscribirte, ' + nombre + '. Pronto recibirás contenido exclusivo para transformar tu bienestar emocional.', 'success');
+    // Mensaje de bienvenida a la marca personal
+    showAlert(
+        '¡Bienvenido a la comunidad de Martha Lucía Contreras!', 
+        'Gracias por unirte a nuestra comunidad, ' + nombre + '. Estás a un paso de transformar tu bienestar emocional. Pronto recibirás en tu correo contenido exclusivo, herramientas prácticas y ejercicios de bienestar que te ayudarán en tu camino hacia una vida más equilibrada y plena. ¡Bienvenido!', 
+        'success'
+    );
 });
+
+// eBook Modal Functions
+const ebooksData = [
+    {
+        id: 0,
+        badge: 'Bestseller',
+        title: 'Cómo lograr una gestión emocional sana con ejercicios bilaterales',
+        image: 'ebook1.png',
+        price: 9.99,
+        description: 'Este ebook está diseñado para personas que desean gestionar mejor sus emociones, reducir el estrés, la ansiedad y mejorar significativamente su bienestar emocional mediante ejercicios bilaterales prácticos que estimulan ambos hemisferios del cerebro. Esto mejora la concentración, la resiliencia emocional y la capacidad para manejar situaciones difíciles con calma y claridad.',
+        benefits: [
+            'Gestionar emociones intensas',
+            'Mejorar la concentración y el enfoque mental',
+            'Disminuir la ansiedad y el estrés',
+            'Incrementar tu resiliencia emocional'
+        ],
+        content: [
+            'Mi Viaje hacia una Gestión Emocional Saludable',
+            'Primeros Pasos en la Práctica de ejercicios bilaterales',
+            '¿Por Qué las Emociones a Veces Nos Superan?',
+            'Fundamentos de la gestión emocional',
+            '¿Qué Son los Ejercicios Bilaterales?',
+            'Cómo Prepararte para Practicar en 4 pequeños pasos',
+            'Ejercicio bilateral básico para principiantes',
+            'Calma tu mente',
+            'Técnicas Avanzadas de Regulación Emocional',
+            'Ejercicios Integración Mente-Cuerpo',
+            'Cómo Integrar los Ejercicios en tu Rutina Diaria',
+            '¡Celebra tu progreso!'
+        ],
+        hotmartCode: 'L99668935S'
+    },
+    {
+        id: 1,
+        badge: 'Popular',
+        title: '30 Tableros de Ejercicios Bilaterales',
+        image: 'ebook2.png',
+        price: 9.97,
+        description: 'Activa tu Mente, Memoria y Enfoque. Para mujeres que buscan claridad mental y bienestar en minutos. Este cuaderno te presenta nuevos ejercicios bilaterales, una herramienta poderosa y sorprendentemente sencilla que puedes integrar en tu rutina. No se trata de complicadas meditaciones de horas, ni de añadir más tareas a tu lista. Al contrario, con tan solo 5 a 10 minutos al día, comenzarás a notar una diferencia profunda.',
+        benefits: [
+            'Ejercicios prácticos de 5 a 10 minutos',
+            'Diseñado específicamente para mujeres',
+            'Claridad mental y bienestar rápido',
+            'Fácil integración en tu rutina diaria'
+        ],
+        content: [],
+        hotmartCode: 'L99668935S'
+    },
+    {
+        id: 2,
+        badge: 'Completo',
+        title: '100 Plantillas de Ejercicios Bilaterales para el bienestar: Guía de Uso',
+        image: 'ebook3.png',
+        price: 9.99,
+        description: 'Esta guía detallada presenta nuestro kit de 100 plantillas de ejercicios bilaterales, diseñado meticulosamente para ayudarte a reducir la ansiedad, mejorar la concentración, manejar el estrés, equilibrar emociones y potenciar la creatividad. Funciona para todas las personas, así como también para quienes tienen alguna condición de salud específica. Con un diseño atractivo y sencillo, estas plantillas están pensadas para integrarse sin esfuerzo en tu rutina diaria, proporcionando beneficios significativos para tu bienestar mental y emocional.',
+        benefits: [
+            '100 plantillas listas para usar',
+            'Funciona para todas las personas',
+            'Diseño atractivo y sencillo',
+            'Integración sin esfuerzo en tu rutina'
+        ],
+        content: [],
+        hotmartCode: 'K99885042U'
+    }
+];
+
+function generateHotmartUrl(selectedIds) {
+    if (selectedIds.length === 0) return '';
+    
+    // Si hay múltiples productos seleccionados (upsells), usar checkoutMode=10
+    if (selectedIds.length > 1) {
+        return 'https://pay.hotmart.com/L99668935S?checkoutMode=10';
+    }
+    
+    // Si solo hay un producto, usar su código directamente
+    const ebook = ebooksData.find(e => e.id === selectedIds[0]);
+    if (ebook.id === 1) {
+        // Segundo ebook usa su código específico
+        return `https://pay.hotmart.com/W102333135I?checkoutMode=2`;
+    } else if (ebook.id === 2) {
+        // Tercer ebook usa su código específico
+        return `https://pay.hotmart.com/K99885042U?checkoutMode=2`;
+    } else {
+        // Primer ebook usa su código
+        return `https://pay.hotmart.com/${ebook.hotmartCode}?checkoutMode=2`;
+    }
+}
+
+function calculateTotal(selectedIds) {
+    return selectedIds.reduce((total, id) => {
+        const ebook = ebooksData.find(e => e.id === id);
+        return total + (ebook ? ebook.price : 0);
+    }, 0);
+}
+
+function openEbookModal(index) {
+    const ebook = ebooksData[index];
+    const modal = document.getElementById('ebookModal');
+    const modalBody = document.getElementById('ebookModalBody');
+    
+    if (!ebook || !modal || !modalBody) return;
+    
+    // Obtener otros ebooks para upsell (excluir el actual)
+    const otherEbooks = ebooksData.filter(e => e.id !== ebook.id);
+    
+    let contentHtml = `
+        <div class="ebook-modal-image">
+            <img src="${ebook.image}" alt="${ebook.title}">
+        </div>
+        <div class="ebook-modal-info">
+            <div>
+                <h2>${ebook.title}</h2>
+                <div class="ebook-modal-price">
+                    <span class="ebook-modal-price-amount">$${ebook.price.toFixed(2)}</span>
+                    <span class="ebook-modal-price-currency">USD</span>
+                </div>
+                <p class="ebook-description">${ebook.description}</p>
+                <div class="ebook-benefits">
+                    <h3>Lo que aprenderás:</h3>
+                    <ul>
+    `;
+    
+    ebook.benefits.forEach(benefit => {
+        contentHtml += `<li>${benefit}</li>`;
+    });
+    
+    contentHtml += `</ul></div>`;
+    
+    // Sección de upsell
+    if (otherEbooks.length > 0) {
+        contentHtml += `
+            <div class="ebook-upsell-section">
+                <h3>💡 Agrega estos cursos y ahorra:</h3>
+        `;
+        
+        otherEbooks.forEach(otherEbook => {
+            contentHtml += `
+                <label class="ebook-upsell-item">
+                    <input type="checkbox" class="upsell-checkbox" data-ebook-id="${otherEbook.id}" onchange="updateTotal()">
+                    <div class="ebook-upsell-item-content">
+                        <div class="ebook-upsell-item-title">${otherEbook.title}</div>
+                        <div class="ebook-upsell-item-price">+ $${otherEbook.price.toFixed(2)} USD</div>
+                    </div>
+                </label>
+            `;
+        });
+        
+        contentHtml += `</div>`;
+    }
+    
+    // Total y botón de compra
+    contentHtml += `
+            </div>
+            <div>
+                <div class="ebook-total-price">
+                    <span class="ebook-total-price-label">Total:</span>
+                    <span class="ebook-total-price-amount" id="ebookTotalPrice">$${ebook.price.toFixed(2)} USD</span>
+                </div>`;
+    
+    // Todos los ebooks usan botón normal que maneja la lógica de compra
+    // Si hay upsells seleccionados, se usará checkoutMode=10
+    contentHtml += `
+                <button onclick="purchaseEbooks(${index})" class="ebook-modal-button" id="purchaseButton">Comprar Ahora</button>`;
+    
+    // Cargar el widget de Hotmart cuando se abre el modal del segundo o tercer ebook
+    if (index === 1 || index === 2) {
+        // Esperar un momento para que el DOM se actualice antes de cargar el widget
+        setTimeout(function() {
+            importHotmart();
+        }, 100);
+    }
+    
+    contentHtml += `
+            </div>
+        </div>
+    `;
+    
+    modalBody.innerHTML = contentHtml;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Guardar el índice del ebook principal para la función de compra
+    modal.dataset.mainEbookIndex = index;
+}
+
+function updateTotal() {
+    const modal = document.getElementById('ebookModal');
+    const mainIndex = parseInt(modal.dataset.mainEbookIndex);
+    const mainEbook = ebooksData[mainIndex];
+    
+    const selectedCheckboxes = document.querySelectorAll('.upsell-checkbox:checked');
+    const selectedIds = [mainIndex];
+    
+    selectedCheckboxes.forEach(checkbox => {
+        selectedIds.push(parseInt(checkbox.dataset.ebookId));
+    });
+    
+    const total = calculateTotal(selectedIds);
+    const totalElement = document.getElementById('ebookTotalPrice');
+    if (totalElement) {
+        totalElement.textContent = `$${total.toFixed(2)} USD`;
+    }
+}
+
+function purchaseEbooks(mainIndex) {
+    const modal = document.getElementById('ebookModal');
+    const selectedCheckboxes = document.querySelectorAll('.upsell-checkbox:checked');
+    const selectedIds = [mainIndex];
+    
+    selectedCheckboxes.forEach(checkbox => {
+        selectedIds.push(parseInt(checkbox.dataset.ebookId));
+    });
+    
+    // Si hay productos adicionales seleccionados (upsells), usar checkoutMode=10
+    if (selectedIds.length > 1) {
+        window.open('https://pay.hotmart.com/L99668935S?checkoutMode=10', '_blank');
+        return;
+    }
+    
+    // Si solo hay un producto, usar su código específico
+    const hotmartUrl = generateHotmartUrl(selectedIds);
+    
+    if (hotmartUrl) {
+        window.open(hotmartUrl, '_blank');
+    } else {
+        alert('Error al generar el link de compra. Por favor, inténtalo de nuevo.');
+    }
+}
+
+function closeEbookModal() {
+    const modal = document.getElementById('ebookModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close modal when clicking outside
+document.getElementById('ebookModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeEbookModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('ebookModal');
+        if (modal && modal.classList.contains('active')) {
+            closeEbookModal();
+        }
+    }
+});
+
 
 // Hotmart Widget
 function importHotmart(){
@@ -2024,6 +3413,393 @@ if (document.readyState === 'loading') {
 } else {
     importHotmart();
 }
+    </script>
+
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3>🍪 Uso de Cookies</h3>
+                <p>Utilizamos cookies para mejorar tu experiencia, analizar el tráfico del sitio y personalizar el contenido. Al hacer clic en "Aceptar todas", aceptas nuestro uso de cookies. Puedes gestionar tus preferencias en cualquier momento. <a href="cookies.html">Más información</a></p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-reject" onclick="rejectCookies()">Rechazar</button>
+                <button class="cookie-btn cookie-btn-settings" onclick="openCookieSettings()">Personalizar</button>
+                <button class="cookie-btn cookie-btn-accept" onclick="acceptAllCookies()">Aceptar todas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookieSettingsModal" class="cookie-settings-modal">
+        <div class="cookie-settings-content">
+            <button class="cookie-settings-close" onclick="closeCookieSettings()">✕</button>
+            <div class="cookie-settings-header">
+                <h3>Gestionar Preferencias de Cookies</h3>
+                <p>Selecciona qué tipos de cookies deseas permitir</p>
+            </div>
+            <div class="cookie-settings-body">
+                <div class="cookie-setting-item">
+                    <div class="cookie-setting-info">
+                        <h4>Cookies Necesarias</h4>
+                        <p>Estas cookies son esenciales para el funcionamiento del sitio web. No se pueden desactivar.</p>
+                    </div>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" checked disabled>
+                        <span class="cookie-slider"></span>
+                    </label>
+                </div>
+                <div class="cookie-setting-item">
+                    <div class="cookie-setting-info">
+                        <h4>Cookies Funcionales</h4>
+                        <p>Permiten recordar tus preferencias y personalizar tu experiencia.</p>
+                    </div>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="cookieFunctional" checked>
+                        <span class="cookie-slider"></span>
+                    </label>
+                </div>
+                <div class="cookie-setting-item">
+                    <div class="cookie-setting-info">
+                        <h4>Cookies de Análisis</h4>
+                        <p>Nos ayudan a entender cómo los visitantes interactúan con el sitio web.</p>
+                    </div>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="cookieAnalytics">
+                        <span class="cookie-slider"></span>
+                    </label>
+                </div>
+                <div class="cookie-setting-item">
+                    <div class="cookie-setting-info">
+                        <h4>Cookies de Redes Sociales</h4>
+                        <p>Permiten compartir contenido en redes sociales y mostrar contenido embebido de Instagram.</p>
+                    </div>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="cookieSocial">
+                        <span class="cookie-slider"></span>
+                    </label>
+                </div>
+                <div class="cookie-setting-item">
+                    <div class="cookie-setting-info">
+                        <h4>Cookies de Marketing</h4>
+                        <p>Se utilizan para hacer seguimiento y mostrar contenido relevante, incluyendo widgets de Hotmart.</p>
+                    </div>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="cookieMarketing">
+                        <span class="cookie-slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="cookie-settings-footer">
+                <button class="cookie-btn cookie-btn-reject" onclick="saveCookiePreferences()">Guardar Preferencias</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// Cookie Consent Management
+(function() {
+    'use strict';
+
+    // Check if user has already made a choice
+    function hasCookieConsent() {
+        return localStorage.getItem('mlc-cookie-consent') !== null;
+    }
+
+    // Get cookie preferences
+    function getCookiePreferences() {
+        const consent = localStorage.getItem('mlc-cookie-consent');
+        if (consent) {
+            return JSON.parse(consent);
+        }
+        return null;
+    }
+
+    // Show cookie banner if no consent given
+    function showCookieBanner() {
+        if (!hasCookieConsent()) {
+            const banner = document.getElementById('cookieBanner');
+            if (banner) {
+                banner.classList.add('active');
+            }
+        }
+    }
+
+    // Accept all cookies
+    window.acceptAllCookies = function() {
+        const preferences = {
+            necessary: true,
+            functional: true,
+            analytics: true,
+            social: true,
+            marketing: true,
+            date: new Date().toISOString()
+        };
+        localStorage.setItem('mlc-cookie-consent', JSON.stringify(preferences));
+        hideCookieBanner();
+        loadCookiesBasedOnPreferences(preferences);
+    };
+
+    // Reject all non-necessary cookies
+    window.rejectCookies = function() {
+        const preferences = {
+            necessary: true,
+            functional: false,
+            analytics: false,
+            social: false,
+            marketing: false,
+            date: new Date().toISOString()
+        };
+        localStorage.setItem('mlc-cookie-consent', JSON.stringify(preferences));
+        hideCookieBanner();
+        loadCookiesBasedOnPreferences(preferences);
+    };
+
+    // Open cookie settings modal
+    window.openCookieSettings = function() {
+        const modal = document.getElementById('cookieSettingsModal');
+        const prefs = getCookiePreferences();
+        
+        if (prefs) {
+            document.getElementById('cookieFunctional').checked = prefs.functional || false;
+            document.getElementById('cookieAnalytics').checked = prefs.analytics || false;
+            document.getElementById('cookieSocial').checked = prefs.social || false;
+            document.getElementById('cookieMarketing').checked = prefs.marketing || false;
+        }
+        
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
+    // Close cookie settings modal
+    window.closeCookieSettings = function() {
+        const modal = document.getElementById('cookieSettingsModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    };
+
+    // Save cookie preferences from settings modal
+    window.saveCookiePreferences = function() {
+        const preferences = {
+            necessary: true,
+            functional: document.getElementById('cookieFunctional').checked,
+            analytics: document.getElementById('cookieAnalytics').checked,
+            social: document.getElementById('cookieSocial').checked,
+            marketing: document.getElementById('cookieMarketing').checked,
+            date: new Date().toISOString()
+        };
+        localStorage.setItem('mlc-cookie-consent', JSON.stringify(preferences));
+        hideCookieBanner();
+        closeCookieSettings();
+        loadCookiesBasedOnPreferences(preferences);
+    };
+
+    // Hide cookie banner
+    function hideCookieBanner() {
+        const banner = document.getElementById('cookieBanner');
+        if (banner) {
+            banner.classList.remove('active');
+        }
+    }
+
+    // Load cookies based on user preferences
+    function loadCookiesBasedOnPreferences(prefs) {
+        // Always load necessary cookies (already loaded)
+        
+        // Load Instagram embeds only if social cookies are accepted
+        if (prefs.social) {
+            loadInstagramEmbeds();
+        } else {
+            // Replace Instagram embeds with placeholder
+            replaceInstagramEmbeds();
+        }
+
+        // Load Hotmart widget only if marketing cookies are accepted
+        if (prefs.marketing) {
+            loadHotmartWidget();
+        } else {
+            // Keep Hotmart widget but inform it may use cookies
+            // (Hotmart widget is necessary for purchases, so we keep it)
+        }
+    }
+
+    // Load Instagram embeds
+    function loadInstagramEmbeds() {
+        const instagramScripts = document.querySelectorAll('script[src*="instagram.com/embed.js"]');
+        instagramScripts.forEach(script => {
+            if (!script.hasAttribute('data-loaded')) {
+                script.setAttribute('data-loaded', 'true');
+                // Instagram script is already async, so it will load automatically
+            }
+        });
+    }
+
+    // Replace Instagram embeds with click-to-load placeholder
+    function replaceInstagramEmbeds() {
+        const instagramEmbeds = document.querySelectorAll('.instagram-media');
+        instagramEmbeds.forEach(embed => {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'instagram-placeholder';
+            placeholder.style.cssText = 'background: var(--crema); padding: 3rem; border-radius: 16px; text-align: center; border: 2px dashed rgba(53, 88, 64, 0.3);';
+            placeholder.innerHTML = `
+                <p style="color: var(--verde-profundo); margin-bottom: 1rem; font-weight: 500;">Contenido de Instagram</p>
+                <button onclick="loadInstagramContent(this)" class="btn btn-primary" style="background: var(--terracota); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 8px; cursor: pointer;">
+                    Cargar contenido
+                </button>
+                <p style="font-size: 0.85rem; color: var(--verde-profundo); opacity: 0.7; margin-top: 0.5rem;">Al hacer clic, aceptas las cookies de Instagram</p>
+            `;
+            embed.parentNode.replaceChild(placeholder, embed);
+        });
+    }
+
+    // Load Instagram content on demand
+    window.loadInstagramContent = function(button) {
+        // Accept social cookies temporarily
+        const prefs = getCookiePreferences() || {};
+        prefs.social = true;
+        localStorage.setItem('mlc-cookie-consent', JSON.stringify(prefs));
+        
+        // Reload page to show Instagram content
+        location.reload();
+    };
+
+    // Load Hotmart widget
+    function loadHotmartWidget() {
+        // Hotmart widget is already loaded, but we ensure it's active
+        if (typeof importHotmart === 'function') {
+            importHotmart();
+        }
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('cookieSettingsModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeCookieSettings();
+        }
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const prefs = getCookiePreferences();
+        
+        if (prefs) {
+            // User has already made a choice
+            loadCookiesBasedOnPreferences(prefs);
+        } else {
+            // Show banner for first-time visitors
+            showCookieBanner();
+        }
+    });
+
+    // Add "Gestionar Cookies" link functionality
+    window.addEventListener('load', function() {
+        // This will be called from footer link
+        window.manageCookies = function() {
+            openCookieSettings();
+        };
+    });
+})();
+
+// Hotmart Widget Script - Solo se carga cuando se necesita
+function importHotmart(){ 
+    // Verificar si ya está cargado para no duplicar
+    if (document.querySelector('script[src="https://static.hotmart.com/checkout/widget.min.js"]')) {
+        return;
+    }
+    if (document.querySelector('link[href="https://static.hotmart.com/css/hotmart-fb.min.css"]')) {
+        return;
+    }
+    
+    var imported = document.createElement('script'); 
+    imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
+    document.head.appendChild(imported); 
+    var link = document.createElement('link'); 
+    link.rel = 'stylesheet'; 
+    link.type = 'text/css'; 
+    link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
+    document.head.appendChild(link);
+}
+
+// Event listeners para las cards de ebooks
+document.addEventListener('DOMContentLoaded', function() {
+    const ebookCards = document.querySelectorAll('.ebook-card');
+    
+    ebookCards.forEach(card => {
+        // Listener en la card completa
+        card.addEventListener('click', function(e) {
+            // Prevenir que el evento se propague y abra el menú móvil
+            e.stopPropagation();
+            
+            // Si el menú móvil está abierto, cerrarlo primero
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                toggleMenu(e);
+            }
+            
+            const index = parseInt(card.getAttribute('data-ebook-index'));
+            if (!isNaN(index) && typeof openEbookModal === 'function') {
+                openEbookModal(index);
+            }
+        }, false); // Usar bubble phase (false) para que se ejecute después del listener global
+        
+        // Listener específico en el botón para asegurar que funcione
+        const button = card.querySelector('.ebook-card-button');
+        if (button) {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                e.preventDefault(); // Prevenir cualquier comportamiento por defecto del botón
+                
+                // Si el menú móvil está abierto, cerrarlo primero
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    toggleMenu(e);
+                }
+                
+                const index = parseInt(card.getAttribute('data-ebook-index'));
+                if (!isNaN(index) && typeof openEbookModal === 'function') {
+                    openEbookModal(index);
+                }
+            }, false);
+        }
+    });
+    
+    // Prevenir que otros botones y elementos abran el menú móvil accidentalmente
+    // Solo se ejecuta si NO es el botón del menú hamburguesa
+    // Usar bubble phase (false) para que se ejecute después de los listeners específicos
+    document.addEventListener('click', function(e) {
+        // Si es el botón del menú hamburguesa, permitir que funcione normalmente
+        if (e.target.closest('.menu-toggle')) {
+            return;
+        }
+        
+        // Si es una card de ebook o cualquier elemento dentro de ella, no hacer nada aquí
+        // (ya tiene su propio handler que se ejecutó primero)
+        if (e.target.closest('.ebook-card')) {
+            return;
+        }
+        
+        // Si es un botón dentro del modal de ebook, permitir que funcione
+        if (e.target.closest('.ebook-modal')) {
+            return;
+        }
+        
+        // Para otros elementos, no hacer nada - solo prevenir que abran el menú accidentalmente
+    }, false);
+    
+    // Event listener para el botón del hero - cargar widget de Hotmart
+    const heroEbookButton = document.getElementById('heroEbookButton');
+    if (heroEbookButton) {
+        // Cargar el widget de Hotmart cuando se carga la página
+        importHotmart();
+        
+        heroEbookButton.addEventListener('click', function(e) {
+            // Asegurar que el widget esté cargado antes de hacer click
+            importHotmart();
+        });
+    }
+});
     </script>
 </body>
 </html>
