@@ -815,7 +815,7 @@ section {
 .ebook-modal-info {
     display: flex;
     flex-direction: column;
-    overflow: visible;
+    overflow: hidden;
     min-height: 0;
     height: 100%;
     padding-right: 0.5rem;
@@ -825,13 +825,17 @@ section {
     overflow-y: auto;
     overflow-x: hidden;
     min-height: 0;
+    padding-bottom: 1rem;
 }
 .ebook-modal-info > div:last-child {
     flex-shrink: 0;
-    margin-top: auto;
-    padding-top: 1rem;
+    margin-top: 0;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
     border-top: 2px solid rgba(53, 88, 64, 0.1);
     background: white;
+    position: sticky;
+    bottom: 0;
 }
 .ebook-modal-info h2 {
     font-family: 'Playfair Display', serif;
@@ -870,7 +874,7 @@ section {
     overflow: hidden;
 }
 .ebook-modal-info .ebook-benefits {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 .ebook-modal-info .ebook-benefits h3 {
     font-size: 1.2rem;
@@ -1231,6 +1235,7 @@ section {
         overflow-x: hidden;
         flex: 1;
         min-height: 0;
+        -webkit-overflow-scrolling: touch;
     }
     .ebook-modal-image {
         max-width: 100%;
@@ -1246,20 +1251,24 @@ section {
         height: auto;
         padding-right: 0;
         overflow: visible;
+        display: flex;
+        flex-direction: column;
     }
     .ebook-modal-info > div:first-child {
         overflow-y: visible;
         max-height: none;
         flex: 0 1 auto;
+        padding-bottom: 0.5rem;
     }
     .ebook-modal-info > div:last-child {
         position: sticky;
         bottom: 0;
         background: white;
-        padding-top: 1rem;
-        margin-top: 1rem;
+        padding: 1rem 0;
+        margin-top: 0.5rem;
         border-top: 2px solid rgba(53, 88, 64, 0.1);
-        z-index: 10;
+        z-index: 100;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
     }
     .ebook-modal-info h2 {
         font-size: 1.3rem;
@@ -1283,15 +1292,16 @@ section {
         line-clamp: 4;
     }
     .ebook-modal-info .ebook-benefits {
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.5rem;
     }
     .ebook-modal-info .ebook-benefits h3 {
         font-size: 0.9rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.4rem;
     }
     .ebook-modal-info .ebook-benefits li {
-        padding: 0.25rem 0;
+        padding: 0.2rem 0;
         font-size: 0.8rem;
+        line-height: 1.4;
     }
     .ebook-upsell-section {
         margin-top: 0.8rem;
@@ -1323,9 +1333,10 @@ section {
         font-size: 1.5rem;
     }
     .ebook-modal-button {
-        padding: 0.9rem 1.5rem;
+        padding: 0.85rem 1.5rem;
         font-size: 1rem;
-        margin-top: 0.8rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0;
     }
     .ebook-modal-close {
         top: 1rem;
