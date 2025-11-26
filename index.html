@@ -3010,24 +3010,32 @@ nav, nav *, .hero *, input, textarea, select, button {
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- Configuración de EmailJS (no se sube a Git) -->
-    <script src="config/config.emailjs.js"></script>
+    <script src="config/config.emailjs.js" onerror="console.warn('⚠️ config/config.emailjs.js no encontrado. EmailJS no funcionará hasta que se configure.'); window.EMAILJS_CONFIG = undefined;"></script>
     <script>
     // Inicializar EmailJS con configuración externa
     (function(){
-        console.log('Cargando configuración de EmailJS...');
-        console.log('EMAILJS_CONFIG disponible:', typeof EMAILJS_CONFIG !== 'undefined');
-        
-        if (typeof EMAILJS_CONFIG !== 'undefined' && EMAILJS_CONFIG.PUBLIC_KEY && EMAILJS_CONFIG.PUBLIC_KEY !== 'TU_PUBLIC_KEY') {
-            emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-            console.log('✅ EmailJS inicializado correctamente');
-            console.log('Configuración:', {
-                PUBLIC_KEY: EMAILJS_CONFIG.PUBLIC_KEY.substring(0, 10) + '...',
-                SERVICE_ID: EMAILJS_CONFIG.SERVICE_ID,
-                TEMPLATE_ID: EMAILJS_CONFIG.TEMPLATE_ID
-            });
-        } else {
-            console.warn('⚠️ EmailJS no configurado. Por favor configura config.emailjs.js');
-            console.warn('EMAILJS_CONFIG:', EMAILJS_CONFIG);
+        try {
+            console.log('Cargando configuración de EmailJS...');
+            console.log('EMAILJS_CONFIG disponible:', typeof EMAILJS_CONFIG !== 'undefined');
+            
+            if (typeof EMAILJS_CONFIG !== 'undefined' && EMAILJS_CONFIG && EMAILJS_CONFIG.PUBLIC_KEY && EMAILJS_CONFIG.PUBLIC_KEY !== 'TU_PUBLIC_KEY') {
+                if (typeof emailjs !== 'undefined') {
+                    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+                    console.log('✅ EmailJS inicializado correctamente');
+                    console.log('Configuración:', {
+                        PUBLIC_KEY: EMAILJS_CONFIG.PUBLIC_KEY.substring(0, 10) + '...',
+                        SERVICE_ID: EMAILJS_CONFIG.SERVICE_ID,
+                        TEMPLATE_ID: EMAILJS_CONFIG.TEMPLATE_ID
+                    });
+                } else {
+                    console.warn('⚠️ EmailJS SDK no cargado');
+                }
+            } else {
+                console.warn('⚠️ EmailJS no configurado. Por favor configura config/config.emailjs.js');
+            }
+        } catch (error) {
+            console.error('Error al inicializar EmailJS:', error);
+            // Continuar ejecución aunque falle EmailJS
         }
     })();
 // Alert Modal Functions
@@ -3406,39 +3414,46 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
     console.log('Intentando enviar correo de bienvenida...');
     console.log('EMAILJS_CONFIG:', typeof EMAILJS_CONFIG !== 'undefined' ? EMAILJS_CONFIG : 'No definido');
     
-    if (typeof EMAILJS_CONFIG !== 'undefined' && 
-        EMAILJS_CONFIG.SERVICE_ID && 
-        EMAILJS_CONFIG.SERVICE_ID !== 'TU_SERVICE_ID' &&
-        EMAILJS_CONFIG.TEMPLATE_ID && 
-        EMAILJS_CONFIG.TEMPLATE_ID !== 'TU_TEMPLATE_ID') {
-        
-        const templateParams = {
-            to_name: nombre,
-            to_email: email,
-            from_name: 'Martha Lucía Contreras'
-        };
+    try {
+        if (typeof EMAILJS_CONFIG !== 'undefined' && 
+            EMAILJS_CONFIG && 
+            EMAILJS_CONFIG.SERVICE_ID && 
+            EMAILJS_CONFIG.SERVICE_ID !== 'TU_SERVICE_ID' &&
+            EMAILJS_CONFIG.TEMPLATE_ID && 
+            EMAILJS_CONFIG.TEMPLATE_ID !== 'TU_TEMPLATE_ID' &&
+            typeof emailjs !== 'undefined') {
+            
+            const templateParams = {
+                to_name: nombre,
+                to_email: email,
+                from_name: 'Martha Lucía Contreras'
+            };
 
-        console.log('Enviando correo con:', {
-            service: EMAILJS_CONFIG.SERVICE_ID,
-            template: EMAILJS_CONFIG.TEMPLATE_ID,
-            to: email,
-            to_name: nombre
-        });
-
-        // Enviar email de bienvenida usando configuración externa
-        emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
-            .then(function(response) {
-                console.log('✅ Correo de bienvenida enviado exitosamente!', response.status, response.text);
-                showAlert('Correo enviado', 'El correo de bienvenida se ha enviado correctamente a ' + email, 'success');
-            }, function(error) {
-                console.error('❌ Error al enviar correo de bienvenida:', error);
-                console.error('Detalles del error:', JSON.stringify(error, null, 2));
-                // Continuar aunque falle el envío del correo (no mostrar error al usuario)
+            console.log('Enviando correo con:', {
+                service: EMAILJS_CONFIG.SERVICE_ID,
+                template: EMAILJS_CONFIG.TEMPLATE_ID,
+                to: email,
+                to_name: nombre
             });
-    } else {
-        console.warn('⚠️ EmailJS no configurado correctamente.');
-        console.warn('SERVICE_ID:', EMAILJS_CONFIG?.SERVICE_ID);
-        console.warn('TEMPLATE_ID:', EMAILJS_CONFIG?.TEMPLATE_ID);
+
+            // Enviar email de bienvenida usando configuración externa
+            emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
+                .then(function(response) {
+                    console.log('✅ Correo de bienvenida enviado exitosamente!', response.status, response.text);
+                }, function(error) {
+                    console.error('❌ Error al enviar correo de bienvenida:', error);
+                    // Continuar aunque falle el envío del correo (no mostrar error al usuario)
+                });
+        } else {
+            console.warn('⚠️ EmailJS no configurado correctamente.');
+            if (typeof EMAILJS_CONFIG !== 'undefined') {
+                console.warn('SERVICE_ID:', EMAILJS_CONFIG?.SERVICE_ID);
+                console.warn('TEMPLATE_ID:', EMAILJS_CONFIG?.TEMPLATE_ID);
+            }
+        }
+    } catch (error) {
+        console.error('Error al intentar enviar correo de bienvenida:', error);
+        // Continuar ejecución aunque falle EmailJS
     }
 
     // Limpiar formulario
