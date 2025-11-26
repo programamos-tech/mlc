@@ -1,5 +1,6 @@
 # Variables de entorno y configuración sensible
-config/config.emailjs.js
+# config/config.emailjs.js - Comentado porque las credenciales de EmailJS son públicas
+# Si prefieres mantenerlo privado, descomenta la línea anterior
 
 # Archivos del sistema
 .DS_Store
