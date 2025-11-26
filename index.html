@@ -189,7 +189,7 @@ nav a:hover { color: var(--verde-bosque); }
 }
 .btn-primary {
     background: var(--terracota);
-    color: white;
+    color: #ffffff !important;
     border: none;
     box-shadow: none;
     text-shadow: none;
@@ -197,8 +197,19 @@ nav a:hover { color: var(--verde-bosque); }
 }
 .btn-primary:hover {
     background: #d66d04;
+    color: #ffffff !important;
     box-shadow: none;
     transform: none;
+}
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:visited {
+    color: #ffffff !important;
+}
+.btn-hero-cta {
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    font-weight: 500;
 }
 /* Override Hotmart styles to maintain button design */
 .btn-primary.hotmart__button-checkout,
@@ -221,8 +232,17 @@ nav a:hover { color: var(--verde-bosque); }
 .btn-primary.hotmart__button-checkout:hover,
 .btn-primary.hotmart-fb:hover {
     background: #d66d04 !important;
+    color: #ffffff !important;
     box-shadow: none !important;
     transform: none !important;
+}
+.btn-primary.hotmart__button-checkout:active,
+.btn-primary.hotmart__button-checkout:focus,
+.btn-primary.hotmart__button-checkout:visited,
+.btn-primary.hotmart-fb:active,
+.btn-primary.hotmart-fb:focus,
+.btn-primary.hotmart-fb:visited {
+    color: #ffffff !important;
 }
 .btn-secondary {
     background: transparent;
@@ -522,6 +542,11 @@ section {
         width: 100% !important;
         max-width: 100% !important;
         min-width: auto !important;
+    }
+    /* Ocultar segundo y tercer reel en mobile */
+    .instagram-reel:nth-child(2),
+    .instagram-reel:nth-child(3) {
+        display: none;
     }
 }
 
@@ -993,6 +1018,127 @@ section {
     font-family: 'Poppins', sans-serif;
 }
 
+/* Blog Modal */
+.blog-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 213, 153, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow-y: auto;
+}
+.blog-modal.active {
+    display: flex;
+}
+.blog-modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+.blog-modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--verde-profundo);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.blog-modal-close:hover {
+    background: var(--terracota);
+    color: white;
+    transform: rotate(90deg);
+}
+.blog-modal-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem;
+    padding-top: 2rem;
+}
+.blog-modal-image {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+}
+.blog-modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.blog-modal-header {
+    margin-bottom: 2rem;
+}
+.blog-modal-category {
+    color: var(--terracota);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+}
+.blog-modal-title {
+    font-size: 2.2rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--verde-bosque);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+.blog-modal-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--verde-profundo);
+    opacity: 0.7;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(53, 88, 64, 0.1);
+}
+.blog-modal-content-text {
+    color: var(--verde-profundo);
+    line-height: 1.8;
+    font-size: 1.05rem;
+    white-space: pre-wrap;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+.blog-modal-content-text p {
+    margin-bottom: 1.5rem;
+    padding: 0;
+    margin-top: 0;
+}
+.blog-modal-content-text p:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
 @media (max-width: 1024px) {
     .ebooks-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1191,6 +1337,25 @@ section {
     .ebook-modal-content {
         max-height: 95vh;
         margin: 1rem;
+    }
+    .blog-modal {
+        padding: 1rem;
+    }
+    .blog-modal-content {
+        max-height: 95vh;
+        border-radius: 16px;
+    }
+    .blog-modal-body {
+        padding: 2rem 1.5rem;
+    }
+    .blog-modal-title {
+        font-size: 1.6rem;
+    }
+    .blog-modal-image {
+        max-height: 250px;
+    }
+    .blog-modal-content-text {
+        font-size: 1rem;
     }
 }
 
@@ -2348,7 +2513,7 @@ nav, nav *, .hero *, input, textarea, select, button {
                 <a href="#quien-soy">Quién Soy</a>
                 <a href="#ebooks-shop">eBooks</a>
                 <a href="#blog">Blog</a>
-                <a href="#ebooks-shop" class="btn btn-primary">Comprar eBook</a>
+                <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary">Comprar eBook</a>
                 <a href="login.html" style="opacity: 0.5;">Admin</a>
             </div>
             <button class="menu-toggle" aria-label="Toggle menu">
@@ -2365,7 +2530,7 @@ nav, nav *, .hero *, input, textarea, select, button {
         <a href="#quien-soy">Quién Soy</a>
         <a href="#ebooks-shop">eBooks</a>
         <a href="#blog">Blog</a>
-        <a href="#ebooks-shop" class="btn btn-primary">Comprar eBook</a>
+        <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary">Comprar eBook</a>
         <a href="login.html" style="opacity: 0.5;">Admin</a>
     </div>
 
@@ -2376,12 +2541,12 @@ nav, nav *, .hero *, input, textarea, select, button {
                     <h1 class="fade-in-up delay-1">Donde la calma <span class="highlight">se convierte</span> en fuerza</h1>
                     <p class="fade-in-up delay-2">Transforma tus emociones en tu mayor herramienta de bienestar. Descubre cómo la neurociencia y la inteligencia emocional pueden llevarte a una vida más equilibrada y plena.</p>
                     <div class="hero-buttons fade-in-up delay-3">
-                        <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary hotmart-fb hotmart__button-checkout" id="heroEbookButton">Obtener eBook - $9.99</a>
+                        <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary btn-hero-cta" id="heroEbookButton" target="_blank">Obtener eBook - $9.99</a>
                         <a href="#newsletter" class="btn btn-secondary">Próximos Cursos</a>
                     </div>
                 </div>
                 <div class="hero-image scale-in delay-2 float-animation">
-                    <img src="martha2.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional y Bienestar Integral">
+                    <img src="images/martha2.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional y Bienestar Integral">
                 </div>
             </div>
         </div>
@@ -2391,7 +2556,7 @@ nav, nav *, .hero *, input, textarea, select, button {
         <div class="container">
             <div class="about-grid">
                 <div class="about-image reveal">
-                    <img src="martha.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional">
+                    <img src="images/martha.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional">
                 </div>
                 <div class="about-content reveal">
                     <h2>Martha Lucía Contreras Contreras</h2>
@@ -2416,7 +2581,7 @@ nav, nav *, .hero *, input, textarea, select, button {
                 <!-- NOTA: Actualizar la URL de Hotmart con el ID correcto del producto -->
                 <div class="ebook-card" data-ebook-index="0">
                     <div class="ebook-card-image">
-                        <img src="ebook1.png" alt="Cómo lograr una gestión emocional sana con ejercicios bilaterales">
+                        <img src="images/ebook1.png" alt="Cómo lograr una gestión emocional sana con ejercicios bilaterales">
                     </div>
                     <div class="ebook-card-content">
                         <h3 class="ebook-card-title">Cómo lograr una gestión emocional sana con ejercicios bilaterales</h3>
@@ -2441,7 +2606,7 @@ nav, nav *, .hero *, input, textarea, select, button {
                 <!-- NOTA: Actualizar la URL de Hotmart con el ID correcto del producto -->
                 <div class="ebook-card" data-ebook-index="1">
                     <div class="ebook-card-image">
-                        <img src="ebook2.png" alt="30 Tableros de Ejercicios Bilaterales">
+                        <img src="images/ebook2.png" alt="30 Tableros de Ejercicios Bilaterales">
                     </div>
                     <div class="ebook-card-content">
                         <h3 class="ebook-card-title">30 Tableros de Ejercicios Bilaterales</h3>
@@ -2466,7 +2631,7 @@ nav, nav *, .hero *, input, textarea, select, button {
                 <!-- NOTA: Actualizar la URL de Hotmart con el ID correcto del producto -->
                 <div class="ebook-card" data-ebook-index="2">
                     <div class="ebook-card-image">
-                        <img src="ebook3.png" alt="100 Plantillas de Ejercicios Bilaterales para el bienestar">
+                        <img src="images/ebook3.png" alt="100 Plantillas de Ejercicios Bilaterales para el bienestar">
                     </div>
                     <div class="ebook-card-content">
                         <h3 class="ebook-card-title">100 Plantillas de Ejercicios Bilaterales</h3>
@@ -2495,6 +2660,16 @@ nav, nav *, .hero *, input, textarea, select, button {
         <div class="ebook-modal-content">
             <button class="ebook-modal-close" onclick="closeEbookModal()">✕</button>
             <div class="ebook-modal-body" id="ebookModalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div id="blogModal" class="blog-modal">
+        <div class="blog-modal-content">
+            <button class="blog-modal-close" onclick="closeBlogModal()">✕</button>
+            <div class="blog-modal-body" id="blogModalBody">
                 <!-- Content will be populated by JavaScript -->
             </div>
         </div>
@@ -2549,7 +2724,7 @@ nav, nav *, .hero *, input, textarea, select, button {
                             <div class="price">$9.99</div>
                             <div class="price-label">Precio de lanzamiento</div>
                         </div>
-                        <a onclick="return false;" href="https://pay.hotmart.com/L99668935S?checkoutMode=2" class="btn btn-primary hotmart-fb hotmart__button-checkout">Comprar Ahora</a>
+                        <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary hotmart-fb hotmart__button-checkout">Comprar Ahora</a>
                     </div>
                     <div class="guarantee">✓ Garantía de 7 días • Devolución sin preguntas</div>
                 </div>
@@ -2832,7 +3007,29 @@ nav, nav *, .hero *, input, textarea, select, button {
     </div>
 
     <script async src="//www.instagram.com/embed.js"></script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Configuración de EmailJS (no se sube a Git) -->
+    <script src="config/config.emailjs.js"></script>
     <script>
+    // Inicializar EmailJS con configuración externa
+    (function(){
+        console.log('Cargando configuración de EmailJS...');
+        console.log('EMAILJS_CONFIG disponible:', typeof EMAILJS_CONFIG !== 'undefined');
+        
+        if (typeof EMAILJS_CONFIG !== 'undefined' && EMAILJS_CONFIG.PUBLIC_KEY && EMAILJS_CONFIG.PUBLIC_KEY !== 'TU_PUBLIC_KEY') {
+            emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+            console.log('✅ EmailJS inicializado correctamente');
+            console.log('Configuración:', {
+                PUBLIC_KEY: EMAILJS_CONFIG.PUBLIC_KEY.substring(0, 10) + '...',
+                SERVICE_ID: EMAILJS_CONFIG.SERVICE_ID,
+                TEMPLATE_ID: EMAILJS_CONFIG.TEMPLATE_ID
+            });
+        } else {
+            console.warn('⚠️ EmailJS no configurado. Por favor configura config.emailjs.js');
+            console.warn('EMAILJS_CONFIG:', EMAILJS_CONFIG);
+        }
+    })();
 // Alert Modal Functions
 function showAlert(title, message, type = 'success') {
     const modal = document.getElementById('alertModal');
@@ -2869,15 +3066,33 @@ document.getElementById('alertModal').addEventListener('click', (e) => {
     }
 });
 
-let posts = JSON.parse(localStorage.getItem('mlc-posts')) || [
-    {id: '1', title: 'Cómo la respiración consciente transforma tus emociones', excerpt: 'Descubre el poder de tu respiración para regular el estrés y la ansiedad de forma inmediata.', category: 'Mindfulness', emoji: '🧘‍♀️', image: 'https://images.pexels.com/photos/774866/pexels-photo-774866.jpeg?auto=compress&cs=tinysrgb&w=600', date: '15 Nov 2025', readTime: 5},
-    {id: '2', title: 'Ejercicios bilaterales: ciencia aplicada al bienestar', excerpt: 'Conoce cómo estos ejercicios activan ambos hemisferios cerebrales para mejorar tu enfoque.', category: 'Neurociencia', emoji: '🧠', image: 'https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=600', date: '10 Nov 2025', readTime: 7},
-    {id: '3', title: '5 señales de que necesitas pausar y reconectar', excerpt: 'Aprende a identificar cuándo tu cuerpo y mente te están pidiendo un descanso verdadero.', category: 'Bienestar', emoji: '💆‍♀️', image: 'https://images.pexels.com/photos/792777/pexels-photo-792777.jpeg?auto=compress&cs=tinysrgb&w=600', date: '5 Nov 2025', readTime: 4}
-];
+let posts = [];
+
+async function loadBlogPosts() {
+    try {
+        const response = await fetch('data/blogs.json');
+        if (response.ok) {
+            posts = await response.json();
+        } else {
+            // Fallback a localStorage si el archivo no existe
+            posts = JSON.parse(localStorage.getItem('mlc-posts')) || [
+                {id: '1', title: 'Cómo la respiración consciente transforma tus emociones', excerpt: 'Descubre el poder de tu respiración para regular el estrés y la ansiedad de forma inmediata.', category: 'Mindfulness', emoji: '🧘‍♀️', image: 'https://images.pexels.com/photos/774866/pexels-photo-774866.jpeg?auto=compress&cs=tinysrgb&w=600', date: '15 Nov 2025', readTime: 5},
+                {id: '2', title: 'Ejercicios bilaterales: ciencia aplicada al bienestar', excerpt: 'Conoce cómo estos ejercicios activan ambos hemisferios cerebrales para mejorar tu enfoque.', category: 'Neurociencia', emoji: '🧠', image: 'https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=600', date: '10 Nov 2025', readTime: 7},
+                {id: '3', title: '5 señales de que necesitas pausar y reconectar', excerpt: 'Aprende a identificar cuándo tu cuerpo y mente te están pidiendo un descanso verdadero.', category: 'Bienestar', emoji: '💆‍♀️', image: 'https://images.pexels.com/photos/792777/pexels-photo-792777.jpeg?auto=compress&cs=tinysrgb&w=600', date: '5 Nov 2025', readTime: 4}
+            ];
+        }
+        renderBlog();
+    } catch (error) {
+        console.error('Error cargando posts:', error);
+        // Fallback a localStorage
+        posts = JSON.parse(localStorage.getItem('mlc-posts')) || [];
+        renderBlog();
+    }
+}
 
 function renderBlog() {
-    document.getElementById('blogGrid').innerHTML = posts.map(p => `
-        <div class="blog-card">
+    document.getElementById('blogGrid').innerHTML = posts.map((p, index) => `
+        <div class="blog-card" onclick="openBlogModal(${index})">
             <div class="blog-image">
                 <img src="${p.image || 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&h=400&fit=crop'}" alt="${p.title}" loading="lazy">
             </div>
@@ -2891,7 +3106,62 @@ function renderBlog() {
     `).join('');
 }
 
-renderBlog();
+function openBlogModal(index) {
+    const post = posts[index];
+    const modal = document.getElementById('blogModal');
+    const modalBody = document.getElementById('blogModalBody');
+    
+    if (!post || !modal || !modalBody) return;
+    
+    const contentHtml = `
+        <div class="blog-modal-image">
+            <img src="${post.image || 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&h=400&fit=crop'}" alt="${post.title}">
+        </div>
+        <div class="blog-modal-header">
+            <div class="blog-modal-category">${post.category}</div>
+            <h1 class="blog-modal-title">${post.title}</h1>
+            <div class="blog-modal-meta">
+                <span>📅 ${post.date}</span>
+                <span>⏱️ ${post.readTime} min lectura</span>
+            </div>
+        </div>
+            <div class="blog-modal-content-text">
+            ${post.content ? post.content.trim().replace(/\n/g, '<br>') : post.excerpt}
+        </div>
+    `;
+    
+    modalBody.innerHTML = contentHtml;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBlogModal() {
+    const modal = document.getElementById('blogModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close blog modal when clicking outside
+document.getElementById('blogModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeBlogModal();
+    }
+});
+
+// Close blog modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('blogModal');
+        if (modal && modal.classList.contains('active')) {
+            closeBlogModal();
+        }
+    }
+});
+
+// Cargar posts cuando la página esté lista
+loadBlogPosts();
 
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
@@ -3126,7 +3396,50 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
     };
 
     suscriptores.unshift(suscriptor);
+    
+    // Guardar suscriptores en localStorage
+    // NOTA: localStorage es local al navegador del usuario, no se comparte entre usuarios
+    // Los datos solo son visibles para el usuario en su propio navegador
     localStorage.setItem('mlc-suscriptores', JSON.stringify(suscriptores));
+
+    // Enviar correo de bienvenida con EmailJS
+    console.log('Intentando enviar correo de bienvenida...');
+    console.log('EMAILJS_CONFIG:', typeof EMAILJS_CONFIG !== 'undefined' ? EMAILJS_CONFIG : 'No definido');
+    
+    if (typeof EMAILJS_CONFIG !== 'undefined' && 
+        EMAILJS_CONFIG.SERVICE_ID && 
+        EMAILJS_CONFIG.SERVICE_ID !== 'TU_SERVICE_ID' &&
+        EMAILJS_CONFIG.TEMPLATE_ID && 
+        EMAILJS_CONFIG.TEMPLATE_ID !== 'TU_TEMPLATE_ID') {
+        
+        const templateParams = {
+            to_name: nombre,
+            to_email: email,
+            from_name: 'Martha Lucía Contreras'
+        };
+
+        console.log('Enviando correo con:', {
+            service: EMAILJS_CONFIG.SERVICE_ID,
+            template: EMAILJS_CONFIG.TEMPLATE_ID,
+            to: email,
+            to_name: nombre
+        });
+
+        // Enviar email de bienvenida usando configuración externa
+        emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
+            .then(function(response) {
+                console.log('✅ Correo de bienvenida enviado exitosamente!', response.status, response.text);
+                showAlert('Correo enviado', 'El correo de bienvenida se ha enviado correctamente a ' + email, 'success');
+            }, function(error) {
+                console.error('❌ Error al enviar correo de bienvenida:', error);
+                console.error('Detalles del error:', JSON.stringify(error, null, 2));
+                // Continuar aunque falle el envío del correo (no mostrar error al usuario)
+            });
+    } else {
+        console.warn('⚠️ EmailJS no configurado correctamente.');
+        console.warn('SERVICE_ID:', EMAILJS_CONFIG?.SERVICE_ID);
+        console.warn('TEMPLATE_ID:', EMAILJS_CONFIG?.TEMPLATE_ID);
+    }
 
     // Limpiar formulario
     document.getElementById('nombreNewsletter').value = '';
@@ -3147,7 +3460,7 @@ const ebooksData = [
         id: 0,
         badge: 'Bestseller',
         title: 'Cómo lograr una gestión emocional sana con ejercicios bilaterales',
-        image: 'ebook1.png',
+        image: 'images/ebook1.png',
         price: 9.99,
         description: 'Este ebook está diseñado para personas que desean gestionar mejor sus emociones, reducir el estrés, la ansiedad y mejorar significativamente su bienestar emocional mediante ejercicios bilaterales prácticos que estimulan ambos hemisferios del cerebro. Esto mejora la concentración, la resiliencia emocional y la capacidad para manejar situaciones difíciles con calma y claridad.',
         benefits: [
@@ -3176,7 +3489,7 @@ const ebooksData = [
         id: 1,
         badge: 'Popular',
         title: '30 Tableros de Ejercicios Bilaterales',
-        image: 'ebook2.png',
+        image: 'images/ebook2.png',
         price: 9.97,
         description: 'Activa tu Mente, Memoria y Enfoque. Para mujeres que buscan claridad mental y bienestar en minutos. Este cuaderno te presenta nuevos ejercicios bilaterales, una herramienta poderosa y sorprendentemente sencilla que puedes integrar en tu rutina. No se trata de complicadas meditaciones de horas, ni de añadir más tareas a tu lista. Al contrario, con tan solo 5 a 10 minutos al día, comenzarás a notar una diferencia profunda.',
         benefits: [
@@ -3186,13 +3499,13 @@ const ebooksData = [
             'Fácil integración en tu rutina diaria'
         ],
         content: [],
-        hotmartCode: 'L99668935S'
+        hotmartCode: 'W102333135I'
     },
     {
         id: 2,
         badge: 'Completo',
         title: '100 Plantillas de Ejercicios Bilaterales para el bienestar: Guía de Uso',
-        image: 'ebook3.png',
+        image: 'images/ebook3.png',
         price: 9.99,
         description: 'Esta guía detallada presenta nuestro kit de 100 plantillas de ejercicios bilaterales, diseñado meticulosamente para ayudarte a reducir la ansiedad, mejorar la concentración, manejar el estrés, equilibrar emociones y potenciar la creatividad. Funciona para todas las personas, así como también para quienes tienen alguna condición de salud específica. Con un diseño atractivo y sencillo, estas plantillas están pensadas para integrarse sin esfuerzo en tu rutina diaria, proporcionando beneficios significativos para tu bienestar mental y emocional.',
         benefits: [
@@ -3209,30 +3522,20 @@ const ebooksData = [
 function generateHotmartUrl(selectedIds) {
     if (selectedIds.length === 0) return '';
     
-    // Si hay múltiples productos seleccionados (upsells), usar checkoutMode=10
-    if (selectedIds.length > 1) {
-        return 'https://pay.hotmart.com/L99668935S?checkoutMode=10';
-    }
-    
-    // Si solo hay un producto, usar su código directamente
+    // Usar el código específico del ebook seleccionado
     const ebook = ebooksData.find(e => e.id === selectedIds[0]);
+    if (!ebook) return '';
+    
     if (ebook.id === 1) {
         // Segundo ebook usa su código específico
-        return `https://pay.hotmart.com/W102333135I?checkoutMode=2`;
+        return `https://pay.hotmart.com/W102333135I?checkoutMode=10`;
     } else if (ebook.id === 2) {
         // Tercer ebook usa su código específico
-        return `https://pay.hotmart.com/K99885042U?checkoutMode=2`;
+        return `https://pay.hotmart.com/K99885042U?checkoutMode=10`;
     } else {
         // Primer ebook usa su código
-        return `https://pay.hotmart.com/${ebook.hotmartCode}?checkoutMode=2`;
+        return `https://pay.hotmart.com/${ebook.hotmartCode}?checkoutMode=10`;
     }
-}
-
-function calculateTotal(selectedIds) {
-    return selectedIds.reduce((total, id) => {
-        const ebook = ebooksData.find(e => e.id === id);
-        return total + (ebook ? ebook.price : 0);
-    }, 0);
 }
 
 function openEbookModal(index) {
@@ -3241,9 +3544,6 @@ function openEbookModal(index) {
     const modalBody = document.getElementById('ebookModalBody');
     
     if (!ebook || !modal || !modalBody) return;
-    
-    // Obtener otros ebooks para upsell (excluir el actual)
-    const otherEbooks = ebooksData.filter(e => e.id !== ebook.id);
     
     let contentHtml = `
         <div class="ebook-modal-image">
@@ -3268,28 +3568,6 @@ function openEbookModal(index) {
     
     contentHtml += `</ul></div>`;
     
-    // Sección de upsell
-    if (otherEbooks.length > 0) {
-        contentHtml += `
-            <div class="ebook-upsell-section">
-                <h3>💡 Agrega estos cursos y ahorra:</h3>
-        `;
-        
-        otherEbooks.forEach(otherEbook => {
-            contentHtml += `
-                <label class="ebook-upsell-item">
-                    <input type="checkbox" class="upsell-checkbox" data-ebook-id="${otherEbook.id}" onchange="updateTotal()">
-                    <div class="ebook-upsell-item-content">
-                        <div class="ebook-upsell-item-title">${otherEbook.title}</div>
-                        <div class="ebook-upsell-item-price">+ $${otherEbook.price.toFixed(2)} USD</div>
-                    </div>
-                </label>
-            `;
-        });
-        
-        contentHtml += `</div>`;
-    }
-    
     // Total y botón de compra
     contentHtml += `
             </div>
@@ -3299,8 +3577,6 @@ function openEbookModal(index) {
                     <span class="ebook-total-price-amount" id="ebookTotalPrice">$${ebook.price.toFixed(2)} USD</span>
                 </div>`;
     
-    // Todos los ebooks usan botón normal que maneja la lógica de compra
-    // Si hay upsells seleccionados, se usará checkoutMode=10
     contentHtml += `
                 <button onclick="purchaseEbooks(${index})" class="ebook-modal-button" id="purchaseButton">Comprar Ahora</button>`;
     
@@ -3320,47 +3596,11 @@ function openEbookModal(index) {
     modalBody.innerHTML = contentHtml;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
-    // Guardar el índice del ebook principal para la función de compra
-    modal.dataset.mainEbookIndex = index;
-}
-
-function updateTotal() {
-    const modal = document.getElementById('ebookModal');
-    const mainIndex = parseInt(modal.dataset.mainEbookIndex);
-    const mainEbook = ebooksData[mainIndex];
-    
-    const selectedCheckboxes = document.querySelectorAll('.upsell-checkbox:checked');
-    const selectedIds = [mainIndex];
-    
-    selectedCheckboxes.forEach(checkbox => {
-        selectedIds.push(parseInt(checkbox.dataset.ebookId));
-    });
-    
-    const total = calculateTotal(selectedIds);
-    const totalElement = document.getElementById('ebookTotalPrice');
-    if (totalElement) {
-        totalElement.textContent = `$${total.toFixed(2)} USD`;
-    }
 }
 
 function purchaseEbooks(mainIndex) {
-    const modal = document.getElementById('ebookModal');
-    const selectedCheckboxes = document.querySelectorAll('.upsell-checkbox:checked');
-    const selectedIds = [mainIndex];
-    
-    selectedCheckboxes.forEach(checkbox => {
-        selectedIds.push(parseInt(checkbox.dataset.ebookId));
-    });
-    
-    // Si hay productos adicionales seleccionados (upsells), usar checkoutMode=10
-    if (selectedIds.length > 1) {
-        window.open('https://pay.hotmart.com/L99668935S?checkoutMode=10', '_blank');
-        return;
-    }
-    
-    // Si solo hay un producto, usar su código específico
-    const hotmartUrl = generateHotmartUrl(selectedIds);
+    // Usar el código específico del ebook seleccionado
+    const hotmartUrl = generateHotmartUrl([mainIndex]);
     
     if (hotmartUrl) {
         window.open(hotmartUrl, '_blank');
@@ -3788,15 +4028,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Para otros elementos, no hacer nada - solo prevenir que abran el menú accidentalmente
     }, false);
     
-    // Event listener para el botón del hero - cargar widget de Hotmart
+    // Botón del hero - redirige directamente a Hotmart sin widget
     const heroEbookButton = document.getElementById('heroEbookButton');
     if (heroEbookButton) {
-        // Cargar el widget de Hotmart cuando se carga la página
-        importHotmart();
-        
         heroEbookButton.addEventListener('click', function(e) {
-            // Asegurar que el widget esté cargado antes de hacer click
-            importHotmart();
+            // Permitir navegación normal sin widget de Hotmart
+            // El href ya tiene la URL correcta
         });
     }
 });

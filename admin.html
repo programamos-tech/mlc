@@ -350,6 +350,15 @@ textarea { resize: vertical; }
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(235, 123, 5, 0.4);
 }
+.alert-actions button:first-child {
+    margin-bottom: 0.5rem;
+}
+#jsonContent {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--verde-profundo);
+}
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -413,24 +422,22 @@ textarea { resize: vertical; }
 
             <div style="margin-bottom: 4rem;">
                 <div class="posts-header">
-                    <h3>Órdenes de eBook</h3>
-                    <span class="post-count" style="background: var(--terracota);"><span id="ordenesCount">0</span> pendientes</span>
-                </div>
-                <div id="ordenesList"></div>
-            </div>
-
-            <div style="margin-bottom: 4rem;">
-                <div class="posts-header">
-                    <h3>Suscriptores del Newsletter</h3>
+                    <h3>💌 Suscriptores del Newsletter - Posibles Nuevos Clientes</h3>
                     <span class="post-count" style="background: var(--verde-bosque);"><span id="suscriptoresCount">0</span> suscriptores</span>
                 </div>
+                <p style="color: var(--verde-profundo); opacity: 0.8; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    Estos son los usuarios que se han suscrito al newsletter. Son posibles nuevos clientes interesados en tu contenido y productos.
+                </p>
                 <div id="suscriptoresList"></div>
             </div>
 
             <div>
                 <div class="posts-header">
                     <h3>Posts Publicados</h3>
-                    <span class="post-count"><span id="postCount">0</span> posts</span>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <span class="post-count"><span id="postCount">0</span> posts</span>
+                        <button onclick="showJSONModal()" class="btn btn-secondary" style="border: none; cursor: pointer; padding: 0.5rem 1rem; font-size: 0.9rem;">Ver JSON</button>
+                    </div>
                 </div>
                 <div id="postsList"></div>
             </div>
@@ -449,6 +456,21 @@ textarea { resize: vertical; }
             </div>
             <div class="alert-actions">
                 <button onclick="closeAlert()">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JSON Modal -->
+    <div id="jsonModal" class="alert-modal">
+        <div class="alert-box" style="max-width: 700px;">
+            <div class="alert-body">
+                <h3>Actualizar data/blogs.json</h3>
+                <p style="text-align: left; margin-bottom: 1rem;">Copia el siguiente JSON y pégalo en el archivo <strong>data/blogs.json</strong> para que los cambios se reflejen en el sitio:</p>
+                <textarea id="jsonContent" readonly style="width: 100%; min-height: 300px; padding: 1rem; border: 1px solid rgba(53,88,64,0.2); border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.85rem; background: #f8f9fa; resize: vertical;"></textarea>
+            </div>
+            <div class="alert-actions">
+                <button onclick="copyJSON()" style="margin-bottom: 0.5rem;">Copiar JSON</button>
+                <button onclick="closeJSONModal()" style="background: var(--verde-bosque);">Cerrar</button>
             </div>
         </div>
     </div>
@@ -490,6 +512,13 @@ document.getElementById('alertModal').addEventListener('click', (e) => {
     }
 });
 
+// Close JSON modal on click outside
+document.getElementById('jsonModal').addEventListener('click', (e) => {
+    if (e.target.id === 'jsonModal') {
+        closeJSONModal();
+    }
+});
+
 // Verificar autenticación
 if (sessionStorage.getItem('mlc-auth') !== 'true') {
     window.location.href = 'login.html';
@@ -504,66 +533,53 @@ function logout() {
     }
 }
 
-let posts = JSON.parse(localStorage.getItem('mlc-posts')) || [
-    {id: '1', title: 'Cómo la respiración consciente transforma tus emociones', excerpt: 'Descubre el poder de tu respiración para regular el estrés y la ansiedad de forma inmediata.', category: 'Mindfulness', emoji: '🧘‍♀️', image: 'https://images.pexels.com/photos/774866/pexels-photo-774866.jpeg?auto=compress&cs=tinysrgb&w=600', date: '15 Nov 2025', readTime: 5},
-    {id: '2', title: 'Ejercicios bilaterales: ciencia aplicada al bienestar', excerpt: 'Conoce cómo estos ejercicios activan ambos hemisferios cerebrales para mejorar tu enfoque.', category: 'Neurociencia', emoji: '🧠', image: 'https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=600', date: '10 Nov 2025', readTime: 7},
-    {id: '3', title: '5 señales de que necesitas pausar y reconectar', excerpt: 'Aprende a identificar cuándo tu cuerpo y mente te están pidiendo un descanso verdadero.', category: 'Bienestar', emoji: '💆‍♀️', image: 'https://images.pexels.com/photos/792777/pexels-photo-792777.jpeg?auto=compress&cs=tinysrgb&w=600', date: '5 Nov 2025', readTime: 4}
-];
+// Cargar posts desde blogs.json o localStorage
+let posts = [];
 
-let ordenes = JSON.parse(localStorage.getItem('mlc-ordenes')) || [];
-
-function renderOrdenes() {
-    const ordenesPendientes = ordenes.filter(o => o.estado === 'Pendiente');
-
-    document.getElementById('ordenesList').innerHTML = ordenesPendientes.length === 0 ?
-    `<div class="empty-state">
-        <div class="icon">📦</div>
-        <p>No hay órdenes pendientes.</p>
-    </div>` :
-    ordenesPendientes.map(o => `
-        <div class="post-item" style="border-left: 4px solid var(--terracota);">
-            <div class="post-info">
-                <div class="post-header">
-                    <span class="post-emoji">💳</span>
-                    <h4>${o.id}</h4>
-                </div>
-                <p><strong>${o.nombre}</strong> - ${o.email}</p>
-                <p>📱 ${o.telefono} | 🆔 ${o.cedula}</p>
-                <p>📍 ${o.direccion}, ${o.ciudad}, ${o.departamento}</p>
-                <p>📄 Comprobante: <strong>${o.comprobante}</strong></p>
-                <div class="post-meta">${o.fechaSolicitud} • ${o.precio}</div>
-            </div>
-            <div class="post-actions">
-                <button class="btn-edit" onclick="marcarEnviado('${o.id}')">Marcar como Enviado</button>
-                <button class="btn-delete" onclick="eliminarOrden('${o.id}')">Eliminar</button>
-            </div>
-        </div>
-    `).join('');
-
-    document.getElementById('ordenesCount').textContent = ordenesPendientes.length;
-}
-
-function marcarEnviado(id) {
-    if (confirm('¿Ya enviaste el eBook a este cliente?')) {
-        const orden = ordenes.find(o => o.id === id);
-        if (orden) {
-            orden.estado = 'Enviado';
-            orden.fechaEnvio = new Date().toLocaleString('es-CO');
-            localStorage.setItem('mlc-ordenes', JSON.stringify(ordenes));
-            renderOrdenes();
-            showAlert('Orden enviada', 'La orden ha sido marcada como enviada exitosamente.', 'success');
+async function loadPosts() {
+    try {
+        const response = await fetch('data/blogs.json');
+        if (response.ok) {
+            posts = await response.json();
+        } else {
+            // Fallback a localStorage si el archivo no existe
+            posts = JSON.parse(localStorage.getItem('mlc-posts')) || [
+                {id: '1', title: 'Cómo la respiración consciente transforma tus emociones', excerpt: 'Descubre el poder de tu respiración para regular el estrés y la ansiedad de forma inmediata.', category: 'Mindfulness', emoji: '🧘‍♀️', image: 'https://images.pexels.com/photos/774866/pexels-photo-774866.jpeg?auto=compress&cs=tinysrgb&w=600', date: '15 Nov 2025', readTime: 5},
+                {id: '2', title: 'Ejercicios bilaterales: ciencia aplicada al bienestar', excerpt: 'Conoce cómo estos ejercicios activan ambos hemisferios cerebrales para mejorar tu enfoque.', category: 'Neurociencia', emoji: '🧠', image: 'https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=600', date: '10 Nov 2025', readTime: 7},
+                {id: '3', title: '5 señales de que necesitas pausar y reconectar', excerpt: 'Aprende a identificar cuándo tu cuerpo y mente te están pidiendo un descanso verdadero.', category: 'Bienestar', emoji: '💆‍♀️', image: 'https://images.pexels.com/photos/792777/pexels-photo-792777.jpeg?auto=compress&cs=tinysrgb&w=600', date: '5 Nov 2025', readTime: 4}
+            ];
         }
+        render();
+    } catch (error) {
+        console.error('Error cargando posts:', error);
+        posts = JSON.parse(localStorage.getItem('mlc-posts')) || [];
+        render();
     }
 }
 
-function eliminarOrden(id) {
-    if (confirm('¿Eliminar esta orden?')) {
-        ordenes = ordenes.filter(o => o.id !== id);
-        localStorage.setItem('mlc-ordenes', JSON.stringify(ordenes));
-        renderOrdenes();
-        showAlert('Orden eliminada', 'La orden ha sido eliminada correctamente.', 'success');
-    }
+// JSON Modal Functions
+function showJSONModal() {
+    const modal = document.getElementById('jsonModal');
+    const jsonContent = document.getElementById('jsonContent');
+    // Incluir todos los campos incluyendo content para el JSON público
+    jsonContent.value = JSON.stringify(posts, null, 2);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
+
+function closeJSONModal() {
+    const modal = document.getElementById('jsonModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function copyJSON() {
+    const jsonContent = document.getElementById('jsonContent');
+    jsonContent.select();
+    document.execCommand('copy');
+    showAlert('JSON copiado', 'El JSON ha sido copiado al portapapeles. Pégalo en el archivo data/blogs.json', 'success');
+}
+
 
 function render() {
     document.getElementById('postsList').innerHTML = posts.length === 0 ?
@@ -588,6 +604,7 @@ function render() {
     `).join('');
 
     document.getElementById('postCount').textContent = posts.length;
+    // Guardar también en localStorage como backup
     localStorage.setItem('mlc-posts', JSON.stringify(posts));
 }
 
@@ -608,14 +625,14 @@ document.getElementById('postForm').onsubmit = (e) => {
     document.getElementById('emoji').value = '📝';
     document.getElementById('readTime').value = 5;
     render();
-    showAlert('Post publicado', 'El post ha sido publicado correctamente en el blog.', 'success');
+    showJSONModal();
 };
 
 function deletePost(id) {
     if (confirm('¿Eliminar este post?')) {
         posts = posts.filter(p => p.id !== id);
         render();
-        showAlert('Post eliminado', 'El post ha sido eliminado correctamente.', 'success');
+        showJSONModal();
     }
 }
 
@@ -632,14 +649,18 @@ function renderSuscriptores() {
     }
 
     suscriptoresList.innerHTML = suscriptores.map(sub => `
-        <div class="post-item">
-            <div>
-                <h4 style="color: var(--verde-bosque); margin-bottom: 0.5rem;">${sub.nombre}</h4>
-                <p style="color: var(--verde-profundo); margin-bottom: 0.3rem;"><strong>Email:</strong> ${sub.email}</p>
-                <p style="color: var(--verde-profundo); font-size: 0.9rem;"><strong>Suscrito:</strong> ${sub.fecha}</p>
+        <div class="post-item" style="border-left: 4px solid var(--verde-bosque);">
+            <div class="post-info" style="flex: 1;">
+                <div class="post-header">
+                    <span class="post-emoji">👤</span>
+                    <h4 style="color: var(--verde-bosque); margin-bottom: 0.5rem;">${sub.nombre}</h4>
+                </div>
+                <p style="color: var(--verde-profundo); margin-bottom: 0.3rem;"><strong>📧 Email:</strong> ${sub.email}</p>
+                <p style="color: var(--verde-profundo); font-size: 0.9rem; margin-bottom: 0.3rem;"><strong>📅 Suscrito:</strong> ${sub.fecha}</p>
+                ${sub.autorizacionDatos ? '<p style="color: var(--verde-bosque); font-size: 0.85rem; opacity: 0.8;">✓ Autorización de datos confirmada</p>' : ''}
             </div>
-            <div>
-                <button onclick="deleteSuscriptor('${sub.id}')" class="btn btn-secondary" style="border: none; cursor: pointer; background: #dc3545;">Eliminar</button>
+            <div class="post-actions">
+                <button onclick="deleteSuscriptor('${sub.id}')" class="btn-delete">Eliminar</button>
             </div>
         </div>
     `).join('');
@@ -654,8 +675,8 @@ function deleteSuscriptor(id) {
     }
 }
 
-render();
-renderOrdenes();
+// Cargar posts al iniciar
+loadPosts();
 renderSuscriptores();
     </script>
 </body>
