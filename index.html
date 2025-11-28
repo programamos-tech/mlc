@@ -3778,8 +3778,17 @@ function openEbookModal(index) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Rastrear evento ViewContent en Facebook Pixel
+    // Rastrear evento ProductPage cuando se visualiza el detalle del producto
     if (typeof trackFacebookEvent === 'function') {
+        trackFacebookEvent('ProductPage', {
+            content_name: ebook.title,
+            content_ids: [ebook.hotmartCode],
+            content_type: 'product',
+            value: ebook.price,
+            currency: 'USD'
+        });
+        
+        // También rastrear ViewContent para compatibilidad
         trackFacebookEvent('ViewContent', {
             content_name: ebook.title,
             content_ids: [ebook.hotmartCode],
@@ -3795,7 +3804,7 @@ function purchaseEbooks(mainIndex) {
     const ebook = ebooksData[mainIndex];
     const hotmartUrl = generateHotmartUrl([mainIndex]);
     
-    // Rastrear evento InitiateCheckout en Facebook Pixel
+    // Rastrear evento InitiateCheckout (Iniciar Pago) en Facebook Pixel
     if (typeof trackFacebookEvent === 'function' && ebook) {
         trackFacebookEvent('InitiateCheckout', {
             content_name: ebook.title,
@@ -3806,6 +3815,10 @@ function purchaseEbooks(mainIndex) {
             num_items: 1
         });
     }
+    
+    // Nota: El evento Purchase (Comprar) se debe disparar desde Hotmart
+    // cuando se completa la compra, o cuando el usuario regresa desde Hotmart
+    // con parámetros de confirmación en la URL
     
     if (hotmartUrl) {
         window.open(hotmartUrl, '_blank');
@@ -4169,8 +4182,35 @@ function importHotmart(){
     document.head.appendChild(link);
 }
 
+// Rastrear ProductPage cuando se visualiza la sección de ebooks
+function trackEbooksSectionView() {
+    if (typeof trackFacebookEvent === 'function') {
+        const ebookSection = document.getElementById('ebooks-shop');
+        if (ebookSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                        // La sección está visible, rastrear ProductPage
+                        trackFacebookEvent('ProductPage', {
+                            content_type: 'product',
+                            content_category: 'eBooks'
+                        });
+                        // Solo rastrear una vez
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(ebookSection);
+        }
+    }
+}
+
 // Event listeners para las cards de ebooks
 document.addEventListener('DOMContentLoaded', function() {
+    // Rastrear cuando se visualiza la sección de ebooks
+    trackEbooksSectionView();
+    
     const ebookCards = document.querySelectorAll('.ebook-card');
     
     ebookCards.forEach(card => {
