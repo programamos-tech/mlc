@@ -16,6 +16,15 @@
     <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg">
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2TB7E003N5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2TB7E003N5');
+    </script>
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://marthaluciacontreras.com">
@@ -2864,7 +2873,7 @@ nav, nav *, .hero *, input, textarea, select, button {
     <!-- eBook Modal -->
     <div id="ebookModal" class="ebook-modal">
         <div class="ebook-modal-content">
-            <button class="ebook-modal-close" onclick="closeEbookModal()">✕</button>
+            <button class="ebook-modal-close" onclick="closeEbookModal(event)" type="button">✕</button>
             <div class="ebook-modal-body" id="ebookModalBody">
                 <!-- Content will be populated by JavaScript -->
             </div>
@@ -2874,7 +2883,7 @@ nav, nav *, .hero *, input, textarea, select, button {
     <!-- Blog Modal -->
     <div id="blogModal" class="blog-modal">
         <div class="blog-modal-content">
-            <button class="blog-modal-close" onclick="closeBlogModal()">✕</button>
+            <button class="blog-modal-close" onclick="closeBlogModal(event)" type="button">✕</button>
             <div class="blog-modal-body" id="blogModalBody">
                 <!-- Content will be populated by JavaScript -->
             </div>
@@ -3401,18 +3410,25 @@ function openBlogModal(index) {
     document.body.style.overflow = 'hidden';
 }
 
-function closeBlogModal() {
+function closeBlogModal(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
     const modal = document.getElementById('blogModal');
     if (modal) {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
+    return false;
 }
 
 // Close blog modal when clicking outside
 document.getElementById('blogModal')?.addEventListener('click', function(e) {
     if (e.target === this) {
-        closeBlogModal();
+        e.preventDefault();
+        e.stopPropagation();
+        closeBlogModal(e);
     }
 });
 
@@ -3921,18 +3937,25 @@ function purchaseEbooks(mainIndex) {
     }
 }
 
-function closeEbookModal() {
+function closeEbookModal(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
     const modal = document.getElementById('ebookModal');
     if (modal) {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
+    return false;
 }
 
 // Close modal when clicking outside
 document.getElementById('ebookModal')?.addEventListener('click', function(e) {
     if (e.target === this) {
-        closeEbookModal();
+        e.preventDefault();
+        e.stopPropagation();
+        closeEbookModal(e);
     }
 });
 
