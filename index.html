@@ -2553,6 +2553,7 @@ nav, nav *, .hero *, input, textarea, select, button {
     <!-- Facebook Pixel Code -->
     <script src="config/config.facebook.js" onerror="console.warn('⚠️ config/config.facebook.js no encontrado. Facebook Pixel no funcionará hasta que se configure.'); window.FACEBOOK_PIXEL_CONFIG = undefined;"></script>
     <script>
+    // Cargar Facebook Pixel SDK
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -2565,54 +2566,72 @@ nav, nav *, .hero *, input, textarea, select, button {
     // Inicializar Pixel con ID desde configuración
     (function(){
         try {
-            if (typeof FACEBOOK_PIXEL_CONFIG !== 'undefined' && 
-                FACEBOOK_PIXEL_CONFIG && 
+            // Esperar a que el archivo de configuración se cargue
+            if (typeof FACEBOOK_PIXEL_CONFIG === 'undefined') {
+                console.warn('⚠️ FACEBOOK_PIXEL_CONFIG no disponible aún, esperando...');
+                setTimeout(arguments.callee, 100);
+                return;
+            }
+            
+            if (FACEBOOK_PIXEL_CONFIG && 
                 FACEBOOK_PIXEL_CONFIG.PIXEL_ID && 
                 FACEBOOK_PIXEL_CONFIG.PIXEL_ID !== 'TU_PIXEL_ID') {
-                fbq('init', FACEBOOK_PIXEL_CONFIG.PIXEL_ID);
-                fbq('track', 'PageView');
-                console.log('✅ Facebook Pixel inicializado correctamente');
                 
-                // Detectar si hay parámetros de compra completada en la URL (desde Hotmart)
-                // Esto se ejecuta después de que el DOM esté listo para acceder a ebooksData
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', checkPurchaseParams);
-                } else {
-                    checkPurchaseParams();
-                }
+                const pixelId = FACEBOOK_PIXEL_CONFIG.PIXEL_ID;
                 
-                function checkPurchaseParams() {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const purchaseId = urlParams.get('purchase_id') || urlParams.get('transaction_id') || urlParams.get('order_id');
-                    const hotmartCode = urlParams.get('product_id') || urlParams.get('hotmart_code');
+                // Inicializar pixel solo una vez
+                if (typeof fbq !== 'undefined') {
+                    fbq('init', pixelId);
+                    fbq('track', 'PageView');
+                    console.log('✅ Facebook Pixel inicializado correctamente con ID:', pixelId);
                     
-                    if (purchaseId && typeof window.ebooksData !== 'undefined') {
-                        // Si hay un ID de compra, rastrear evento Purchase
-                        const ebook = window.ebooksData.find(e => e.hotmartCode === hotmartCode);
-                        if (ebook && typeof trackFacebookEvent === 'function') {
-                            trackFacebookEvent('Purchase', {
-                                content_name: ebook.title,
-                                content_ids: [ebook.hotmartCode],
-                                content_type: 'product',
-                                value: ebook.price,
-                                currency: 'USD',
-                                num_items: 1
-                            });
-                            console.log('✅ Evento Purchase rastreado para:', ebook.title);
+                    // Crear noscript tag dinámicamente
+                    var noscript = document.createElement('noscript');
+                    var img = document.createElement('img');
+                    img.height = 1;
+                    img.width = 1;
+                    img.style.display = 'none';
+                    img.src = 'https://www.facebook.com/tr?id=' + pixelId + '&ev=PageView&noscript=1';
+                    noscript.appendChild(img);
+                    document.head.appendChild(noscript);
+                    
+                    // Detectar si hay parámetros de compra completada en la URL (desde Hotmart)
+                    function checkPurchaseParams() {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const purchaseId = urlParams.get('purchase_id') || urlParams.get('transaction_id') || urlParams.get('order_id');
+                        const hotmartCode = urlParams.get('product_id') || urlParams.get('hotmart_code');
+                        
+                        if (purchaseId && typeof window.ebooksData !== 'undefined') {
+                            const ebook = window.ebooksData.find(e => e.hotmartCode === hotmartCode);
+                            if (ebook && typeof trackFacebookEvent === 'function') {
+                                trackFacebookEvent('Purchase', {
+                                    content_name: ebook.title,
+                                    content_ids: [ebook.hotmartCode],
+                                    content_type: 'product',
+                                    value: ebook.price,
+                                    currency: 'USD',
+                                    num_items: 1
+                                });
+                                console.log('✅ Evento Purchase rastreado para:', ebook.title);
+                            }
                         }
+                    }
+                    
+                    // Ejecutar checkPurchaseParams cuando el DOM esté listo
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', checkPurchaseParams);
+                    } else {
+                        checkPurchaseParams();
                     }
                 }
             } else {
-                console.warn('⚠️ Facebook Pixel no configurado. Por favor configura config/config.facebook.js');
+                console.warn('⚠️ Facebook Pixel no configurado correctamente. Verifica config/config.facebook.js');
             }
         } catch (error) {
-            console.error('Error al inicializar Facebook Pixel:', error);
+            console.error('❌ Error al inicializar Facebook Pixel:', error);
         }
     })();
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1190713556296771&ev=PageView&noscript=1"
-    /></noscript>
     <!-- End Facebook Pixel Code -->
 </head>
 <body>
