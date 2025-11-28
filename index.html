@@ -2551,7 +2551,6 @@ nav, nav *, .hero *, input, textarea, select, button {
 }
     </style>
     <!-- Facebook Pixel Code -->
-    <script src="config/config.facebook.js" onerror="console.warn('⚠️ config/config.facebook.js no encontrado. Facebook Pixel no funcionará hasta que se configure.'); window.FACEBOOK_PIXEL_CONFIG = undefined;"></script>
     <script>
     // Cargar Facebook Pixel SDK
     !function(f,b,e,v,n,t,s)
@@ -2563,73 +2562,62 @@ nav, nav *, .hero *, input, textarea, select, button {
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     
-    // Inicializar Pixel con ID desde configuración
+    // Cargar configuración desde API y luego inicializar Pixel
     (function(){
-        try {
-            // Esperar a que el archivo de configuración se cargue
-            if (typeof FACEBOOK_PIXEL_CONFIG === 'undefined') {
-                console.warn('⚠️ FACEBOOK_PIXEL_CONFIG no disponible aún, esperando...');
-                setTimeout(arguments.callee, 100);
-                return;
-            }
-            
-            if (FACEBOOK_PIXEL_CONFIG && 
-                FACEBOOK_PIXEL_CONFIG.PIXEL_ID && 
-                FACEBOOK_PIXEL_CONFIG.PIXEL_ID !== 'TU_PIXEL_ID') {
-                
-                const pixelId = FACEBOOK_PIXEL_CONFIG.PIXEL_ID;
-                
-                // Inicializar pixel solo una vez
-                if (typeof fbq !== 'undefined') {
-                    fbq('init', pixelId);
-                    fbq('track', 'PageView');
-                    console.log('✅ Facebook Pixel inicializado correctamente con ID:', pixelId);
+        fetch('/api/config')
+            .then(response => response.json())
+            .then(config => {
+                if (config.success && config.facebook && config.facebook.PIXEL_ID) {
+                    window.FACEBOOK_PIXEL_CONFIG = config.facebook;
+                    const pixelId = config.facebook.PIXEL_ID;
                     
-                    // Crear noscript tag dinámicamente
-                    var noscript = document.createElement('noscript');
-                    var img = document.createElement('img');
-                    img.height = 1;
-                    img.width = 1;
-                    img.style.display = 'none';
-                    img.src = 'https://www.facebook.com/tr?id=' + pixelId + '&ev=PageView&noscript=1';
-                    noscript.appendChild(img);
-                    document.head.appendChild(noscript);
-                    
-                    // Detectar si hay parámetros de compra completada en la URL (desde Hotmart)
-                    function checkPurchaseParams() {
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const purchaseId = urlParams.get('purchase_id') || urlParams.get('transaction_id') || urlParams.get('order_id');
-                        const hotmartCode = urlParams.get('product_id') || urlParams.get('hotmart_code');
+                    // Inicializar pixel
+                    if (typeof fbq !== 'undefined') {
+                        fbq('init', pixelId);
                         
-                        if (purchaseId && typeof window.ebooksData !== 'undefined') {
-                            const ebook = window.ebooksData.find(e => e.hotmartCode === hotmartCode);
-                            if (ebook && typeof trackFacebookEvent === 'function') {
-                                trackFacebookEvent('Purchase', {
-                                    content_name: ebook.title,
-                                    content_ids: [ebook.hotmartCode],
-                                    content_type: 'product',
-                                    value: ebook.price,
-                                    currency: 'USD',
-                                    num_items: 1
-                                });
-                                console.log('✅ Evento Purchase rastreado para:', ebook.title);
+                        // Crear noscript tag dinámicamente
+                        var noscript = document.createElement('noscript');
+                        var img = document.createElement('img');
+                        img.height = 1;
+                        img.width = 1;
+                        img.style.display = 'none';
+                        img.src = 'https://www.facebook.com/tr?id=' + pixelId + '&ev=PageView&noscript=1';
+                        noscript.appendChild(img);
+                        document.head.appendChild(noscript);
+                        
+                        // Detectar si hay parámetros de compra completada en la URL (desde Hotmart)
+                        function checkPurchaseParams() {
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const purchaseId = urlParams.get('purchase_id') || urlParams.get('transaction_id') || urlParams.get('order_id');
+                            const hotmartCode = urlParams.get('product_id') || urlParams.get('hotmart_code');
+                            
+                            if (purchaseId && typeof window.ebooksData !== 'undefined') {
+                                const ebook = window.ebooksData.find(e => e.hotmartCode === hotmartCode);
+                                if (ebook && typeof trackFacebookEvent === 'function') {
+                                    trackFacebookEvent('Purchase', {
+                                        content_name: ebook.title,
+                                        content_ids: [ebook.hotmartCode],
+                                        content_type: 'product',
+                                        value: ebook.price,
+                                        currency: 'USD',
+                                        num_items: 1
+                                    });
+                                }
                             }
                         }
-                    }
-                    
-                    // Ejecutar checkPurchaseParams cuando el DOM esté listo
-                    if (document.readyState === 'loading') {
-                        document.addEventListener('DOMContentLoaded', checkPurchaseParams);
-                    } else {
-                        checkPurchaseParams();
+                        
+                        // Ejecutar checkPurchaseParams cuando el DOM esté listo
+                        if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', checkPurchaseParams);
+                        } else {
+                            checkPurchaseParams();
+                        }
                     }
                 }
-            } else {
-                console.warn('⚠️ Facebook Pixel no configurado correctamente. Verifica config/config.facebook.js');
-            }
-        } catch (error) {
-            console.error('❌ Error al inicializar Facebook Pixel:', error);
-        }
+            })
+            .catch(error => {
+                // Error silencioso
+            });
     })();
     </script>
     <!-- End Facebook Pixel Code -->
@@ -3142,98 +3130,27 @@ nav, nav *, .hero *, input, textarea, select, button {
     <script async src="//www.instagram.com/embed.js"></script>
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <!-- Configuración de EmailJS (no se sube a Git) -->
-    <script src="config/config.emailjs.js" onerror="console.warn('⚠️ config/config.emailjs.js no encontrado. EmailJS no funcionará hasta que se configure.'); window.EMAILJS_CONFIG = undefined;"></script>
     <script>
-    // Inicializar EmailJS con configuración externa
+    // Cargar configuración de EmailJS desde API e inicializar
     (function(){
-        try {
-            console.log('Cargando configuración de EmailJS...');
-            console.log('EMAILJS_CONFIG disponible:', typeof EMAILJS_CONFIG !== 'undefined');
-            
-            if (typeof EMAILJS_CONFIG !== 'undefined' && EMAILJS_CONFIG && EMAILJS_CONFIG.PUBLIC_KEY && EMAILJS_CONFIG.PUBLIC_KEY !== 'TU_PUBLIC_KEY') {
-                if (typeof emailjs !== 'undefined') {
-                    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-                    console.log('✅ EmailJS inicializado correctamente');
-                    console.log('Configuración:', {
-                        PUBLIC_KEY: EMAILJS_CONFIG.PUBLIC_KEY.substring(0, 10) + '...',
-                        SERVICE_ID: EMAILJS_CONFIG.SERVICE_ID,
-                        TEMPLATE_ID: EMAILJS_CONFIG.TEMPLATE_ID
-                    });
-                } else {
-                    console.warn('⚠️ EmailJS SDK no cargado');
+        fetch('/api/config')
+            .then(response => response.json())
+            .then(config => {
+                if (config.success && config.emailjs) {
+                    window.EMAILJS_CONFIG = config.emailjs;
+                    
+                    if (config.emailjs.PUBLIC_KEY && typeof emailjs !== 'undefined') {
+                        emailjs.init(config.emailjs.PUBLIC_KEY);
+                    }
                 }
-            } else {
-                console.warn('⚠️ EmailJS no configurado. Por favor configura config/config.emailjs.js');
-            }
-        } catch (error) {
-            console.error('Error al inicializar EmailJS:', error);
-            // Continuar ejecución aunque falle EmailJS
-        }
+            })
+            .catch(error => {
+                // Error silencioso
+            });
     })();
 
 // Facebook Pixel Helper Functions
 (function(){
-    // Función para enviar eventos al Pixel y Conversion API
-    window.trackFacebookEvent = function(eventName, eventData) {
-        try {
-            // Enviar evento al Pixel (cliente)
-            if (typeof fbq !== 'undefined') {
-                fbq('track', eventName, eventData || {});
-                console.log('✅ Facebook Pixel Event:', eventName, eventData || {});
-            }
-            
-            // Enviar evento a Conversion API (servidor)
-            if (typeof FACEBOOK_PIXEL_CONFIG !== 'undefined' && 
-                FACEBOOK_PIXEL_CONFIG && 
-                FACEBOOK_PIXEL_CONFIG.CONVERSION_API_TOKEN &&
-                FACEBOOK_PIXEL_CONFIG.CONVERSION_API_TOKEN !== 'TU_CONVERSION_API_TOKEN') {
-                
-                const pixelId = FACEBOOK_PIXEL_CONFIG.PIXEL_ID;
-                const accessToken = FACEBOOK_PIXEL_CONFIG.CONVERSION_API_TOKEN;
-                
-                // Obtener datos del usuario si están disponibles
-                const userData = {
-                    client_ip_address: '', // Se obtendrá del servidor
-                    client_user_agent: navigator.userAgent,
-                    fbp: getCookie('_fbp'), // Facebook Browser ID
-                    fbc: getCookie('_fbc')  // Facebook Click ID
-                };
-                
-                // Preparar datos del evento
-                const eventDataForAPI = {
-                    data: [{
-                        event_name: eventName,
-                        event_time: Math.floor(Date.now() / 1000),
-                        event_id: eventName + '_' + Date.now(),
-                        event_source_url: window.location.href,
-                        action_source: 'website',
-                        user_data: userData,
-                        custom_data: eventData || {}
-                    }]
-                };
-                
-                // Enviar a Conversion API
-                fetch(`https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${accessToken}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(eventDataForAPI)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('✅ Facebook Conversion API Event:', eventName, data);
-                })
-                .catch(error => {
-                    console.error('❌ Error al enviar evento a Conversion API:', error);
-                });
-            }
-        } catch (error) {
-            console.error('Error al rastrear evento de Facebook:', error);
-        }
-    };
-    
     // Función helper para obtener cookies
     function getCookie(name) {
         const value = `; ${document.cookie}`;
@@ -3241,6 +3158,43 @@ nav, nav *, .hero *, input, textarea, select, button {
         if (parts.length === 2) return parts.pop().split(';').shift();
         return '';
     }
+    
+    // Función para enviar eventos al Pixel y Conversion API
+    window.trackFacebookEvent = function(eventName, eventData) {
+        try {
+            // Enviar evento al Pixel (cliente)
+            if (typeof fbq !== 'undefined') {
+                fbq('track', eventName, eventData || {});
+            }
+            
+            // Enviar evento a Conversion API a través de nuestra API serverless
+            // Esto mantiene el token de acceso seguro en el servidor
+            fetch('/api/facebook-event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    eventName: eventName,
+                    eventData: eventData || {},
+                    userData: {
+                        source_url: window.location.href,
+                        fbp: getCookie('_fbp'),
+                        fbc: getCookie('_fbc')
+                    }
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Evento enviado exitosamente
+            })
+            .catch(error => {
+                // Error silencioso
+            });
+        } catch (error) {
+            // Error silencioso
+        }
+    };
 })();
 
 // Alert Modal Functions
@@ -3626,16 +3580,11 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
     }
 
     // Enviar correo de bienvenida con EmailJS
-    console.log('Intentando enviar correo de bienvenida...');
-    console.log('EMAILJS_CONFIG:', typeof EMAILJS_CONFIG !== 'undefined' ? EMAILJS_CONFIG : 'No definido');
-    
     try {
         if (typeof EMAILJS_CONFIG !== 'undefined' && 
             EMAILJS_CONFIG && 
             EMAILJS_CONFIG.SERVICE_ID && 
-            EMAILJS_CONFIG.SERVICE_ID !== 'TU_SERVICE_ID' &&
-            EMAILJS_CONFIG.TEMPLATE_ID && 
-            EMAILJS_CONFIG.TEMPLATE_ID !== 'TU_TEMPLATE_ID' &&
+            EMAILJS_CONFIG.TEMPLATE_ID &&
             typeof emailjs !== 'undefined') {
             
             const templateParams = {
@@ -3644,31 +3593,16 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
                 from_name: 'Martha Lucía Contreras'
             };
 
-            console.log('Enviando correo con:', {
-                service: EMAILJS_CONFIG.SERVICE_ID,
-                template: EMAILJS_CONFIG.TEMPLATE_ID,
-                to: email,
-                to_name: nombre
-            });
-
-            // Enviar email de bienvenida usando configuración externa
+            // Enviar email de bienvenida usando configuración desde API
             emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
                 .then(function(response) {
-                    console.log('✅ Correo de bienvenida enviado exitosamente!', response.status, response.text);
+                    // Email enviado exitosamente
                 }, function(error) {
-                    console.error('❌ Error al enviar correo de bienvenida:', error);
-                    // Continuar aunque falle el envío del correo (no mostrar error al usuario)
+                    // Error silencioso
                 });
-        } else {
-            console.warn('⚠️ EmailJS no configurado correctamente.');
-            if (typeof EMAILJS_CONFIG !== 'undefined') {
-                console.warn('SERVICE_ID:', EMAILJS_CONFIG?.SERVICE_ID);
-                console.warn('TEMPLATE_ID:', EMAILJS_CONFIG?.TEMPLATE_ID);
-            }
         }
     } catch (error) {
-        console.error('Error al intentar enviar correo de bienvenida:', error);
-        // Continuar ejecución aunque falle EmailJS
+        // Error silencioso
     }
 
     // Limpiar formulario

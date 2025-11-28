@@ -1,6 +1,9 @@
 # Variables de entorno y configuración sensible
-# config/config.emailjs.js - Comentado porque las credenciales de EmailJS son públicas
-# Si prefieres mantenerlo privado, descomenta la línea anterior
+.env
+.env.local
+.env.*.local
+config/config.emailjs.js
+config/config.facebook.js
 
 # Archivos del sistema
 .DS_Store
@@ -29,3 +32,4 @@ yarn-error.log*
 *.bak
 *.backup
 
+.vercel
