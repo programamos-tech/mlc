@@ -2511,6 +2511,40 @@ nav, nav *, .hero *, input, textarea, select, button {
     }
 }
     </style>
+    <!-- Facebook Pixel Code -->
+    <script src="config/config.facebook.js" onerror="console.warn('⚠️ config/config.facebook.js no encontrado. Facebook Pixel no funcionará hasta que se configure.'); window.FACEBOOK_PIXEL_CONFIG = undefined;"></script>
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // Inicializar Pixel con ID desde configuración
+    (function(){
+        try {
+            if (typeof FACEBOOK_PIXEL_CONFIG !== 'undefined' && 
+                FACEBOOK_PIXEL_CONFIG && 
+                FACEBOOK_PIXEL_CONFIG.PIXEL_ID && 
+                FACEBOOK_PIXEL_CONFIG.PIXEL_ID !== 'TU_PIXEL_ID') {
+                fbq('init', FACEBOOK_PIXEL_CONFIG.PIXEL_ID);
+                fbq('track', 'PageView');
+                console.log('✅ Facebook Pixel inicializado correctamente');
+            } else {
+                console.warn('⚠️ Facebook Pixel no configurado. Por favor configura config/config.facebook.js');
+            }
+        } catch (error) {
+            console.error('Error al inicializar Facebook Pixel:', error);
+        }
+    })();
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1190713556296771&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
 </head>
 <body>
     <nav>
@@ -3049,6 +3083,78 @@ nav, nav *, .hero *, input, textarea, select, button {
             // Continuar ejecución aunque falle EmailJS
         }
     })();
+
+// Facebook Pixel Helper Functions
+(function(){
+    // Función para enviar eventos al Pixel y Conversion API
+    window.trackFacebookEvent = function(eventName, eventData) {
+        try {
+            // Enviar evento al Pixel (cliente)
+            if (typeof fbq !== 'undefined') {
+                fbq('track', eventName, eventData || {});
+                console.log('✅ Facebook Pixel Event:', eventName, eventData || {});
+            }
+            
+            // Enviar evento a Conversion API (servidor)
+            if (typeof FACEBOOK_PIXEL_CONFIG !== 'undefined' && 
+                FACEBOOK_PIXEL_CONFIG && 
+                FACEBOOK_PIXEL_CONFIG.CONVERSION_API_TOKEN &&
+                FACEBOOK_PIXEL_CONFIG.CONVERSION_API_TOKEN !== 'TU_CONVERSION_API_TOKEN') {
+                
+                const pixelId = FACEBOOK_PIXEL_CONFIG.PIXEL_ID;
+                const accessToken = FACEBOOK_PIXEL_CONFIG.CONVERSION_API_TOKEN;
+                
+                // Obtener datos del usuario si están disponibles
+                const userData = {
+                    client_ip_address: '', // Se obtendrá del servidor
+                    client_user_agent: navigator.userAgent,
+                    fbp: getCookie('_fbp'), // Facebook Browser ID
+                    fbc: getCookie('_fbc')  // Facebook Click ID
+                };
+                
+                // Preparar datos del evento
+                const eventDataForAPI = {
+                    data: [{
+                        event_name: eventName,
+                        event_time: Math.floor(Date.now() / 1000),
+                        event_id: eventName + '_' + Date.now(),
+                        event_source_url: window.location.href,
+                        action_source: 'website',
+                        user_data: userData,
+                        custom_data: eventData || {}
+                    }]
+                };
+                
+                // Enviar a Conversion API
+                fetch(`https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${accessToken}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(eventDataForAPI)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('✅ Facebook Conversion API Event:', eventName, data);
+                })
+                .catch(error => {
+                    console.error('❌ Error al enviar evento a Conversion API:', error);
+                });
+            }
+        } catch (error) {
+            console.error('Error al rastrear evento de Facebook:', error);
+        }
+    };
+    
+    // Función helper para obtener cookies
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return '';
+    }
+})();
+
 // Alert Modal Functions
 function showAlert(title, message, type = 'success') {
     const modal = document.getElementById('alertModal');
@@ -3420,6 +3526,16 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
     // NOTA: localStorage es local al navegador del usuario, no se comparte entre usuarios
     // Los datos solo son visibles para el usuario en su propio navegador
     localStorage.setItem('mlc-suscriptores', JSON.stringify(suscriptores));
+    
+    // Rastrear evento Lead en Facebook Pixel
+    if (typeof trackFacebookEvent === 'function') {
+        trackFacebookEvent('Lead', {
+            content_name: 'Newsletter Subscription',
+            content_category: 'Newsletter',
+            value: 0,
+            currency: 'USD'
+        });
+    }
 
     // Enviar correo de bienvenida con EmailJS
     console.log('Intentando enviar correo de bienvenida...');
@@ -3622,11 +3738,35 @@ function openEbookModal(index) {
     modalBody.innerHTML = contentHtml;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Rastrear evento ViewContent en Facebook Pixel
+    if (typeof trackFacebookEvent === 'function') {
+        trackFacebookEvent('ViewContent', {
+            content_name: ebook.title,
+            content_ids: [ebook.hotmartCode],
+            content_type: 'product',
+            value: ebook.price,
+            currency: 'USD'
+        });
+    }
 }
 
 function purchaseEbooks(mainIndex) {
     // Usar el código específico del ebook seleccionado
+    const ebook = ebooksData[mainIndex];
     const hotmartUrl = generateHotmartUrl([mainIndex]);
+    
+    // Rastrear evento InitiateCheckout en Facebook Pixel
+    if (typeof trackFacebookEvent === 'function' && ebook) {
+        trackFacebookEvent('InitiateCheckout', {
+            content_name: ebook.title,
+            content_ids: [ebook.hotmartCode],
+            content_type: 'product',
+            value: ebook.price,
+            currency: 'USD',
+            num_items: 1
+        });
+    }
     
     if (hotmartUrl) {
         window.open(hotmartUrl, '_blank');
