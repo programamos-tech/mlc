@@ -2571,9 +2571,29 @@ nav, nav *, .hero *, input, textarea, select, button {
                     window.FACEBOOK_PIXEL_CONFIG = config.facebook;
                     const pixelId = config.facebook.PIXEL_ID;
                     
-                    // Inicializar pixel
+                    // Preparar datos de Advanced Matching
+                    const advancedMatchingData = {};
+                    
+                    // Intentar obtener datos del usuario del localStorage
+                    try {
+                        const suscriptores = JSON.parse(localStorage.getItem('mlc-suscriptores') || '[]');
+                        if (suscriptores.length > 0) {
+                            const ultimoSuscriptor = suscriptores[suscriptores.length - 1];
+                            if (ultimoSuscriptor.email) {
+                                advancedMatchingData.em = ultimoSuscriptor.email;
+                            }
+                            if (ultimoSuscriptor.nombre) {
+                                advancedMatchingData.fn = ultimoSuscriptor.nombre.split(' ')[0]; // First name
+                                advancedMatchingData.ln = ultimoSuscriptor.nombre.split(' ').slice(1).join(' '); // Last name
+                            }
+                        }
+                    } catch (e) {
+                        // Si falla, continuar sin advanced matching
+                    }
+                    
+                    // Inicializar pixel con Advanced Matching
                     if (typeof fbq !== 'undefined') {
-                        fbq('init', pixelId);
+                        fbq('init', pixelId, advancedMatchingData);
                         
                         // Crear noscript tag dinámicamente
                         var noscript = document.createElement('noscript');
@@ -3568,6 +3588,17 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
     // NOTA: localStorage es local al navegador del usuario, no se comparte entre usuarios
     // Los datos solo son visibles para el usuario en su propio navegador
     localStorage.setItem('mlc-suscriptores', JSON.stringify(suscriptores));
+    
+    // Actualizar Advanced Matching con datos del suscriptor
+    if (typeof fbq !== 'undefined' && window.FACEBOOK_PIXEL_CONFIG) {
+        const matchingData = {
+            em: email,
+            fn: nombre.split(' ')[0],
+            ln: nombre.split(' ').slice(1).join(' ')
+        };
+        // Actualizar el pixel con los nuevos datos
+        fbq('init', window.FACEBOOK_PIXEL_CONFIG.PIXEL_ID, matchingData);
+    }
     
     // Rastrear evento Lead en Facebook Pixel
     if (typeof trackFacebookEvent === 'function') {
