@@ -2572,6 +2572,36 @@ nav, nav *, .hero *, input, textarea, select, button {
                 fbq('init', FACEBOOK_PIXEL_CONFIG.PIXEL_ID);
                 fbq('track', 'PageView');
                 console.log('✅ Facebook Pixel inicializado correctamente');
+                
+                // Detectar si hay parámetros de compra completada en la URL (desde Hotmart)
+                // Esto se ejecuta después de que el DOM esté listo para acceder a ebooksData
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', checkPurchaseParams);
+                } else {
+                    checkPurchaseParams();
+                }
+                
+                function checkPurchaseParams() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const purchaseId = urlParams.get('purchase_id') || urlParams.get('transaction_id') || urlParams.get('order_id');
+                    const hotmartCode = urlParams.get('product_id') || urlParams.get('hotmart_code');
+                    
+                    if (purchaseId && typeof window.ebooksData !== 'undefined') {
+                        // Si hay un ID de compra, rastrear evento Purchase
+                        const ebook = window.ebooksData.find(e => e.hotmartCode === hotmartCode);
+                        if (ebook && typeof trackFacebookEvent === 'function') {
+                            trackFacebookEvent('Purchase', {
+                                content_name: ebook.title,
+                                content_ids: [ebook.hotmartCode],
+                                content_type: 'product',
+                                value: ebook.price,
+                                currency: 'USD',
+                                num_items: 1
+                            });
+                            console.log('✅ Evento Purchase rastreado para:', ebook.title);
+                        }
+                    }
+                }
             } else {
                 console.warn('⚠️ Facebook Pixel no configurado. Por favor configura config/config.facebook.js');
             }
@@ -3636,7 +3666,8 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
 });
 
 // eBook Modal Functions
-const ebooksData = [
+// Hacer ebooksData accesible globalmente para el Pixel
+const ebooksData = window.ebooksData = [
     {
         id: 0,
         badge: 'Bestseller',
