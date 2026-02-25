@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>Martha Lucía Contreras - Psicóloga | Gestión Emocional y Bienestar Integral</title>
+    <title>Quién Soy - Martha Lucía Contreras | Psicóloga y Gestión Emocional</title>
     <meta name="description" content="Transforma tus emociones en tu mayor herramienta de bienestar. Descubre cómo la neurociencia y la inteligencia emocional pueden llevarte a una vida más equilibrada y plena. eBooks, cursos y recursos de gestión emocional.">
     <meta name="keywords" content="gestión emocional, psicología, bienestar integral, ejercicios bilaterales, neurociencia, inteligencia emocional, Martha Lucía Contreras">
     <meta name="author" content="Martha Lucía Contreras">
@@ -27,7 +27,7 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://marthaluciacontreras.com">
+    <meta property="og:url" content="https://marthaluciacontreras.com/quien-soy.html">
     <meta property="og:title" content="Martha Lucía Contreras - Donde la calma se convierte en fuerza">
     <meta property="og:description" content="Transforma tus emociones en tu mayor herramienta de bienestar. Descubre cómo la neurociencia y la inteligencia emocional pueden llevarte a una vida más equilibrada y plena.">
     <meta property="og:image" content="https://marthaluciacontreras.com/images/martha2.jpg">
@@ -58,7 +58,6 @@
     </script>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -80,8 +79,7 @@ h1, h2, h3 {
     color: var(--verde-bosque);
 }
 .container { 
-    max-width: 1200px; 
-    width: 100%;
+    max-width: 1100px; 
     margin: 0 auto; 
     padding: 0 2rem; 
 }
@@ -340,10 +338,10 @@ nav a:hover { color: var(--verde-bosque); }
     align-items: center;
 }
 .hero h1 {
-    font-size: 1.75rem;
+    font-size: 3.5rem;
     margin-bottom: 1.5rem;
-    line-height: 1.2;
-    font-weight: 700;
+    line-height: 1.15;
+    font-weight: 900;
 }
 .hero .highlight { 
     color: var(--terracota);
@@ -354,21 +352,6 @@ nav a:hover { color: var(--verde-bosque); }
     margin-bottom: 2.5rem;
     line-height: 1.8;
 }
-.hero-badge-wrap {
-    margin-bottom: 1.5rem;
-}
-.hero-badge {
-    display: inline-block;
-    padding: 0.4rem 0.9rem;
-    border-radius: 999px;
-    background: rgba(53, 88, 64, 0.06);
-    color: var(--verde-profundo);
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    opacity: 0.9;
-}
 .ebook-preview {
     background: var(--crema);
     padding: 2.5rem;
@@ -377,13 +360,15 @@ nav a:hover { color: var(--verde-bosque); }
     border: 1px solid rgba(53,88,64,0.1);
 }
 .hero-image {
-    height: 720px;
-    background: transparent;
+    height: 420px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(53,88,64,0.2);
 }
 .hero-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
 }
 .ebook-icon {
@@ -405,12 +390,6 @@ nav a:hover { color: var(--verde-bosque); }
 section {
     padding: 7rem 0;
 }
-#inicio {
-    padding-bottom: 2.5rem;
-}
-#programa-detalles {
-    padding-top: 2.5rem;
-}
 .section-title {
     text-align: center;
     margin-bottom: 5rem;
@@ -418,386 +397,10 @@ section {
 .section-title h2 {
     font-size: 2.8rem;
     margin-bottom: 1rem;
-    line-height: 1.1;
 }
 .section-title p {
     color: var(--verde-profundo);
     font-size: 1.05rem;
-}
-
-/* Antes / Después */
-.antes-despues {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    align-items: start;
-}
-.antes-despues-col {
-    padding: 1.75rem;
-    border-radius: 16px;
-    height: 100%;
-}
-.antes-despues-col.antes {
-    background: rgba(200, 80, 80, 0.06);
-    border: 1px solid rgba(200, 80, 80, 0.15);
-}
-.antes-despues-col.despues {
-    background: rgba(53, 88, 64, 0.06);
-    border: 1px solid rgba(53, 88, 64, 0.2);
-}
-.antes-despues-col h3 {
-    font-size: 1.35rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.antes-despues-col.antes h3 { color: #a63d3d; }
-.antes-despues-col.despues h3 { color: var(--verde-bosque); }
-.antes-despues-col ul {
-    list-style: none;
-    margin: 0 0 1rem 0;
-    padding: 0;
-}
-.antes-despues-col li {
-    padding: 0.5rem 0 0.5rem 2rem;
-    position: relative;
-    color: var(--verde-profundo);
-    font-size: 0.98rem;
-    line-height: 1.5;
-}
-.antes-despues-col.antes li::before {
-    content: "✕";
-    position: absolute;
-    left: 0;
-    color: #c44;
-    font-weight: 700;
-    font-size: 1rem;
-}
-.antes-despues-col.despues li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--verde-bosque);
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-.antes-despues-col p {
-    font-size: 0.95rem;
-    color: var(--verde-profundo);
-    margin: 0;
-    line-height: 1.6;
-    opacity: 0.9;
-}
-@media (max-width: 768px) {
-    .antes-despues {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Qué incluye – cards */
-.incluye-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-top: 2rem;
-}
-.section-como-funciona .section-title {
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-}
-.incluye-card {
-    background: rgba(53, 88, 64, 0.04);
-    border: 1px solid rgba(53, 88, 64, 0.08);
-    border-radius: 14px;
-    padding: 1.5rem 1.75rem;
-    margin: 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-}
-.incluye-card .incluye-icon {
-    flex-shrink: 0;
-    color: var(--verde-bosque);
-    font-size: 1.75rem;
-    opacity: 0.85;
-}
-.incluye-card p {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--verde-profundo);
-    line-height: 1.6;
-    text-align: left;
-    font-style: normal;
-    flex: 1;
-}
-.incluye-card strong {
-    color: var(--verde-bosque);
-    font-weight: 600;
-}
-@media (max-width: 900px) {
-    .incluye-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media (max-width: 600px) {
-    .incluye-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Acordeón semanas – minimal y práctico */
-.acordeon-semanas {
-    max-width: 100%;
-    width: 100%;
-    margin: 2rem auto 0;
-    overflow: hidden;
-    border: 1px solid rgba(53, 88, 64, 0.12);
-    border-radius: 8px;
-}
-.acordeon-item {
-    border-bottom: 1px solid rgba(53, 88, 64, 0.08);
-}
-.acordeon-item:last-child {
-    border-bottom: none;
-}
-.acordeon-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem 1.25rem;
-    background: #fafafa;
-    border: none;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--verde-bosque);
-    text-align: left;
-    transition: background 0.2s ease;
-}
-.acordeon-header:hover {
-    background: rgba(53, 88, 64, 0.04);
-}
-.acordeon-icon {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--verde-bosque);
-    font-size: 0.75rem;
-    opacity: 0.8;
-    transition: transform 0.25s ease;
-}
-.acordeon-item.open .acordeon-icon {
-    transform: rotate(180deg);
-}
-.acordeon-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-.acordeon-item.open .acordeon-content {
-    max-height: 220px;
-}
-.acordeon-content-inner {
-    padding: 0.75rem 1.25rem 1rem;
-    background: #fff;
-    border-top: 1px solid rgba(53, 88, 64, 0.06);
-}
-.acordeon-content-inner p {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--verde-profundo);
-}
-
-/* Para ti / No es para ti */
-.para-ti-table {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    align-items: start;
-}
-.para-ti-col {
-    padding: 1.75rem;
-    border-radius: 16px;
-    height: 100%;
-}
-.para-ti-col.si {
-    background: rgba(53, 88, 64, 0.06);
-    border: 1px solid rgba(53, 88, 64, 0.2);
-}
-.para-ti-col.no {
-    background: rgba(235, 123, 5, 0.08);
-    border: 1px solid rgba(235, 123, 5, 0.2);
-}
-.para-ti-col h3 {
-    font-size: 1.35rem;
-    margin-bottom: 1rem;
-}
-.para-ti-col.si h3 { color: var(--verde-bosque); }
-.para-ti-col.no h3 { color: var(--terracota); }
-.para-ti-col ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.para-ti-col li {
-    padding: 0.5rem 0 0.5rem 2rem;
-    position: relative;
-    color: var(--verde-profundo);
-    font-size: 0.98rem;
-    line-height: 1.5;
-}
-.para-ti-col.si li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--verde-bosque);
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-.para-ti-col.no li::before {
-    content: "✕";
-    position: absolute;
-    left: 0;
-    color: var(--terracota);
-    font-weight: 700;
-    font-size: 1rem;
-}
-@media (max-width: 768px) {
-    .para-ti-table {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Inversión – texto izquierda, imagen derecha, paleta neutra */
-.inversion-block {
-    margin-bottom: 2rem;
-}
-.inversion-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-}
-.inversion-text .inversion-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: var(--verde-bosque);
-    margin-bottom: 1.25rem;
-}
-.inversion-text .inversion-price {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--verde-bosque);
-    margin-bottom: 1rem;
-}
-.inversion-text p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    line-height: 1.65;
-    color: var(--verde-profundo);
-    margin: 0 0 0.9rem 0;
-}
-.inversion-text .inversion-garantia {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--verde-bosque);
-    margin-top: 1rem;
-    margin-bottom: 1.25rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid rgba(53, 88, 64, 0.12);
-}
-.inversion-text .btn {
-    margin-right: 0.75rem;
-    margin-bottom: 0.5rem;
-}
-.inversion-text .inversion-cta-block {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(53, 88, 64, 0.08);
-}
-.inversion-text .inversion-cta-block p {
-    margin-bottom: 0.6rem;
-}
-.inversion-image {
-    border-radius: 8px;
-    overflow: hidden;
-    background: rgba(53, 88, 64, 0.04);
-}
-.inversion-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-}
-@media (max-width: 768px) {
-    .inversion-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    .inversion-image {
-        order: -1;
-    }
-}
-
-/* Sobre mí (landing) */
-.sobre-mi-block {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 2.5rem;
-    align-items: center;
-    margin-bottom: 3rem;
-}
-.sobre-mi-block .sobre-mi-foto {
-    width: 100%;
-    aspect-ratio: 1;
-    border-radius: 12px;
-    overflow: hidden;
-    background: rgba(53, 88, 64, 0.06);
-}
-.sobre-mi-block .sobre-mi-foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-}
-.sobre-mi-block h3 {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-    color: var(--verde-bosque);
-}
-.sobre-mi-block p {
-    color: var(--verde-profundo);
-    margin-bottom: 0.8rem;
-    font-size: 1rem;
-    line-height: 1.65;
-}
-.sobre-mi-block a {
-    color: var(--terracota);
-    font-weight: 500;
-}
-@media (max-width: 768px) {
-    .sobre-mi-block {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    .sobre-mi-block .sobre-mi-foto {
-        max-width: 260px;
-        margin: 0 auto;
-    }
 }
 
 /* About */
@@ -2588,29 +2191,21 @@ nav, nav *, .hero *, input, textarea, select, button {
     .container {
         padding: 0 2rem;
     }
-    nav .nav-links a {
-        margin-left: 1.25rem;
-    }
+    nav .nav-links a,
     nav .nav-links .btn {
-        margin-left: 1.25rem;
+        margin-left: 1rem;
     }
     .hero-grid {
         gap: 3rem;
     }
-    .hero-image {
-        height: 480px;
-    }
     .hero h1 {
-        font-size: 1.6rem;
+        font-size: 2.5rem;
+    }
+    .hero-image {
+        height: 380px;
     }
     section {
         padding: 5rem 0;
-    }
-    #inicio {
-        padding-bottom: 2rem;
-    }
-    #programa-detalles {
-        padding-top: 2rem;
     }
     .section-title h2 {
         font-size: 2.2rem;
@@ -2618,32 +2213,50 @@ nav, nav *, .hero *, input, textarea, select, button {
     .section-title {
         margin-bottom: 3.5rem;
     }
-    .incluye-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+    .about-grid {
+        gap: 3rem;
     }
-    .incluye-card {
-        padding: 1.25rem 1.5rem;
+    .about-image {
+        height: 400px;
     }
-    .antes-despues {
+    .ebooks-grid {
         gap: 1.5rem;
+        margin-top: 3rem;
     }
-    .para-ti-table {
-        gap: 1.5rem;
+    .ebook-card-content {
+        padding: 1.25rem;
     }
-    .inversion-grid {
-        gap: 2rem;
-    }
-    .sobre-mi-block {
-        grid-template-columns: 220px 1fr;
-        gap: 2rem;
-    }
-    .sobre-mi-block .sobre-mi-foto {
-        aspect-ratio: 1;
+    .ebook-card-title {
+        font-size: 1.05rem;
     }
 }
 
-/* Móvil: menú hamburguesa desde 768px */
+/* Tablet horizontal (1025px - 1280px) */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .container {
+        padding: 0 2rem;
+    }
+    .hero-grid {
+        gap: 4rem;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .hero-image {
+        height: 380px;
+    }
+    section {
+        padding: 6rem 0;
+    }
+    .about-grid {
+        gap: 4rem;
+    }
+    .ebooks-grid {
+        gap: 1.75rem;
+    }
+}
+
+/* Responsive móvil */
 @media (max-width: 768px) {
     .container {
         padding: 0 1.5rem;
@@ -2661,7 +2274,7 @@ nav, nav *, .hero *, input, textarea, select, button {
         gap: 0;
     }
     .nav-links {
-        display: none !important;
+        display: none;
     }
     .menu-toggle {
         display: block;
@@ -2690,13 +2303,14 @@ nav, nav *, .hero *, input, textarea, select, button {
         gap: 3rem;
     }
     .hero h1 {
-        font-size: 1.5rem;
+        font-size: 2.5rem;
     }
     .hero p {
         font-size: 1rem;
     }
     .hero-image {
-        height: 520px;
+        height: 350px;
+        order: -1;
     }
 
     /* Sections */
@@ -2810,7 +2424,7 @@ nav, nav *, .hero *, input, textarea, select, button {
     }
     
     .hero h1 {
-        font-size: 1.25rem;
+        font-size: 2rem;
     }
     .section-title h2 {
         font-size: 1.75rem;
@@ -3193,7 +2807,7 @@ nav, nav *, .hero *, input, textarea, select, button {
             </div>
             <div class="nav-links">
                 <a href="index.html">Inicio</a>
-                <a href="quien-soy.html#quien-soy">Quién Soy</a>
+                <a href="#quien-soy">Quién Soy</a>
                 <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary">Comprar eBook</a>
             </div>
             <button class="menu-toggle" aria-label="Toggle menu">
@@ -3207,210 +2821,274 @@ nav, nav *, .hero *, input, textarea, select, button {
     <div class="menu-overlay"></div>
     <div class="mobile-menu">
         <a href="index.html">Inicio</a>
-        <a href="quien-soy.html#quien-soy">Quién Soy</a>
+        <a href="#quien-soy">Quién Soy</a>
         <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary">Comprar eBook</a>
     </div>
 
-    <!-- Nuevo HERO: Programa 21 días -->
-    <section id="inicio" class="hero">
+    <!-- Sección original del home: ahora Explora más -->
+    <section id="explora-mas" class="hero">
         <div class="container">
             <div class="hero-grid">
                 <div>
-                    <div class="hero-badge-wrap fade-in-up delay-1">
-                        <span class="hero-badge">Programa intensivo de 21 días</span>
-                    </div>
-                    <h1 class="fade-in-up delay-1">Tus emociones no te están dañando…<br><span class="highlight">la forma en que las estás gestionando sí</span></h1>
-                    <p class="fade-in-up delay-2">
-                        Aprende a responder con conciencia y equilibrio, no desde la impulsividad, la ansiedad o la herida emocional. 
-                        En 21 días entrenas tu gestión emocional con herramientas simples y aplicables a tu vida real.
-                    </p>
-                    <ul class="fade-in-up delay-2" style="margin-bottom: 1.8rem; padding-left: 1.2rem; color: var(--verde-profundo); font-size: 0.98rem;">
-                        <li>Reaccionas de más… y luego te arrepientes.</li>
-                        <li>Te cuesta manejar la ansiedad y te sientes desbordada por pequeñas cosas.</li>
-                        <li>Sabes de emociones, pero no logras aplicarlo en tu día a día.</li>
-                    </ul>
+                    <h1 class="fade-in-up delay-1">Donde la calma <span class="highlight">se convierte</span> en fuerza</h1>
+                    <p class="fade-in-up delay-2">Transforma tus emociones en tu mayor herramienta de bienestar. Descubre cómo la neurociencia y la inteligencia emocional pueden llevarte a una vida más equilibrada y plena.</p>
                     <div class="hero-buttons fade-in-up delay-3">
-                        <a href="quien-soy.html#ebook" class="btn btn-primary btn-hero-cta">Quiero mi acceso ahora</a>
-                        <a href="quien-soy.html" class="btn btn-secondary">Explorar más recursos</a>
+                        <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary btn-hero-cta" id="heroEbookButton" target="_blank">Obtener eBook - $9.99</a>
+                        <a href="#newsletter" class="btn btn-secondary">Próximos Cursos</a>
                     </div>
-                    <p class="fade-in-up delay-3" style="margin-top: 0.9rem; font-size: 0.85rem; color: var(--verde-profundo); opacity: 0.85;">
-                        21 días de entrenamiento emocional práctico • Basado en psicología aplicada y ejercicios bilaterales
-                    </p>
                 </div>
                 <div class="hero-image scale-in delay-2 float-animation">
-                    <img src="images/flat-design-schizophrenia-illustration.png" alt="Gestión emocional y bienestar mental">
+                    <img src="images/martha2.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional y Bienestar Integral">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Secciones del Programa 21 días -->
-    <section id="programa-detalles">
+    <section id="quien-soy">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="images/martha.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional">
+                </div>
+                <div class="about-content reveal">
+                    <h2>Martha Lucía Contreras Contreras</h2>
+                    <p style="font-weight: 600; color: var(--verde-bosque); margin-bottom: 1rem;">Psicóloga – Estratega en Gestión Emocional y Bienestar Integral</p>
+                    <p>Martha Lucía es una mujer visionaria, psicóloga y creadora de proyectos con impacto social, que ha hecho de la gestión emocional y la salud mental su propósito de vida. Con más de 15 años de experiencia en entornos organizacionales y de desarrollo humano, ha transitado un camino: desde el mundo corporativo y educativo hasta convertirse en mentora y líder de su propia marca, inspirando a miles de mujeres a transformar sus emociones en herramientas de poder y construir una vida plena.</p>
+                    <div class="quote">
+                        <p>"Tu transformación comienza con tu forma de manejar tus emociones"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ebooks-shop" class="ebooks-shop-section">
         <div class="container">
             <div class="section-title reveal">
-                <h2>Un entrenamiento emocional para<br>dejar de reaccionar en automático</h2>
-                <p>En 21 días entrenas tu sistema nervioso y tu mente para responder desde la calma, en lugar de reaccionar desde la herida.</p>
+                <h2>Transforma tu Bienestar con Nuestros eBooks</h2>
+                <p>Herramientas prácticas y científicamente respaldadas para tu crecimiento emocional y mental</p>
             </div>
-
-            <!-- Antes y Después -->
-            <div class="reveal antes-despues">
-                <div class="antes-despues-col antes">
-                    <h3>Llegaste así</h3>
-                    <p style="margin-bottom: 1rem;">La mayoría cree que gestionar emociones es:</p>
-                    <ul>
-                        <li>Reprimir lo que sientes.</li>
-                        <li>Ignorar lo que te pasa hasta que explotas.</li>
-                        <li>"Ser fuerte" y aguantar todo.</li>
-                        <li>Intentar controlarlo todo con fuerza de voluntad.</li>
-                    </ul>
-                    <p>La impulsividad emocional no es debilidad… es falta de entrenamiento emocional. Y lo que no se entrena, se desborda.</p>
-                </div>
-                <div class="antes-despues-col despues">
-                    <h3>Te irás así</h3>
-                    <p style="margin-bottom: 1rem;">En este programa aprenderás a:</p>
-                    <ul>
-                        <li>Regular tu sistema nervioso en momentos de ansiedad.</li>
-                        <li>Identificar y transformar creencias limitantes que alimentan tus reacciones.</li>
-                        <li>Reducir la intensidad de tus respuestas emocionales.</li>
-                        <li>Crear una rutina emocional sostenible que puedas mantener en el tiempo.</li>
-                        <li>Tomar decisiones desde la calma y no desde el impulso.</li>
-                        <li>Recuperar tu paz interna.</li>
-                    </ul>
-                    <p>Sin teorías largas. Sin espiritualidad vacía. Con herramientas prácticas basadas en psicología aplicada y estimulación bilateral.</p>
-                </div>
-            </div>
-
-            <!-- SECCIÓN 4 – QUÉ INCLUYE -->
-            <div class="reveal">
-                <div class="section-title">
-                    <h2>Qué incluye el programa</h2>
-                </div>
-                <div class="incluye-grid">
-                    <div class="incluye-card">
-                        <span class="material-icons incluye-icon">menu_book</span>
-                        <p><strong>21 lecciones prácticas</strong> de 10–15 minutos cada una para que apliques de inmediato.</p>
+            <div class="ebooks-grid reveal">
+                <!-- eBook 1: Gestión Emocional -->
+                <!-- NOTA: Actualizar la URL de Hotmart con el ID correcto del producto -->
+                <div class="ebook-card" data-ebook-index="0">
+                    <div class="ebook-card-image">
+                        <img src="images/ebook1.png" alt="Cómo lograr una gestión emocional sana con ejercicios bilaterales">
                     </div>
-                    <div class="incluye-card">
-                        <span class="material-icons incluye-icon">description</span>
-                        <p><strong>Guías descargables y diario emocional</strong> para integrar lo aprendido a tu día a día.</p>
-                    </div>
-                    <div class="incluye-card">
-                        <span class="material-icons incluye-icon">self_improvement</span>
-                        <p><strong>Protocolos de ejercicios bilaterales guiados</strong> para regular tu sistema nervioso.</p>
-                    </div>
-                    <div class="incluye-card">
-                        <span class="material-icons incluye-icon">schedule</span>
-                        <p><strong>Rutinas diarias de regulación emocional</strong> fáciles de sostener.</p>
-                    </div>
-                    <div class="incluye-card">
-                        <span class="material-icons incluye-icon">groups</span>
-                        <p><strong>Acceso a grupo privado de acompañamiento</strong> para no hacerlo sola.</p>
-                    </div>
-                    <div class="incluye-card">
-                        <span class="material-icons incluye-icon">videocam</span>
-                        <p><strong>2 sesiones grupales en vivo</strong>: inicio y cierre del proceso.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECCIÓN 5 – CÓMO FUNCIONA (acordeón) -->
-            <div class="reveal section-como-funciona" style="margin-bottom: 3rem;">
-                <div class="section-title">
-                    <h2>Cómo funciona: 3 semanas de entrenamiento</h2>
-                </div>
-                <div class="acordeon-semanas">
-                    <div class="acordeon-item open">
-                        <button type="button" class="acordeon-header" aria-expanded="true">
-                            <span>Semana 1: Consciencia y Regulación</span>
-                            <span class="acordeon-icon" aria-hidden="true">▼</span>
-                        </button>
-                        <div class="acordeon-content">
-                            <div class="acordeon-content-inner">
-                                <p>Aprende cómo funciona tu sistema nervioso y empieza a regularlo con ejercicios prácticos.</p>
-                            </div>
+                    <div class="ebook-card-content">
+                        <h3 class="ebook-card-title">Cómo lograr una gestión emocional sana con ejercicios bilaterales</h3>
+                        <div class="ebook-card-price">
+                            <span class="ebook-card-price-amount">$9.99</span>
+                            <span class="ebook-card-price-currency">USD</span>
                         </div>
-                    </div>
-                    <div class="acordeon-item">
-                        <button type="button" class="acordeon-header" aria-expanded="false">
-                            <span>Semana 2: Reprogramación y Límites</span>
-                            <span class="acordeon-icon" aria-hidden="true">▼</span>
-                        </button>
-                        <div class="acordeon-content">
-                            <div class="acordeon-content-inner">
-                                <p>Transforma creencias y fortalece tu identidad emocional, aprendiendo a poner límites sanos.</p>
-                            </div>
+                        <p class="ebook-card-description">Gestiona mejor tus emociones, reduce el estrés y mejora tu bienestar con ejercicios bilaterales prácticos.</p>
+                        <div class="ebook-card-features">
+                            <ul>
+                                <li>Gestionar emociones intensas</li>
+                                <li>Mejorar la concentración y el enfoque mental</li>
+                                <li>Disminuir la ansiedad y el estrés</li>
+                                <li>Incrementar tu resiliencia emocional</li>
+                            </ul>
                         </div>
+                        <button class="ebook-card-button">Compra ahora</button>
                     </div>
-                    <div class="acordeon-item">
-                        <button type="button" class="acordeon-header" aria-expanded="false">
-                            <span>Semana 3: Hábitos y Sostenibilidad</span>
-                            <span class="acordeon-icon" aria-hidden="true">▼</span>
-                        </button>
-                        <div class="acordeon-content">
-                            <div class="acordeon-content-inner">
-                                <p>Convierte la gestión emocional en un estilo de vida que puedas sostener sin agotarte.</p>
-                            </div>
+                </div>
+
+                <!-- eBook 2: 30 Tableros -->
+                <!-- NOTA: Actualizar la URL de Hotmart con el ID correcto del producto -->
+                <div class="ebook-card" data-ebook-index="1">
+                    <div class="ebook-card-image">
+                        <img src="images/ebook2.png" alt="30 Tableros de Ejercicios Bilaterales">
+                    </div>
+                    <div class="ebook-card-content">
+                        <h3 class="ebook-card-title">30 Tableros de Ejercicios Bilaterales</h3>
+                        <div class="ebook-card-price">
+                            <span class="ebook-card-price-amount">$9.97</span>
+                            <span class="ebook-card-price-currency">USD</span>
                         </div>
+                        <p class="ebook-card-description">Activa tu mente, memoria y enfoque. Ejercicios prácticos diseñados para mujeres que buscan claridad mental en minutos.</p>
+                        <div class="ebook-card-features">
+                            <ul>
+                                <li>Ejercicios prácticos de 5 a 10 minutos</li>
+                                <li>Diseñado específicamente para mujeres</li>
+                                <li>Claridad mental y bienestar rápido</li>
+                                <li>Fácil integración en tu rutina diaria</li>
+                            </ul>
+                        </div>
+                        <button class="ebook-card-button">Compra ahora</button>
+                    </div>
+                </div>
+
+                <!-- eBook 3: 100 Plantillas -->
+                <!-- NOTA: Actualizar la URL de Hotmart con el ID correcto del producto -->
+                <div class="ebook-card" data-ebook-index="2">
+                    <div class="ebook-card-image">
+                        <img src="images/ebook3.png" alt="100 Plantillas de Ejercicios Bilaterales para el bienestar">
+                    </div>
+                    <div class="ebook-card-content">
+                        <h3 class="ebook-card-title">100 Plantillas de Ejercicios Bilaterales</h3>
+                        <div class="ebook-card-price">
+                            <span class="ebook-card-price-amount">$9.99</span>
+                            <span class="ebook-card-price-currency">USD</span>
+                        </div>
+                        <p class="ebook-card-description">Kit completo con 100 plantillas listas para usar. Reduce ansiedad, mejora concentración y equilibra emociones.</p>
+                        <div class="ebook-card-features">
+                            <ul>
+                                <li>100 plantillas listas para usar</li>
+                                <li>Funciona para todas las personas</li>
+                                <li>Diseño atractivo y sencillo</li>
+                                <li>Integración sin esfuerzo en tu rutina</li>
+                            </ul>
+                        </div>
+                        <button class="ebook-card-button">Compra ahora</button>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- SECCIÓN 6 y 7 – PARA QUIÉN ES / NO ES -->
-            <div class="reveal para-ti-table">
-                <div class="para-ti-col si">
-                    <h3>Este programa es para ti si:</h3>
-                    <ul>
-                        <li>Eres una mujer que quiere crecer sin perder su paz.</li>
-                        <li>Estás cansada de reaccionar emocionalmente y luego arrepentirte.</li>
-                        <li>Buscas herramientas prácticas, no solo teoría.</li>
-                        <li>Deseas equilibrio entre mente, emoción y propósito.</li>
-                    </ul>
+    <!-- eBook Modal -->
+    <div id="ebookModal" class="ebook-modal">
+        <div class="ebook-modal-content">
+            <button class="ebook-modal-close" onclick="closeEbookModal(event)" type="button">✕</button>
+            <div class="ebook-modal-body" id="ebookModalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div id="blogModal" class="blog-modal">
+        <div class="blog-modal-content">
+            <button class="blog-modal-close" onclick="closeBlogModal(event)" type="button">✕</button>
+            <div class="blog-modal-body" id="blogModalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Blog & Recursos</h2>
+                <p>Herramientas, reflexiones y conocimientos para tu bienestar emocional</p>
+            </div>
+            <div class="blog-grid reveal" id="blogGrid"></div>
+        </div>
+    </section>
+
+    <section class="instagram-section">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Contenido que Transforma</h2>
+                <p>Descubre herramientas prácticas para tu bienestar emocional en mis reels</p>
+            </div>
+            <div class="instagram-carousel reveal">
+                <div class="instagram-reel">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DGJJrqER1D8/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DGJJrqER1D8/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicación en Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DGJJrqER1D8/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Una publicación compartida por Psicóloga | Martha Lucia Contreras (@marthaluciacontrerasc)</a></p></div></blockquote>
                 </div>
-                <div class="para-ti-col no">
-                    <h3>No es para ti si:</h3>
-                    <ul>
-                        <li>Buscas soluciones mágicas sin compromiso.</li>
-                        <li>No estás dispuesta a practicar al menos 10 minutos diarios.</li>
-                        <li>No quieres responsabilizarte de tu propio proceso.</li>
-                    </ul>
+                <div class="instagram-reel">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DF6Q7y7R7pF/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DF6Q7y7R7pF/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicación en Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DF6Q7y7R7pF/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Una publicación compartida por Psicóloga | Martha Lucia Contreras (@marthaluciacontrerasc)</a></p></div></blockquote>
+                </div>
+                <div class="instagram-reel">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DF1SEfVNTj5/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DF1SEfVNTj5/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicación en Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DF1SEfVNTj5/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Una publicación compartida por Psicóloga | Martha Lucia Contreras (@marthaluciacontrerasc)</a></p></div></blockquote>
                 </div>
             </div>
-
-            <!-- SECCIÓN 8 – SOBRE MÍ -->
-            <div class="reveal sobre-mi-block">
-                <div class="sobre-mi-foto">
-                    <img src="images/martha.jpg" alt="Martha Lucía Contreras - Psicóloga y Estratega en Gestión Emocional">
-                </div>
-                <div>
-                    <h3>Sobre mí</h3>
-                    <p>
-                        Soy <strong>Martha Lucía Contreras</strong>, psicóloga con más de 16 años de experiencia en gestión emocional y desarrollo personal.
-                        He acompañado a cientos de mujeres en procesos reales de transformación, integrando ciencia, práctica y humanidad.
-                    </p>
-                    <p>
-                        Si quieres saber más sobre mi historia y mi camino, puedes leer la sección <a href="quien-soy.html">"Quién Soy"</a>.
-                    </p>
-                </div>
+            <div class="instagram-cta reveal">
+                <p>Sigue mi contenido diario y únete a una comunidad de miles que transforman su bienestar emocional</p>
+                <a href="https://www.instagram.com/marthaluciacontrerasc/" target="_blank" class="instagram-badge">
+                    <svg class="instagram-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    Sígueme @marthaluciacontrerasc
+                </a>
             </div>
+        </div>
+    </section>
+    <script async src="//www.instagram.com/embed.js"></script>
 
-            <!-- SECCIÓN 9, 10, 11 – INVERSIÓN: texto izquierda, imagen derecha -->
-            <div class="reveal inversion-block">
-                <div class="inversion-grid">
-                    <div class="inversion-text">
-                        <h2 class="inversion-title">Inversión en tu bienestar emocional</h2>
-                        <p class="inversion-price">Acceso completo al programa por: USD 197</p>
-                        <p>Incluye todas las lecciones, el acompañamiento grupal y los materiales descargables.</p>
-                        <p>Puedes realizar un pago único o dividirlo en 2 cuotas (según las opciones de la plataforma de pago).</p>
-                        <p class="inversion-garantia">Garantía de 7 días: si en la primera semana sientes que este programa no es para ti, puedes solicitar la devolución completa, sin preguntas.</p>
-                        <a href="quien-soy.html#ebook" class="btn btn-primary">Quiero mi acceso ahora</a>
-                        <div class="inversion-cta-block">
-                            <p>No necesitas ser perfecta para comenzar. Solo necesitas decidir que tu bienestar emocional es prioridad.</p>
-                            <p>En 21 días puedes cambiar tu relación con tus emociones. Y cuando cambias por dentro… tu vida cambia por fuera.</p>
-                            <a href="quien-soy.html#ebook" class="btn btn-primary">Comienza hoy</a>
+    <section id="ebook" class="ebook-section">
+        <div class="container">
+            <div class="ebook-grid">
+                <div class="ebook-info reveal">
+                    <h2>Programa de 21 días para entrenar tu gestión emocional</h2>
+                    <p>Accede al programa completo que te acompaña día a día a regular tu sistema nervioso, transformar tus creencias y responder desde la calma, no desde la impulsividad.</p>
+                    <div class="price-box">
+                        <div>
+                            <div class="price">$197</div>
+                            <div class="price-label">Acceso completo al programa</div>
                         </div>
+                        <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary hotmart-fb hotmart__button-checkout">Quiero mi acceso ahora</a>
                     </div>
-                    <div class="inversion-image">
-                        <img src="images/studio-humi-5G3l_nx8OPk-unsplash.png" alt="Bienestar emocional y calma">
+                    <div class="guarantee">✓ Garantía de 7 días • Si en la primera semana sientes que no es para ti, puedes solicitar devolución completa, sin preguntas.</div>
+                </div>
+                <div class="reveal">
+                    <div class="testimonial">
+                        <div class="stars">
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p>"Es la primera vez que los uso. Presento problemas de memoria y estrés. Realicé varios ejercicios y me siento relajada."</p>
+                        <div class="author">— Carmen, 65 años</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p>"Logré que mi hijo se concentrara mejor en tareas escolares."</p>
+                        <div class="author">— Mamá de Tomás, 7 años</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p>"Los uso antes de empezar mi jornada y noto más claridad y menos ansiedad."</p>
+                        <div class="author">— Clara, emprendedora</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content reveal">
+                <h2>Transforma tu vida, un correo a la vez</h2>
+                <p>Únete a nuestra comunidad y recibe herramientas prácticas, ejercicios de bienestar emocional y contenido exclusivo directamente en tu bandeja de entrada.</p>
+
+                <form id="newsletterForm" class="newsletter-form">
+                    <input type="text" id="nombreNewsletter" placeholder="Tu nombre" required>
+                    <input type="email" id="emailNewsletter" placeholder="Tu correo electrónico" required>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="autorizacionDatos" required>
+                        <label for="autorizacionDatos">
+                            Acepto la <a href="privacidad.html" target="_blank">Política de Privacidad y Protección de Datos</a> y autorizo el tratamiento de mis datos personales.
+                        </label>
+                    </div>
+                    <button type="submit">Suscribirme al Newsletter</button>
+                </form>
+
+                <div class="newsletter-benefits">
+                    <div class="newsletter-benefit">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        <span>Contenido exclusivo semanal</span>
+                    </div>
+                    <div class="newsletter-benefit">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        <span>Ejercicios prácticos de bienestar</span>
+                    </div>
+                    <div class="newsletter-benefit">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        <span>Tips de neurociencia aplicada</span>
                     </div>
                 </div>
             </div>
@@ -3438,15 +3116,15 @@ nav, nav *, .hero *, input, textarea, select, button {
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
                             Inicio
                         </a>
-                        <a href="quien-soy.html#quien-soy">
+                        <a href="#quien-soy">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                             Quién Soy
                         </a>
-                        <a href="quien-soy.html#blog">
+                        <a href="#blog">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
                             Blog
                         </a>
-                        <a href="quien-soy.html#ebooks-shop">
+                        <a href="#ebooks-shop">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
                             eBooks
                         </a>
@@ -3851,21 +3529,6 @@ window.addEventListener('scroll', () => {
     } else {
         nav.classList.remove('scrolled');
     }
-});
-
-// Acordeón semanas (varios pueden estar abiertos)
-document.querySelectorAll('.acordeon-semanas .acordeon-header').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const item = btn.closest('.acordeon-item');
-        const isOpen = item.classList.contains('open');
-        if (isOpen) {
-            item.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-        } else {
-            item.classList.add('open');
-            btn.setAttribute('aria-expanded', 'true');
-        }
-    });
 });
 
 // Scroll reveal animation
