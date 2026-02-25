@@ -1215,11 +1215,19 @@ section {
         height: 95vh;
         max-height: 95vh;
         border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
     }
     .ebook-modal-body {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        padding: 1.5rem;
+        padding: 1.5rem 1.5rem 6rem 1.5rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        flex: 1;
+        min-height: 0;
     }
     .ebook-modal-image {
         max-width: 100%;
@@ -1233,10 +1241,26 @@ section {
     .ebook-modal-info {
         height: auto;
         padding-right: 0;
+        display: flex;
+        flex-direction: column;
     }
     .ebook-modal-info > div:first-child {
         overflow-y: visible;
         max-height: none;
+        flex: 0 1 auto;
+    }
+    .ebook-modal-info > div:last-child {
+        flex-shrink: 0;
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 1rem 0 0;
+        margin-top: 1rem;
+        border-top: 2px solid rgba(53, 88, 64, 0.1);
+        z-index: 10;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
     }
     .ebook-modal-info h2 {
         font-size: 1.4rem;
@@ -1622,6 +1646,14 @@ footer {
     font-size: 0.85rem;
     color: var(--verde-bosque);
     margin-top: 0.5rem;
+}
+.copyright .footer-bolt {
+    vertical-align: middle;
+    margin-left: 0.15rem;
+    color: var(--verde-bosque);
+}
+.copyright a:hover .footer-bolt {
+    color: var(--verde-profundo);
 }
 
 @media (max-width: 768px) {
@@ -2808,7 +2840,7 @@ nav, nav *, .hero *, input, textarea, select, button {
             <div class="nav-links">
                 <a href="index.html">Inicio</a>
                 <a href="#quien-soy">Quién Soy</a>
-                <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary">Comprar eBook</a>
+                <a href="https://wa.me/573002061711" class="btn btn-primary" target="_blank" rel="noopener">Solicitar cita</a>
             </div>
             <button class="menu-toggle" aria-label="Toggle menu">
                 <span></span>
@@ -2822,10 +2854,10 @@ nav, nav *, .hero *, input, textarea, select, button {
     <div class="mobile-menu">
         <a href="index.html">Inicio</a>
         <a href="#quien-soy">Quién Soy</a>
-        <a href="https://pay.hotmart.com/L99668935S?checkoutMode=10" class="btn btn-primary">Comprar eBook</a>
+        <a href="https://wa.me/573002061711" class="btn btn-primary" target="_blank" rel="noopener">Solicitar cita</a>
     </div>
 
-    <!-- Sección original del home: ahora Explora más -->
+    <!-- Sección hero "Donde la calma..." comentada - ya no va
     <section id="explora-mas" class="hero">
         <div class="container">
             <div class="hero-grid">
@@ -2838,20 +2870,21 @@ nav, nav *, .hero *, input, textarea, select, button {
                     </div>
                 </div>
                 <div class="hero-image scale-in delay-2 float-animation">
-                    <img src="images/martha2.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional y Bienestar Integral">
+                    <img src="images/martha2.jpg" alt="Martha Lucía Contreras - Psicóloga y Estratega en Gestión Emocional y Bienestar Integral">
                 </div>
             </div>
         </div>
     </section>
+    -->
 
     <section id="quien-soy">
         <div class="container">
             <div class="about-grid">
                 <div class="about-image reveal">
-                    <img src="images/martha.jpg" alt="Martha Lucía Contreras Contreras - Psicóloga y Estratega en Gestión Emocional">
+                    <img src="images/martha.jpg" alt="Martha Lucía Contreras - Psicóloga y Estratega en Gestión Emocional">
                 </div>
                 <div class="about-content reveal">
-                    <h2>Martha Lucía Contreras Contreras</h2>
+                    <h2>Martha Lucía Contreras</h2>
                     <p style="font-weight: 600; color: var(--verde-bosque); margin-bottom: 1rem;">Psicóloga – Estratega en Gestión Emocional y Bienestar Integral</p>
                     <p>Martha Lucía es una mujer visionaria, psicóloga y creadora de proyectos con impacto social, que ha hecho de la gestión emocional y la salud mental su propósito de vida. Con más de 15 años de experiencia en entornos organizacionales y de desarrollo humano, ha transitado un camino: desde el mundo corporativo y educativo hasta convertirse en mentora y líder de su propia marca, inspirando a miles de mujeres a transformar sus emociones en herramientas de poder y construir una vida plena.</p>
                     <div class="quote">
@@ -3099,7 +3132,7 @@ nav, nav *, .hero *, input, textarea, select, button {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3>Martha Lucía Contreras Contreras</h3>
+                    <h3>Martha Lucía Contreras</h3>
                     <p class="tagline">Donde la calma se convierte en fuerza</p>
                     <p>Psicóloga – Estratega en Gestión Emocional y Bienestar Integral. Con más de 15 años de experiencia, te acompaño en tu camino hacia el equilibrio emocional y el bienestar integral.</p>
                     <div class="footer-social">
@@ -3153,7 +3186,7 @@ nav, nav *, .hero *, input, textarea, select, button {
                     <a href="privacidad.html">Política de Privacidad</a>
                     <a href="cookies.html" style="margin-left: 1rem;">Política de Cookies</a>
                     <a href="javascript:void(0)" onclick="manageCookies()" style="margin-left: 1rem; cursor: pointer;">Gestionar Cookies</a>
-                    <span style="margin-left: 1rem;">Designed & Developed by <a href="https://programamos.st" target="_blank">programamos.st</a></span>
+                    <span style="margin-left: 1rem;">Powered by <a href="https://andresruss.com" target="_blank" rel="noopener">programamos <svg class="footer-bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></a></span>
                 </div>
             </div>
         </div>
